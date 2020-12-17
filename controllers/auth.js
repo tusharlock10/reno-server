@@ -109,5 +109,6 @@ module.exports = {
     });
 
     res.json(user.data.updateUser);
+    
   }
 };
