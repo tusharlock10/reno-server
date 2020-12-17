@@ -1,0 +1,54 @@
+<style>
+    
+.razorpay-payment-button,#modal-close {
+    position: absolute;
+    top: 50%;
+    text-align: center;
+    font-size: 1rem;
+    font-weight: 400;
+    color: white;
+    background-color: #d20000;
+    border-radius: 5px;
+    width: 80%;
+    margin:0 auto;
+    padding: 10px 0px;
+    border: none;
+    transition: all 0.5s;
+}
+
+</style>
+
+
+<form action="<%=host%>/api/v1/get-premium-membership" method="POST" class="btncheck">
+  
+    <script
+      src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key= <%=process.env.razorpayKeyId%>
+        data-amount= <%=amount%>
+        data-currency="INR"
+        data-buttontext="Try Again"
+        data-name="Reno"
+        data-order_id= <%=orderId%>
+        data-description="We bring empty stomach to joy"  
+        data-theme.color="#fff"
+        data-prefill.name=<%=userName%>
+        data-prefill.email= <%=userEmail%>
+        data-prefill.contact= <%=mobile%>
+      >
+    </script>
+    
+    <input type="hidden" custom="Hidden Element" name="totalAmount" value="<%=amount%>" />
+    <input type="hidden" custom="Hidden Element" name="authToken" value="<%=token%>" />
+    <input type="hidden" custom="Hidden Element" name="days" value="<%=days%>" />
+
+    
+  </form>
+
+<script>
+    window.addEventListener("load",()=>{
+        btn=document.querySelectorAll(".razorpay-payment-button");
+        btn[0].click();
+    })
+</script>
+
+  

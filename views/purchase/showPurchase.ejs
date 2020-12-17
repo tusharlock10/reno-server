@@ -1,0 +1,23 @@
+<form action="/api/v1/buy" method="POST" class="btncheck">
+    <!-- prettier-ignore -->
+    <script
+      src="https://checkout.razorpay.com/v1/checkout.js"
+        data-key= <%= process.env.razorpayKeyId %>
+        data-amount= <%=totalAmount*100 %>
+        data-currency="INR"
+        data-buttontext="PLACE ORDER"
+        data-name="Reno"
+        data-order_id= <%= orderId%>
+        data-description="We bring empty stomach to joy"
+        data-prefill.name=<%=userName%>
+        data-prefill.email= <%=userEmail%>
+        data-prefill.contact= <%=mobile%>
+        data-theme.color="#64a2df"
+      >
+    </script>
+    
+    <input type="hidden" custom="Hidden Element" name="restaurantRazorpayAccount" value="<%=restaurantRazorpayAccount%>" />
+    <input type="hidden" custom="Hidden Element" name="restaurant_id" value="<%=restaurant_id%>" />
+    <input type="hidden" custom="Hidden Element" name="totalAmount" value="<%=totalAmount%>" />
+
+  </form>
