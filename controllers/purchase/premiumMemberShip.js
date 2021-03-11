@@ -4,7 +4,7 @@ const { getUser } = require('../../queries/user');
 const { updateUserPremiumDetails } = require('../../queries/purchase');
 const { getCity } = require('../../queries/purchase');
 const sha = require('crypto-js/hmac-sha256');
-const db = require('../../db');
+const db = require('../../db_v2');
 
 module.exports = {
   async getPremiumMembership(req, res, next) {

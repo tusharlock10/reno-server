@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator"),
-  db = require("../db"),
+  db = require("../db_v2"),
   { createUserReview, getUserReview } = require("../queries/review"),
   { GetRestaurant, updateRestaurantRating } = require("../queries/restaurant");
 

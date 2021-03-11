@@ -1,7 +1,7 @@
 const sha = require('crypto-js/hmac-sha256');
 const axios = require('axios');
 const { getRenoCommission } = require('../../queries/purchase');
-const db = require('../../db');
+const db = require('../../db_v2');
 const { validationResult } = require('express-validator');
 const Razorpay = require('razorpay');
 const { getUser } = require('../../queries/user');

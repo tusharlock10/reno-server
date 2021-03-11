@@ -1,4 +1,4 @@
-const db = require("../db");
+const db = require("../db_v2");
 const axios = require("axios");
 const { allRestaurants } = require("../queries/restaurant");
 var distance = require("google-distance-matrix");
