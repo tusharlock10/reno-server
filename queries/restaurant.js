@@ -339,7 +339,7 @@ const friday = gql`
   query getRestaurant($city: String!, $time: String!) {
     restaurantses(where: { city_contains: $city }) {
       id
-      namef
+      name
       city
       rating
       state
