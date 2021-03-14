@@ -36,7 +36,8 @@ module.exports = {
     distance.key(process.env.googleMatrixApi);
     distance.units("imperial");
 
-    await distance.matrix(origins, destinations, function(err, distances) {
+    distance.matrix(origins, destinations, function(err, distances) {
+      console.log("NEARBY RESULT : ", {err, distances})
       if (err) {
         return res.status(404).json({ errors: [{ msg: `${err}` }] });
       }

@@ -19,9 +19,9 @@ module.exports = {
         console.log(err);
       } else {
         var mainOptions = {
-          from: 'naman@goreno.in',
+          from: process.env.email,
           to: clientEmail,
-          subject: 'success register',
+          subject: 'Registration successful at RENO',
           html: data
         };
         
