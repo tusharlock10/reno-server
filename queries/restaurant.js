@@ -1,4 +1,4 @@
-const gql = require('graphql-tag');
+const gql = require("graphql-tag");
 
 const allRestaurantTypes = gql`
   query {
@@ -409,6 +409,32 @@ const allRestaurants = gql`
   }
 `;
 
+const allRestaurantsInCity = gql`
+  query allRestaurants($time: String!, $city: String!) {
+    restaurantses(where: { city_contains: $city }) {
+      id
+      name
+      city
+      rating
+      state
+      imageurl
+      googlemapsurl
+      address
+      latitude
+      longitude
+      timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+        id
+        time
+        day
+        newdiscount
+        exhausted
+        discount
+        daychange
+      }
+    }
+  }
+`;
+
 const getRestaurants = gql`
   query {
     restaurantses {
@@ -442,6 +468,7 @@ module.exports = {
   allRestaurantTypes,
   updateRestaurantRating,
   allRestaurants,
+  allRestaurantsInCity,
   updateRestaurantGeoCode,
   getRestaurants,
   sunday,
@@ -457,5 +484,5 @@ module.exports = {
   showWednesday,
   showThursday,
   showFriday,
-  showSaturday
+  showSaturday,
 };
