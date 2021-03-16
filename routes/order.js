@@ -49,7 +49,7 @@ router.post(
   check('mobile', 'mobile is required !!').exists(),
   check('restaurantId', 'restaurantId is required !!').exists(),
   isLoggedIn,
-  isPremium,
+  // isPremium,
   asyncErrorHandler(bookingOtp)
 );
 

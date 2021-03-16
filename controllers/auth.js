@@ -1,13 +1,14 @@
-const { validationResult } = require('express-validator'),
-  db = require('../db_v2'),
+const { validationResult } = require("express-validator"),
+  db = require("../db_v2"),
   {
     createUser,
     getUser,
     updateUserInstallLocations,
-    updateUserCurrentLocations
-  } = require('../queries/user'),
-  { successRegisterMail } = require('../nodemailer'),
-  jwt = require('jsonwebtoken');
+    updateUserCurrentLocations,
+    updateUserProfileImage,
+  } = require("../queries/user"),
+  { successRegisterMail } = require("../nodemailer"),
+  jwt = require("jsonwebtoken");
 
 module.exports = {
   //facebookID -> (google,fb,guest id)
@@ -17,21 +18,19 @@ module.exports = {
       return res.status(400).json({ errors: errors.array() });
     }
 
-    const {
-      firstname,
-      lastname,
-      email,
-      facebookID,
-      profileImage
-    } = req.body;
+    const { firstname, lastname, email, facebookID, profileImage } = req.body;
 
     let user = await db.query({
       query: getUser,
-      variables: { facebookID }
+      variables: { facebookID },
     });
 
     if (user.data.users.length > 0) {
       id = user.data.users[0].id;
+      await db.mutate({
+        mutation: updateUserProfileImage,
+        variables: { id, profileImage },
+      });
     }
 
     if (user.data.users.length <= 0) {
@@ -42,8 +41,8 @@ module.exports = {
           firstname,
           lastname,
           email,
-          profileImage
-        }
+          profileImage,
+        },
       });
       id = user.data.createUser.id;
       await successRegisterMail(email, firstname);
@@ -54,8 +53,8 @@ module.exports = {
     const payload = {
       user: {
         facebookID,
-        id
-      }
+        id,
+      },
     };
 
     //todo->change expire time
@@ -73,42 +72,41 @@ module.exports = {
   async getUserProfile(req, res, next) {
     const user = await db.query({
       query: getUser,
-      variables: { facebookID: req.user.facebookID }
+      variables: { facebookID: req.user.facebookID },
     });
 
     res.json(user.data.users[0]);
   },
 
   async updateUserInstallLocation(req, res, next) {
-     const errors = validationResult(req);
-     if (!errors.isEmpty()) {
-       return res.status(400).json({ errors: errors.array() });
-     }
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
     const user = await db.mutate({
       mutation: updateUserInstallLocations,
       variables: {
         id: req.user.id,
-        installLocation: req.body.installLocation
-      }
+        installLocation: req.body.installLocation,
+      },
     });
 
     res.json(user.data.updateUser);
   },
   async updateUserCurrentLocation(req, res, next) {
-     const errors = validationResult(req);
-     if (!errors.isEmpty()) {
-       return res.status(400).json({ errors: errors.array() });
-     }
-     
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.status(400).json({ errors: errors.array() });
+    }
+
     const user = await db.mutate({
       mutation: updateUserCurrentLocations,
       variables: {
         id: req.user.id,
-        currentLocation: req.body.currentLocation
-      }
+        currentLocation: req.body.currentLocation,
+      },
     });
 
     res.json(user.data.updateUser);
-    
-  }
+  },
 };

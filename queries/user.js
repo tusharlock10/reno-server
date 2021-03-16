@@ -1,4 +1,4 @@
-const gql = require('graphql-tag');
+const gql = require("graphql-tag");
 
 //facebookID -> (google,fb,guest id)
 const createUser = gql`
@@ -15,7 +15,7 @@ const createUser = gql`
         lastname: $lastname
         email: $email
         facebookID: $facebookID
-        profileImage:$profileImage
+        profileImage: $profileImage
       }
     ) {
       id
@@ -71,9 +71,18 @@ const updateUserCurrentLocations = gql`
   }
 `;
 
+const updateUserProfileImage = gql`
+  mutation updateUser($profileImage: String!, $id: ID!) {
+    updateUser(data: { profileImage: $profileImage }, where: { id: $id }) {
+      id
+    }
+  }
+`;
+
 module.exports = {
   createUser,
   getUser,
   updateUserInstallLocations,
-  updateUserCurrentLocations
+  updateUserCurrentLocations,
+  updateUserProfileImage,
 };
