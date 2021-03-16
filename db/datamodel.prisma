@@ -215,7 +215,7 @@ type User @model {
   id: ID! @id
   facebookID: String! @unique
   lastname: String
-  mobile: String @unique
+  mobile: String
   totalOrders: Int @default(value: 0)
   orderses: [Orders!]!
   contactSync: Boolean @default(value: false)
