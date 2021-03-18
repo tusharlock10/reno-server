@@ -1,15 +1,18 @@
-const { validationResult } = require("express-validator"),
-  db = require("../db_v2"),
-  bcryptjs = require("bcryptjs"),
-  { sendOtp, bookingConfirmation, cancelBooking } = require("../msg91"),
-  {
-    createOrder,
-    deleteOrder,
-    bookingOtps,
-    checkOtp,
-    updateUserOtpField,
-    updateOrderUnlocked,
-  } = require("../queries/order");
+const { validationResult } = require("express-validator");
+const Razorpay = require("razorpay");
+const uuid = require("uuid");
+const db = require("../db_v2");
+const bcryptjs = require("bcryptjs");
+const { sendOtp, bookingConfirmation, cancelBooking } = require("../msg91");
+const {
+  createOrder,
+  deleteOrder,
+  bookingOtps,
+  checkOtp,
+  updateUserOtpField,
+  updateOrderUnlocked,
+} = require("../queries/order");
+const { razorpayKeyId, razorpayKeySecret } = process.env;
 
 module.exports = {
   async restaurantBooking(req, res, next) {
@@ -162,5 +165,38 @@ module.exports = {
     });
 
     res.send(response.data.updateOrders);
+  },
+
+  async createPaymentOrder(req, res, next) {
+    // creates a payment order for razorpay
+    const { amount, name, email, mobile } = req.body;
+
+    const instance = new Razorpay({
+      key_id: razorpayKeyId,
+      key_secret: razorpayKeySecret,
+    });
+
+    const options = {
+      amount: amount * 100, // give amount here in Paisa not Rupees
+      currency: "INR",
+      receipt: uuid.v4(),
+      payment_capture: true,
+    };
+
+    instance.orders.create(options, (error, response) => {
+      const result = {
+        ...response,
+        ...options,
+        name,
+        email,
+        phoneNumber: mobile,
+      };
+      res.send(result);
+    });
+  },
+
+  async confirmPayment(req, res) {
+    // procedure for completing payment
+    res.send({paymentId:'1234'})
   },
 };
