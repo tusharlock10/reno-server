@@ -7,12 +7,12 @@ const { validationResult } = require("express-validator"),
     deleteOrder,
     bookingOtps,
     checkOtp,
-    updateUserOtpField
+    updateUserOtpField,
+    updateOrderUnlocked,
   } = require("../queries/order");
 
 module.exports = {
   async restaurantBooking(req, res, next) {
-    console.log(req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.json({ errors: errors.array() });
@@ -31,8 +31,8 @@ module.exports = {
       query: checkOtp,
       variables: {
         id: req.user.id,
-        currentTime
-      }
+        currentTime,
+      },
     });
 
     if (getUser.data.users.length <= 0) {
@@ -53,7 +53,7 @@ module.exports = {
 
     await db.mutate({
       mutation: updateUserOtpField,
-      variables: { id: req.user.id }
+      variables: { id: req.user.id },
     });
 
     const bookingid = Math.floor(Math.random() * 100000000 + 1).toString();
@@ -63,20 +63,20 @@ module.exports = {
       people,
       mobile,
       name,
-      date
+      date,
     } = req.body;
     let userId = req.user.id;
     people = Number(people);
 
-     var options = {
-      weekday: 'long',
-      year: 'numeric',
-      month: 'long',
-      day: 'numeric'
+    var options = {
+      weekday: "long",
+      year: "numeric",
+      month: "long",
+      day: "numeric",
     };
-    const dateIso = new Date().toLocaleDateString('en-US', options); 
+    const dateIso = new Date().toLocaleDateString("en-US", options);
     // console.log(dateIso);
-    // const dateIso = new Date().toDateString(); 
+    // const dateIso = new Date().toDateString();
     console.log(currentTime);
     const response = await db.mutate({
       mutation: createOrder,
@@ -86,15 +86,15 @@ module.exports = {
         userId,
         bookingid,
         people,
-        date:dateIso,
+        date: dateIso,
         mobile,
-        name
-      }
+        name,
+      },
     });
 
     const bookingData = response.data.createOrders;
     await bookingConfirmation(req.body, bookingData);
-    console.log("done",response);
+    console.log("done", response);
     res.json({ confirmed: true, bookingData });
   },
 
@@ -103,8 +103,8 @@ module.exports = {
     const response = await db.mutate({
       mutation: deleteOrder,
       variables: {
-        id: req.params.order_id
-      }
+        id: req.params.order_id,
+      },
     });
     const cancelData = response.data.deleteOrders;
     await cancelBooking(cancelData);
@@ -134,12 +134,33 @@ module.exports = {
         id,
         bookingOtp,
         otpExpires,
-        mobile
-      }
+        mobile,
+      },
     });
 
     await sendOtp(otp, mobile);
     console.log(otp);
     res.json(response.data.updateUser);
-  }
+  },
+
+  async unlockDeal(req, res, next) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      return res.json({ errors: errors.array() });
+    }
+
+    // get the orderId
+    const { orderId, longitude, latitude } = req.body;
+    const geolocation = `${latitude},${longitude}`;
+
+    // check if that orders has the deal unlocked
+    // check if the date has passed
+
+    const response = await db.mutate({
+      mutation: updateOrderUnlocked,
+      variables: { orderId, geolocation },
+    });
+
+    res.send(response.data.updateOrders);
+  },
 };

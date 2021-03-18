@@ -101,10 +101,12 @@ const orderses = gql`
   query orderses($facebookID: String!) {
     users(where: { facebookID: $facebookID }) {
       orderses {
+        id
         name
         mobile
         people
         date
+        unlockActive
         timeDiscount {
           time
           discount

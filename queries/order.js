@@ -31,9 +31,9 @@ const createOrder = gql`
       restaurants {
         name
         city
-        state,
-        imageurl,
-        rphone,
+        state
+        imageurl
+        rphone
         googlemapsurl
       }
       timeDiscount {
@@ -110,10 +110,38 @@ const updateUserOtpField = gql`
   }
 `;
 
+const updateOrderUnlocked = gql`
+  mutation updateOrder($orderId: ID!, $geolocation: String!) {
+    updateOrders(
+      where: { id: $orderId }
+      data: { geolocation: $geolocation, unlockActive: true }
+    ) {
+      id
+      name
+      mobile
+      people
+      date
+      unlockActive
+      timeDiscount {
+        time
+        discount
+      }
+      restaurants {
+        googlemapsurl
+        name
+        rating
+        imageurl
+        city
+      }
+    }
+  }
+`;
+
 module.exports = {
   createOrder,
   deleteOrder,
   bookingOtps,
   checkOtp,
-  updateUserOtpField
+  updateUserOtpField,
+  updateOrderUnlocked,
 };

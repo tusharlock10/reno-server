@@ -9,7 +9,8 @@ const {
 const {
   restaurantBooking,
   cancelRestaurantBooking,
-  bookingOtp
+  bookingOtp,
+  unlockDeal
 } = require('../controllers/order');
 
 // @Route    POST '/api/v1/confirmBooking'
@@ -27,8 +28,6 @@ router.post(
     check('otp', 'otp is required !!').exists()
   ],
   isLoggedIn,
-
-
   asyncErrorHandler(restaurantBooking)
 );
 
@@ -51,6 +50,19 @@ router.post(
   isLoggedIn,
   // isPremium,
   asyncErrorHandler(bookingOtp)
+);
+
+// @Route    POST '/api/v1/unlockDeal'
+// @desc     unlocks the deal for that order
+// @access   Private
+router.post(
+  '/unlockDeal',
+  check("orderId", "orderId is required !!").exists(),
+  check("longitude", "longitude is required !!").exists(),
+  check("latitude", "latitude is required !!").exists(),
+  isLoggedIn,
+  // isPremium,
+  asyncErrorHandler(unlockDeal)
 );
 
 module.exports = router;
