@@ -137,6 +137,38 @@ const updateOrderUnlocked = gql`
   }
 `;
 
+const updateOrderPaymentConfirmed = gql`
+  mutation updateOrder(
+    $orderId: ID!
+    $amount: Int!
+    $receipt: String!
+    $paymentOrderId: String!
+    $paymentDescription: String!
+    $paymentId: String!
+  ) {
+    updateOrders(
+      where: { id: $orderId }
+      data: {
+        amount: $amount
+        receipt: $receipt
+        paymentOrderId: $paymentOrderId
+        paymentDescription: $paymentDescription
+        paymentId: $paymentId
+        confirmed: true
+      }
+    ) {
+      id
+      confirmed
+      amount
+      receipt
+      paymentOrderId
+      paymentDescription
+      paymentId
+      confirmed
+    }
+  }
+`;
+
 module.exports = {
   createOrder,
   deleteOrder,
@@ -144,4 +176,5 @@ module.exports = {
   checkOtp,
   updateUserOtpField,
   updateOrderUnlocked,
+  updateOrderPaymentConfirmed,
 };

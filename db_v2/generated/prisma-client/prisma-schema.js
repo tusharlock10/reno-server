@@ -2009,9 +2009,14 @@ type Orders {
   mobile: String!
   unlockActive: Boolean!
   name: String!
-  confirmed: Boolean
   geolocation: String
   referrer: String
+  confirmed: Boolean
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
 }
 
 type OrdersConnection {
@@ -2032,9 +2037,14 @@ input OrdersCreateInput {
   mobile: String!
   unlockActive: Boolean
   name: String!
-  confirmed: Boolean
   geolocation: String
   referrer: String
+  confirmed: Boolean
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
 }
 
 input OrdersCreateManyWithoutRestaurantsInput {
@@ -2063,9 +2073,14 @@ input OrdersCreateWithoutRestaurantsInput {
   mobile: String!
   unlockActive: Boolean
   name: String!
-  confirmed: Boolean
   geolocation: String
   referrer: String
+  confirmed: Boolean
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
 }
 
 input OrdersCreateWithoutTimeDiscountInput {
@@ -2079,9 +2094,14 @@ input OrdersCreateWithoutTimeDiscountInput {
   mobile: String!
   unlockActive: Boolean
   name: String!
-  confirmed: Boolean
   geolocation: String
   referrer: String
+  confirmed: Boolean
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
 }
 
 input OrdersCreateWithoutUserInput {
@@ -2095,9 +2115,14 @@ input OrdersCreateWithoutUserInput {
   mobile: String!
   unlockActive: Boolean
   name: String!
-  confirmed: Boolean
   geolocation: String
   referrer: String
+  confirmed: Boolean
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
 }
 
 type OrdersEdge {
@@ -2126,12 +2151,22 @@ enum OrdersOrderByInput {
   unlockActive_DESC
   name_ASC
   name_DESC
-  confirmed_ASC
-  confirmed_DESC
   geolocation_ASC
   geolocation_DESC
   referrer_ASC
   referrer_DESC
+  confirmed_ASC
+  confirmed_DESC
+  amount_ASC
+  amount_DESC
+  receipt_ASC
+  receipt_DESC
+  paymentId_ASC
+  paymentId_DESC
+  paymentOrderId_ASC
+  paymentOrderId_DESC
+  paymentDescription_ASC
+  paymentDescription_DESC
 }
 
 type OrdersPreviousValues {
@@ -2145,9 +2180,14 @@ type OrdersPreviousValues {
   mobile: String!
   unlockActive: Boolean!
   name: String!
-  confirmed: Boolean
   geolocation: String
   referrer: String
+  confirmed: Boolean
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
 }
 
 input OrdersScalarWhereInput {
@@ -2255,8 +2295,6 @@ input OrdersScalarWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  confirmed: Boolean
-  confirmed_not: Boolean
   geolocation: String
   geolocation_not: String
   geolocation_in: [String!]
@@ -2285,6 +2323,72 @@ input OrdersScalarWhereInput {
   referrer_not_starts_with: String
   referrer_ends_with: String
   referrer_not_ends_with: String
+  confirmed: Boolean
+  confirmed_not: Boolean
+  amount: Int
+  amount_not: Int
+  amount_in: [Int!]
+  amount_not_in: [Int!]
+  amount_lt: Int
+  amount_lte: Int
+  amount_gt: Int
+  amount_gte: Int
+  receipt: String
+  receipt_not: String
+  receipt_in: [String!]
+  receipt_not_in: [String!]
+  receipt_lt: String
+  receipt_lte: String
+  receipt_gt: String
+  receipt_gte: String
+  receipt_contains: String
+  receipt_not_contains: String
+  receipt_starts_with: String
+  receipt_not_starts_with: String
+  receipt_ends_with: String
+  receipt_not_ends_with: String
+  paymentId: String
+  paymentId_not: String
+  paymentId_in: [String!]
+  paymentId_not_in: [String!]
+  paymentId_lt: String
+  paymentId_lte: String
+  paymentId_gt: String
+  paymentId_gte: String
+  paymentId_contains: String
+  paymentId_not_contains: String
+  paymentId_starts_with: String
+  paymentId_not_starts_with: String
+  paymentId_ends_with: String
+  paymentId_not_ends_with: String
+  paymentOrderId: String
+  paymentOrderId_not: String
+  paymentOrderId_in: [String!]
+  paymentOrderId_not_in: [String!]
+  paymentOrderId_lt: String
+  paymentOrderId_lte: String
+  paymentOrderId_gt: String
+  paymentOrderId_gte: String
+  paymentOrderId_contains: String
+  paymentOrderId_not_contains: String
+  paymentOrderId_starts_with: String
+  paymentOrderId_not_starts_with: String
+  paymentOrderId_ends_with: String
+  paymentOrderId_not_ends_with: String
+  paymentDescription: String
+  paymentDescription_not: String
+  paymentDescription_in: [String!]
+  paymentDescription_not_in: [String!]
+  paymentDescription_lt: String
+  paymentDescription_lte: String
+  paymentDescription_gt: String
+  paymentDescription_gte: String
+  paymentDescription_contains: String
+  paymentDescription_not_contains: String
+  paymentDescription_starts_with: String
+  paymentDescription_not_starts_with: String
+  paymentDescription_ends_with: String
+  paymentDescription_not_ends_with: String
   AND: [OrdersScalarWhereInput!]
   OR: [OrdersScalarWhereInput!]
   NOT: [OrdersScalarWhereInput!]
@@ -2319,9 +2423,14 @@ input OrdersUpdateInput {
   mobile: String
   unlockActive: Boolean
   name: String
-  confirmed: Boolean
   geolocation: String
   referrer: String
+  confirmed: Boolean
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
 }
 
 input OrdersUpdateManyDataInput {
@@ -2332,9 +2441,14 @@ input OrdersUpdateManyDataInput {
   mobile: String
   unlockActive: Boolean
   name: String
-  confirmed: Boolean
   geolocation: String
   referrer: String
+  confirmed: Boolean
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
 }
 
 input OrdersUpdateManyMutationInput {
@@ -2345,9 +2459,14 @@ input OrdersUpdateManyMutationInput {
   mobile: String
   unlockActive: Boolean
   name: String
-  confirmed: Boolean
   geolocation: String
   referrer: String
+  confirmed: Boolean
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
 }
 
 input OrdersUpdateManyWithoutRestaurantsInput {
@@ -2401,9 +2520,14 @@ input OrdersUpdateWithoutRestaurantsDataInput {
   mobile: String
   unlockActive: Boolean
   name: String
-  confirmed: Boolean
   geolocation: String
   referrer: String
+  confirmed: Boolean
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
 }
 
 input OrdersUpdateWithoutTimeDiscountDataInput {
@@ -2416,9 +2540,14 @@ input OrdersUpdateWithoutTimeDiscountDataInput {
   mobile: String
   unlockActive: Boolean
   name: String
-  confirmed: Boolean
   geolocation: String
   referrer: String
+  confirmed: Boolean
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
 }
 
 input OrdersUpdateWithoutUserDataInput {
@@ -2431,9 +2560,14 @@ input OrdersUpdateWithoutUserDataInput {
   mobile: String
   unlockActive: Boolean
   name: String
-  confirmed: Boolean
   geolocation: String
   referrer: String
+  confirmed: Boolean
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
 }
 
 input OrdersUpdateWithWhereUniqueWithoutRestaurantsInput {
@@ -2577,8 +2711,6 @@ input OrdersWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  confirmed: Boolean
-  confirmed_not: Boolean
   geolocation: String
   geolocation_not: String
   geolocation_in: [String!]
@@ -2607,6 +2739,72 @@ input OrdersWhereInput {
   referrer_not_starts_with: String
   referrer_ends_with: String
   referrer_not_ends_with: String
+  confirmed: Boolean
+  confirmed_not: Boolean
+  amount: Int
+  amount_not: Int
+  amount_in: [Int!]
+  amount_not_in: [Int!]
+  amount_lt: Int
+  amount_lte: Int
+  amount_gt: Int
+  amount_gte: Int
+  receipt: String
+  receipt_not: String
+  receipt_in: [String!]
+  receipt_not_in: [String!]
+  receipt_lt: String
+  receipt_lte: String
+  receipt_gt: String
+  receipt_gte: String
+  receipt_contains: String
+  receipt_not_contains: String
+  receipt_starts_with: String
+  receipt_not_starts_with: String
+  receipt_ends_with: String
+  receipt_not_ends_with: String
+  paymentId: String
+  paymentId_not: String
+  paymentId_in: [String!]
+  paymentId_not_in: [String!]
+  paymentId_lt: String
+  paymentId_lte: String
+  paymentId_gt: String
+  paymentId_gte: String
+  paymentId_contains: String
+  paymentId_not_contains: String
+  paymentId_starts_with: String
+  paymentId_not_starts_with: String
+  paymentId_ends_with: String
+  paymentId_not_ends_with: String
+  paymentOrderId: String
+  paymentOrderId_not: String
+  paymentOrderId_in: [String!]
+  paymentOrderId_not_in: [String!]
+  paymentOrderId_lt: String
+  paymentOrderId_lte: String
+  paymentOrderId_gt: String
+  paymentOrderId_gte: String
+  paymentOrderId_contains: String
+  paymentOrderId_not_contains: String
+  paymentOrderId_starts_with: String
+  paymentOrderId_not_starts_with: String
+  paymentOrderId_ends_with: String
+  paymentOrderId_not_ends_with: String
+  paymentDescription: String
+  paymentDescription_not: String
+  paymentDescription_in: [String!]
+  paymentDescription_not_in: [String!]
+  paymentDescription_lt: String
+  paymentDescription_lte: String
+  paymentDescription_gt: String
+  paymentDescription_gte: String
+  paymentDescription_contains: String
+  paymentDescription_not_contains: String
+  paymentDescription_starts_with: String
+  paymentDescription_not_starts_with: String
+  paymentDescription_ends_with: String
+  paymentDescription_not_ends_with: String
   AND: [OrdersWhereInput!]
   OR: [OrdersWhereInput!]
   NOT: [OrdersWhereInput!]

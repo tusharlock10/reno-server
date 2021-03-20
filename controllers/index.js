@@ -6,24 +6,24 @@ const { validationResult } = require("express-validator"),
     searchRestaurant,
     typeRestaurants,
     orderses,
-    cities
+    cities,
   } = require("../queries/index");
 
 module.exports = {
   async indexBrandTiles(req, res, next) {
     // const typeName = req.header("city");
-    const typeName = 'indore';
+    const typeName = "indore";
 
     if (!typeName) {
       return res.status(401).json({
-        errors: [{ msg: 'City is not passed headers !!' }]
+        errors: [{ msg: "City is not passed headers !!" }],
       });
     }
     const response = await db.query({
       query: getBrandTiles,
       variables: {
-        typeName
-      }
+        typeName,
+      },
     });
 
     res.json(response.data.restaurantTypes);
@@ -35,8 +35,8 @@ module.exports = {
       query: showBrandTile,
       variables: {
         restaurantTypeId,
-        time
-      }
+        time,
+      },
     });
 
     res.json(response.data.restaurantTypes);
@@ -44,7 +44,7 @@ module.exports = {
 
   async searchRestaurant(req, res, next) {
     const response = await db.query({
-      query: searchRestaurant
+      query: searchRestaurant,
     });
     res.json(response.data.restaurantses);
   },
@@ -52,17 +52,22 @@ module.exports = {
   async userOrders(req, res, next) {
     const user = await db.query({
       query: orderses,
-      variables: { facebookID: req.user.facebookID }
+      variables: { facebookID: req.user.facebookID },
     });
 
     const orders = user.data.users[0].orderses;
     const upcomingOrders = [];
     const pastOrders = [];
-    orders.forEach(order => {
-      const orderTime = order.timeDiscount.time.split('-')[1];
+    orders.forEach((order) => {
+      const orderTime = order.timeDiscount.time.split("-")[1];
       const orderDate = Date.parse(`${order.date} ${orderTime}`);
       if (orderDate < Date.now()) {
-        pastOrders.push(order);
+        if (order.unlockActive && !order.confirmed) {
+          // check if order was unlocked but not paid, then its an upcoming order
+          upcomingOrders.push(order);
+        } else {
+          pastOrders.push(order);
+        }
         // console.log(order);
       } else {
         upcomingOrders.push(order);
@@ -75,10 +80,10 @@ module.exports = {
 
   async typeRestaurants(req, res, next) {
     const typeId = req.params.type_Restaurants_id;
-    const city = req.header('city');
+    const city = req.header("city");
     if (!city) {
       return res.status(400).json({
-        errors: [{ msg: 'City is not passed headers !!' }]
+        errors: [{ msg: "City is not passed headers !!" }],
       });
     }
 
@@ -92,16 +97,16 @@ module.exports = {
       variables: {
         typeId,
         city,
-        time
-      }
+        time,
+      },
     });
     res.json(response.data.restaurantTypes[0].restaurantses);
   },
 
   async city(req, res, next) {
     const city = await db.query({
-      query: cities
+      query: cities,
     });
     res.json(city.data.cities);
-  }
+  },
 };

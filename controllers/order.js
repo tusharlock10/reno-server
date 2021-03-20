@@ -11,6 +11,7 @@ const {
   checkOtp,
   updateUserOtpField,
   updateOrderUnlocked,
+  updateOrderPaymentConfirmed,
 } = require("../queries/order");
 const { razorpayKeyId, razorpayKeySecret } = process.env;
 
@@ -123,7 +124,13 @@ module.exports = {
     const { mobile } = req.body;
     const id = req.user.id;
 
-    const otp = Math.floor(Math.random() * 10000 + 1).toString();
+    let otp = "";
+    if (process.env.__DEV__) {
+      // in dev mode, otp is 0000 for convenience
+      otp = "0000";
+    } else {
+      otp = Math.floor(Math.random() * 10000 + 1).toString();
+    }
     const salt = await bcryptjs.genSalt(10);
     const bookingOtp = await bcryptjs.hashSync(otp, salt);
 
@@ -183,7 +190,7 @@ module.exports = {
       payment_capture: true,
     };
 
-    instance.orders.create(options, (error, response) => {
+    instance.orders.create(options, (_, response) => {
       const result = {
         ...response,
         ...options,
@@ -197,6 +204,28 @@ module.exports = {
 
   async confirmPayment(req, res) {
     // procedure for completing payment
-    res.send({paymentId:'1234'})
+    const {
+      orderId,
+      amount,
+      receipt,
+      paymentOrderId,
+      paymentDescription,
+      paymentId,
+    } = req.body;
+
+    // save the payment in db and mark order as confirmed
+    const response = await db.mutate({
+      mutation: updateOrderPaymentConfirmed,
+      variables: {
+        orderId,
+        amount,
+        receipt,
+        paymentOrderId,
+        paymentDescription,
+        paymentId,
+      },
+    });
+
+    res.send(response);
   },
 };

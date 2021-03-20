@@ -988,12 +988,22 @@ export type OrdersOrderByInput =
   | "unlockActive_DESC"
   | "name_ASC"
   | "name_DESC"
-  | "confirmed_ASC"
-  | "confirmed_DESC"
   | "geolocation_ASC"
   | "geolocation_DESC"
   | "referrer_ASC"
-  | "referrer_DESC";
+  | "referrer_DESC"
+  | "confirmed_ASC"
+  | "confirmed_DESC"
+  | "amount_ASC"
+  | "amount_DESC"
+  | "receipt_ASC"
+  | "receipt_DESC"
+  | "paymentId_ASC"
+  | "paymentId_DESC"
+  | "paymentOrderId_ASC"
+  | "paymentOrderId_DESC"
+  | "paymentDescription_ASC"
+  | "paymentDescription_DESC";
 
 export type TimeDiscountOrderByInput =
   | "discount_ASC"
@@ -1764,8 +1774,6 @@ export interface OrdersWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
-  confirmed?: Maybe<Boolean>;
-  confirmed_not?: Maybe<Boolean>;
   geolocation?: Maybe<String>;
   geolocation_not?: Maybe<String>;
   geolocation_in?: Maybe<String[] | String>;
@@ -1794,6 +1802,72 @@ export interface OrdersWhereInput {
   referrer_not_starts_with?: Maybe<String>;
   referrer_ends_with?: Maybe<String>;
   referrer_not_ends_with?: Maybe<String>;
+  confirmed?: Maybe<Boolean>;
+  confirmed_not?: Maybe<Boolean>;
+  amount?: Maybe<Int>;
+  amount_not?: Maybe<Int>;
+  amount_in?: Maybe<Int[] | Int>;
+  amount_not_in?: Maybe<Int[] | Int>;
+  amount_lt?: Maybe<Int>;
+  amount_lte?: Maybe<Int>;
+  amount_gt?: Maybe<Int>;
+  amount_gte?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  receipt_not?: Maybe<String>;
+  receipt_in?: Maybe<String[] | String>;
+  receipt_not_in?: Maybe<String[] | String>;
+  receipt_lt?: Maybe<String>;
+  receipt_lte?: Maybe<String>;
+  receipt_gt?: Maybe<String>;
+  receipt_gte?: Maybe<String>;
+  receipt_contains?: Maybe<String>;
+  receipt_not_contains?: Maybe<String>;
+  receipt_starts_with?: Maybe<String>;
+  receipt_not_starts_with?: Maybe<String>;
+  receipt_ends_with?: Maybe<String>;
+  receipt_not_ends_with?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentId_not?: Maybe<String>;
+  paymentId_in?: Maybe<String[] | String>;
+  paymentId_not_in?: Maybe<String[] | String>;
+  paymentId_lt?: Maybe<String>;
+  paymentId_lte?: Maybe<String>;
+  paymentId_gt?: Maybe<String>;
+  paymentId_gte?: Maybe<String>;
+  paymentId_contains?: Maybe<String>;
+  paymentId_not_contains?: Maybe<String>;
+  paymentId_starts_with?: Maybe<String>;
+  paymentId_not_starts_with?: Maybe<String>;
+  paymentId_ends_with?: Maybe<String>;
+  paymentId_not_ends_with?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentOrderId_not?: Maybe<String>;
+  paymentOrderId_in?: Maybe<String[] | String>;
+  paymentOrderId_not_in?: Maybe<String[] | String>;
+  paymentOrderId_lt?: Maybe<String>;
+  paymentOrderId_lte?: Maybe<String>;
+  paymentOrderId_gt?: Maybe<String>;
+  paymentOrderId_gte?: Maybe<String>;
+  paymentOrderId_contains?: Maybe<String>;
+  paymentOrderId_not_contains?: Maybe<String>;
+  paymentOrderId_starts_with?: Maybe<String>;
+  paymentOrderId_not_starts_with?: Maybe<String>;
+  paymentOrderId_ends_with?: Maybe<String>;
+  paymentOrderId_not_ends_with?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
+  paymentDescription_not?: Maybe<String>;
+  paymentDescription_in?: Maybe<String[] | String>;
+  paymentDescription_not_in?: Maybe<String[] | String>;
+  paymentDescription_lt?: Maybe<String>;
+  paymentDescription_lte?: Maybe<String>;
+  paymentDescription_gt?: Maybe<String>;
+  paymentDescription_gte?: Maybe<String>;
+  paymentDescription_contains?: Maybe<String>;
+  paymentDescription_not_contains?: Maybe<String>;
+  paymentDescription_starts_with?: Maybe<String>;
+  paymentDescription_not_starts_with?: Maybe<String>;
+  paymentDescription_ends_with?: Maybe<String>;
+  paymentDescription_not_ends_with?: Maybe<String>;
   AND?: Maybe<OrdersWhereInput[] | OrdersWhereInput>;
   OR?: Maybe<OrdersWhereInput[] | OrdersWhereInput>;
   NOT?: Maybe<OrdersWhereInput[] | OrdersWhereInput>;
@@ -3240,9 +3314,14 @@ export interface OrdersCreateWithoutRestaurantsInput {
   mobile: String;
   unlockActive?: Maybe<Boolean>;
   name: String;
-  confirmed?: Maybe<Boolean>;
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
+  confirmed?: Maybe<Boolean>;
+  amount?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
 }
 
 export interface TimeDiscountCreateOneWithoutOrdersesInput {
@@ -3405,9 +3484,14 @@ export interface OrdersCreateWithoutUserInput {
   mobile: String;
   unlockActive?: Maybe<Boolean>;
   name: String;
-  confirmed?: Maybe<Boolean>;
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
+  confirmed?: Maybe<Boolean>;
+  amount?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
 }
 
 export interface RestaurantsCreateOneWithoutOrdersesInput {
@@ -3512,9 +3596,14 @@ export interface OrdersCreateWithoutTimeDiscountInput {
   mobile: String;
   unlockActive?: Maybe<Boolean>;
   name: String;
-  confirmed?: Maybe<Boolean>;
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
+  confirmed?: Maybe<Boolean>;
+  amount?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
 }
 
 export interface UserCreateOneWithoutOrdersesInput {
@@ -4502,9 +4591,14 @@ export interface OrdersUpdateWithoutRestaurantsDataInput {
   mobile?: Maybe<String>;
   unlockActive?: Maybe<Boolean>;
   name?: Maybe<String>;
-  confirmed?: Maybe<Boolean>;
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
+  confirmed?: Maybe<Boolean>;
+  amount?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
 }
 
 export interface TimeDiscountUpdateOneWithoutOrdersesInput {
@@ -4867,9 +4961,14 @@ export interface OrdersUpdateWithoutUserDataInput {
   mobile?: Maybe<String>;
   unlockActive?: Maybe<Boolean>;
   name?: Maybe<String>;
-  confirmed?: Maybe<Boolean>;
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
+  confirmed?: Maybe<Boolean>;
+  amount?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
 }
 
 export interface RestaurantsUpdateOneWithoutOrdersesInput {
@@ -5021,9 +5120,14 @@ export interface OrdersUpdateWithoutTimeDiscountDataInput {
   mobile?: Maybe<String>;
   unlockActive?: Maybe<Boolean>;
   name?: Maybe<String>;
-  confirmed?: Maybe<Boolean>;
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
+  confirmed?: Maybe<Boolean>;
+  amount?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
 }
 
 export interface UserUpdateOneRequiredWithoutOrdersesInput {
@@ -6766,8 +6870,6 @@ export interface OrdersScalarWhereInput {
   name_not_starts_with?: Maybe<String>;
   name_ends_with?: Maybe<String>;
   name_not_ends_with?: Maybe<String>;
-  confirmed?: Maybe<Boolean>;
-  confirmed_not?: Maybe<Boolean>;
   geolocation?: Maybe<String>;
   geolocation_not?: Maybe<String>;
   geolocation_in?: Maybe<String[] | String>;
@@ -6796,6 +6898,72 @@ export interface OrdersScalarWhereInput {
   referrer_not_starts_with?: Maybe<String>;
   referrer_ends_with?: Maybe<String>;
   referrer_not_ends_with?: Maybe<String>;
+  confirmed?: Maybe<Boolean>;
+  confirmed_not?: Maybe<Boolean>;
+  amount?: Maybe<Int>;
+  amount_not?: Maybe<Int>;
+  amount_in?: Maybe<Int[] | Int>;
+  amount_not_in?: Maybe<Int[] | Int>;
+  amount_lt?: Maybe<Int>;
+  amount_lte?: Maybe<Int>;
+  amount_gt?: Maybe<Int>;
+  amount_gte?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  receipt_not?: Maybe<String>;
+  receipt_in?: Maybe<String[] | String>;
+  receipt_not_in?: Maybe<String[] | String>;
+  receipt_lt?: Maybe<String>;
+  receipt_lte?: Maybe<String>;
+  receipt_gt?: Maybe<String>;
+  receipt_gte?: Maybe<String>;
+  receipt_contains?: Maybe<String>;
+  receipt_not_contains?: Maybe<String>;
+  receipt_starts_with?: Maybe<String>;
+  receipt_not_starts_with?: Maybe<String>;
+  receipt_ends_with?: Maybe<String>;
+  receipt_not_ends_with?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentId_not?: Maybe<String>;
+  paymentId_in?: Maybe<String[] | String>;
+  paymentId_not_in?: Maybe<String[] | String>;
+  paymentId_lt?: Maybe<String>;
+  paymentId_lte?: Maybe<String>;
+  paymentId_gt?: Maybe<String>;
+  paymentId_gte?: Maybe<String>;
+  paymentId_contains?: Maybe<String>;
+  paymentId_not_contains?: Maybe<String>;
+  paymentId_starts_with?: Maybe<String>;
+  paymentId_not_starts_with?: Maybe<String>;
+  paymentId_ends_with?: Maybe<String>;
+  paymentId_not_ends_with?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentOrderId_not?: Maybe<String>;
+  paymentOrderId_in?: Maybe<String[] | String>;
+  paymentOrderId_not_in?: Maybe<String[] | String>;
+  paymentOrderId_lt?: Maybe<String>;
+  paymentOrderId_lte?: Maybe<String>;
+  paymentOrderId_gt?: Maybe<String>;
+  paymentOrderId_gte?: Maybe<String>;
+  paymentOrderId_contains?: Maybe<String>;
+  paymentOrderId_not_contains?: Maybe<String>;
+  paymentOrderId_starts_with?: Maybe<String>;
+  paymentOrderId_not_starts_with?: Maybe<String>;
+  paymentOrderId_ends_with?: Maybe<String>;
+  paymentOrderId_not_ends_with?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
+  paymentDescription_not?: Maybe<String>;
+  paymentDescription_in?: Maybe<String[] | String>;
+  paymentDescription_not_in?: Maybe<String[] | String>;
+  paymentDescription_lt?: Maybe<String>;
+  paymentDescription_lte?: Maybe<String>;
+  paymentDescription_gt?: Maybe<String>;
+  paymentDescription_gte?: Maybe<String>;
+  paymentDescription_contains?: Maybe<String>;
+  paymentDescription_not_contains?: Maybe<String>;
+  paymentDescription_starts_with?: Maybe<String>;
+  paymentDescription_not_starts_with?: Maybe<String>;
+  paymentDescription_ends_with?: Maybe<String>;
+  paymentDescription_not_ends_with?: Maybe<String>;
   AND?: Maybe<OrdersScalarWhereInput[] | OrdersScalarWhereInput>;
   OR?: Maybe<OrdersScalarWhereInput[] | OrdersScalarWhereInput>;
   NOT?: Maybe<OrdersScalarWhereInput[] | OrdersScalarWhereInput>;
@@ -6814,9 +6982,14 @@ export interface OrdersUpdateManyDataInput {
   mobile?: Maybe<String>;
   unlockActive?: Maybe<Boolean>;
   name?: Maybe<String>;
-  confirmed?: Maybe<Boolean>;
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
+  confirmed?: Maybe<Boolean>;
+  amount?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
 }
 
 export interface TimeDiscountUpsertWithWhereUniqueWithoutRestaurantsInput {
@@ -7360,9 +7533,14 @@ export interface OrdersCreateInput {
   mobile: String;
   unlockActive?: Maybe<Boolean>;
   name: String;
-  confirmed?: Maybe<Boolean>;
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
+  confirmed?: Maybe<Boolean>;
+  amount?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
 }
 
 export interface OrdersUpdateInput {
@@ -7376,9 +7554,14 @@ export interface OrdersUpdateInput {
   mobile?: Maybe<String>;
   unlockActive?: Maybe<Boolean>;
   name?: Maybe<String>;
-  confirmed?: Maybe<Boolean>;
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
+  confirmed?: Maybe<Boolean>;
+  amount?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
 }
 
 export interface OrdersUpdateManyMutationInput {
@@ -7389,9 +7572,14 @@ export interface OrdersUpdateManyMutationInput {
   mobile?: Maybe<String>;
   unlockActive?: Maybe<Boolean>;
   name?: Maybe<String>;
-  confirmed?: Maybe<Boolean>;
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
+  confirmed?: Maybe<Boolean>;
+  amount?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
 }
 
 export interface RestaurantTypeCreateInput {
@@ -8779,9 +8967,14 @@ export interface Orders {
   mobile: String;
   unlockActive: Boolean;
   name: String;
-  confirmed?: Boolean;
   geolocation?: String;
   referrer?: String;
+  confirmed?: Boolean;
+  amount?: Int;
+  receipt?: String;
+  paymentId?: String;
+  paymentOrderId?: String;
+  paymentDescription?: String;
 }
 
 export interface OrdersPromise extends Promise<Orders>, Fragmentable {
@@ -8798,9 +8991,14 @@ export interface OrdersPromise extends Promise<Orders>, Fragmentable {
   mobile: () => Promise<String>;
   unlockActive: () => Promise<Boolean>;
   name: () => Promise<String>;
-  confirmed: () => Promise<Boolean>;
   geolocation: () => Promise<String>;
   referrer: () => Promise<String>;
+  confirmed: () => Promise<Boolean>;
+  amount: () => Promise<Int>;
+  receipt: () => Promise<String>;
+  paymentId: () => Promise<String>;
+  paymentOrderId: () => Promise<String>;
+  paymentDescription: () => Promise<String>;
 }
 
 export interface OrdersSubscription
@@ -8819,9 +9017,14 @@ export interface OrdersSubscription
   mobile: () => Promise<AsyncIterator<String>>;
   unlockActive: () => Promise<AsyncIterator<Boolean>>;
   name: () => Promise<AsyncIterator<String>>;
-  confirmed: () => Promise<AsyncIterator<Boolean>>;
   geolocation: () => Promise<AsyncIterator<String>>;
   referrer: () => Promise<AsyncIterator<String>>;
+  confirmed: () => Promise<AsyncIterator<Boolean>>;
+  amount: () => Promise<AsyncIterator<Int>>;
+  receipt: () => Promise<AsyncIterator<String>>;
+  paymentId: () => Promise<AsyncIterator<String>>;
+  paymentOrderId: () => Promise<AsyncIterator<String>>;
+  paymentDescription: () => Promise<AsyncIterator<String>>;
 }
 
 export interface OrdersNullablePromise
@@ -8840,9 +9043,14 @@ export interface OrdersNullablePromise
   mobile: () => Promise<String>;
   unlockActive: () => Promise<Boolean>;
   name: () => Promise<String>;
-  confirmed: () => Promise<Boolean>;
   geolocation: () => Promise<String>;
   referrer: () => Promise<String>;
+  confirmed: () => Promise<Boolean>;
+  amount: () => Promise<Int>;
+  receipt: () => Promise<String>;
+  paymentId: () => Promise<String>;
+  paymentOrderId: () => Promise<String>;
+  paymentDescription: () => Promise<String>;
 }
 
 export interface TimeDiscount {
@@ -11466,9 +11674,14 @@ export interface OrdersPreviousValues {
   mobile: String;
   unlockActive: Boolean;
   name: String;
-  confirmed?: Boolean;
   geolocation?: String;
   referrer?: String;
+  confirmed?: Boolean;
+  amount?: Int;
+  receipt?: String;
+  paymentId?: String;
+  paymentOrderId?: String;
+  paymentDescription?: String;
 }
 
 export interface OrdersPreviousValuesPromise
@@ -11484,9 +11697,14 @@ export interface OrdersPreviousValuesPromise
   mobile: () => Promise<String>;
   unlockActive: () => Promise<Boolean>;
   name: () => Promise<String>;
-  confirmed: () => Promise<Boolean>;
   geolocation: () => Promise<String>;
   referrer: () => Promise<String>;
+  confirmed: () => Promise<Boolean>;
+  amount: () => Promise<Int>;
+  receipt: () => Promise<String>;
+  paymentId: () => Promise<String>;
+  paymentOrderId: () => Promise<String>;
+  paymentDescription: () => Promise<String>;
 }
 
 export interface OrdersPreviousValuesSubscription
@@ -11502,9 +11720,14 @@ export interface OrdersPreviousValuesSubscription
   mobile: () => Promise<AsyncIterator<String>>;
   unlockActive: () => Promise<AsyncIterator<Boolean>>;
   name: () => Promise<AsyncIterator<String>>;
-  confirmed: () => Promise<AsyncIterator<Boolean>>;
   geolocation: () => Promise<AsyncIterator<String>>;
   referrer: () => Promise<AsyncIterator<String>>;
+  confirmed: () => Promise<AsyncIterator<Boolean>>;
+  amount: () => Promise<AsyncIterator<Int>>;
+  receipt: () => Promise<AsyncIterator<String>>;
+  paymentId: () => Promise<AsyncIterator<String>>;
+  paymentOrderId: () => Promise<AsyncIterator<String>>;
+  paymentDescription: () => Promise<AsyncIterator<String>>;
 }
 
 export interface RestaurantTypeSubscriptionPayload {

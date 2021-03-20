@@ -87,9 +87,14 @@ type Orders @model {
   mobile: String!
   unlockActive: Boolean! @default(value: false)
   name: String!
-  confirmed: Boolean
   geolocation: String @default(value: "0,0")
   referrer: String @default(value: "website")
+  confirmed: Boolean
+  amount: Int,
+  receipt: String,
+  paymentId: String,
+  paymentOrderId: String,
+  paymentDescription: String,
 }
 
 type RestaurantType @model {

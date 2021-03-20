@@ -50,4 +50,11 @@ app.use(function(err, req, res, next) {
 
 PORT = process.env.PORT || 5000;
 
-app.listen(PORT, () => console.log(`Server started on port ${PORT}`));
+app.listen(PORT, () => {
+  if (process.env.__DEV__){
+    console.log("RUNNING IN DEV MODE")
+  }else{
+    console.log("RUNNING IN PRODUCTION")
+  }
+  console.log(`Server started on port ${PORT}`)
+});

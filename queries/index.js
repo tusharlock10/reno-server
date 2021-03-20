@@ -107,6 +107,7 @@ const orderses = gql`
         people
         date
         unlockActive
+        confirmed
         timeDiscount {
           time
           discount
