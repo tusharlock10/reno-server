@@ -21,35 +21,6 @@ module.exports = {
       }
     });
 
-    //checking if user already reviewed
-    const userReviews = await db.query({
-      query: getUserReview,
-      variables: {
-        restaurantsId: req.params.restaurant_id
-      }
-    });
-
-    const reviewArray = userReviews.data.restaurants.userReviewses;
-    console.log(req.user);
-    const pastReview = reviewArray.filter(function(review) {
-      if (!review || !review.user) {
-        return 0;
-      } else if (review.user.id == req.user.id) {
-        //req.user.userId
-        console.log(req.user.id);
-        console.log(review.user.id);
-        return 1;
-      } else {
-        return 0;
-      }
-    });
-
-    if (pastReview.length) {
-      return res.status(401).json({
-        errors: [{ msg: "You Have Already Reviewed !!" }]
-      });
-    }
-
     let { review, rating } = req.body;
     rating = Number(rating);
 

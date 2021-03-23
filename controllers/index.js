@@ -7,6 +7,7 @@ const { validationResult } = require("express-validator"),
     typeRestaurants,
     orderses,
     cities,
+    getMisc
   } = require("../queries/index");
 
 module.exports = {
@@ -109,4 +110,11 @@ module.exports = {
     });
     res.json(city.data.cities);
   },
+
+  async getMisc(req, res, next){
+    const misc = await db.query({
+      query: getMisc,
+    });
+    res.json(misc.data.miscs[0]);
+  }
 };

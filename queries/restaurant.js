@@ -27,7 +27,14 @@ const showSunday = gql`
       about
       conditions
       menu
-
+      userReviewses {
+        review
+        rating
+        user {
+          firstname
+          profileImage
+        }
+      }
       sunday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
@@ -56,7 +63,14 @@ const showMonday = gql`
       about
       conditions
       menu
-
+      userReviewses {
+        review
+        rating
+        user {
+          firstname
+          profileImage
+        }
+      }
       monday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
@@ -85,7 +99,14 @@ const showTuesday = gql`
       about
       conditions
       menu
-
+      userReviewses {
+        review
+        rating
+        user {
+          firstname
+          profileImage
+        }
+      }
       tuesday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
@@ -114,7 +135,14 @@ const showWednesday = gql`
       about
       conditions
       menu
-
+      userReviewses {
+        review
+        rating
+        user {
+          firstname
+          profileImage
+        }
+      }
       wednesday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
@@ -143,7 +171,14 @@ const showThursday = gql`
       about
       conditions
       menu
-
+      userReviewses {
+        review
+        rating
+        user {
+          firstname
+          profileImage
+        }
+      }
       thursday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
@@ -172,7 +207,14 @@ const showFriday = gql`
       about
       conditions
       menu
-
+      userReviewses {
+        review
+        rating
+        user{
+          firstname
+          profileImage
+        }
+      }
       friday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
@@ -201,7 +243,14 @@ const showSaturday = gql`
       about
       conditions
       menu
-
+      userReviewses {
+        review
+        rating
+        user {
+          firstname
+          profileImage
+        }
+      }
       saturday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time

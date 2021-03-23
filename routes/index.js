@@ -7,7 +7,8 @@ const {
   searchRestaurant,
   typeRestaurants,
   userOrders,
-  city
+  city,
+  getMisc
 } = require('../controllers/index');
 
 // @Route    GET '/api/v1/brandTiles'
@@ -46,5 +47,11 @@ router.get("/type/:type_Restaurants_id", asyncErrorHandler(typeRestaurants));
 // @access   PUBLIC
 
 router.get('/city', asyncErrorHandler(city));
+
+// @Route    GET '/api/v1/misc'
+// @desc     Show misc data like faq and fup
+// @access   PUBLIC
+
+router.get('/misc', asyncErrorHandler(getMisc));
 
 module.exports = router;

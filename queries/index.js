@@ -113,6 +113,7 @@ const orderses = gql`
           discount
         }
         restaurants {
+          id
           googlemapsurl
           name
           rating
@@ -137,11 +138,22 @@ const cities = gql`
   }
 `;
 
+const getMisc = gql`
+  {
+    miscs {
+      faq
+      fup
+      id
+    }
+  }
+`;
+
 module.exports = {
   getBrandTiles,
   showBrandTile,
   searchRestaurant,
   typeRestaurants,
   orderses,
-  cities
+  cities,
+  getMisc,
 };
