@@ -210,7 +210,7 @@ const showFriday = gql`
       userReviewses {
         review
         rating
-        user{
+        user {
           firstname
           profileImage
         }
@@ -274,7 +274,7 @@ const sunday = gql`
       state
       imageurl
       googlemapsurl
-
+      acceptsRenoPay
       sunday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
@@ -298,7 +298,7 @@ const monday = gql`
       state
       imageurl
       googlemapsurl
-
+      acceptsRenoPay
       monday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
@@ -322,7 +322,7 @@ const tuesday = gql`
       state
       imageurl
       googlemapsurl
-
+      acceptsRenoPay
       tuesday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
@@ -346,7 +346,7 @@ const wednesday = gql`
       state
       imageurl
       googlemapsurl
-
+      acceptsRenoPay
       wednesday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
@@ -370,7 +370,7 @@ const thursday = gql`
       state
       imageurl
       googlemapsurl
-
+      acceptsRenoPay
       thursday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
@@ -394,7 +394,7 @@ const friday = gql`
       state
       imageurl
       googlemapsurl
-
+      acceptsRenoPay
       friday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
@@ -418,7 +418,7 @@ const saturday = gql`
       state
       imageurl
       googlemapsurl
-
+      acceptsRenoPay
       saturday {
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time

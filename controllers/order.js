@@ -1,7 +1,7 @@
 const { validationResult } = require("express-validator");
 const Razorpay = require("razorpay");
 const uuid = require("uuid");
-const db = require("../db_v2");
+const db = require("../db");
 const bcryptjs = require("bcryptjs");
 const { sendOtp, bookingConfirmation, cancelBooking } = require("../msg91");
 const {

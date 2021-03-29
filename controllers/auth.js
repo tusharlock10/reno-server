@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator"),
-  db = require("../db_v2"),
+  db = require("../db"),
   {
     createUser,
     getUser,

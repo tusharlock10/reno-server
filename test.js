@@ -218,7 +218,7 @@ jwt.sign(
 // }
 // test();
 
-// const db = require("./db_v2");
+// const db = require("./db");
 // const { allRestaurants } = require("./queries/restaurant");
 // const { updateRestaurantGeoCode } = require("./queries/restaurant");
 

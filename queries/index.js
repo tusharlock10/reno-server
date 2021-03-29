@@ -4,6 +4,7 @@ const getBrandTiles = gql`
   query getBrandTiles($typeName: String!) {
     restaurantTypes(where: { typeName_contains: $typeName }) {
       imageurl
+      type
       id
     }
   }
@@ -12,8 +13,6 @@ const getBrandTiles = gql`
 const showBrandTile = gql`
   query getBrandTile($restaurantTypeId: ID!, $time: String!) {
     restaurantTypes(where: { id: $restaurantTypeId }) {
-      imageurl
-      id
       restaurantses {
         id
         name

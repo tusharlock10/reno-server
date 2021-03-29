@@ -18,7 +18,7 @@ app.get("/", (req, res) => {
 });
 
 /* 
-db = require('./db_v2');
+db = require('./db');
 const { createUser,getUser } = require('./queries/user')
  */
 app.use("/api/v1", require("./routes/purchase/premiumMemberShip"));

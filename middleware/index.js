@@ -1,7 +1,7 @@
 const jwt = require('jsonwebtoken');
 const { getCity } = require('../queries/purchase');
 const { getUser } = require('../queries/user');
-const db = require('../db_v2/index');
+const db = require('../db/index');
 const {
   GetRestaurant
 } = require('../queries/restaurant');

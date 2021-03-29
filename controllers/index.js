@@ -1,5 +1,5 @@
 const { validationResult } = require("express-validator"),
-  db = require("../db_v2"),
+  db = require("../db"),
   {
     getBrandTiles,
     showBrandTile,
@@ -7,19 +7,18 @@ const { validationResult } = require("express-validator"),
     typeRestaurants,
     orderses,
     cities,
-    getMisc
+    getMisc,
   } = require("../queries/index");
 
 module.exports = {
   async indexBrandTiles(req, res, next) {
-    // const typeName = req.header("city");
-    const typeName = "indore";
-
+    const typeName = req.query.city;
     if (!typeName) {
       return res.status(401).json({
         errors: [{ msg: "City is not passed headers !!" }],
       });
     }
+
     const response = await db.query({
       query: getBrandTiles,
       variables: {
@@ -29,6 +28,7 @@ module.exports = {
 
     res.json(response.data.restaurantTypes);
   },
+
   async showBrandTiles(req, res, next) {
     const restaurantTypeId = req.params.restaurantTypeId;
     const time = String(Date.now());
@@ -40,7 +40,7 @@ module.exports = {
       },
     });
 
-    res.json(response.data.restaurantTypes);
+    res.json(response.data.restaurantTypes[0].restaurantses);
   },
 
   async searchRestaurant(req, res, next) {
@@ -111,10 +111,10 @@ module.exports = {
     res.json(city.data.cities);
   },
 
-  async getMisc(req, res, next){
+  async getMisc(req, res, next) {
     const misc = await db.query({
       query: getMisc,
     });
     res.json(misc.data.miscs[0]);
-  }
+  },
 };
