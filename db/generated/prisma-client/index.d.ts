@@ -3298,7 +3298,7 @@ export interface RestaurantsCreateWithoutBrandTileInput {
   acceptsRenoPay?: Maybe<Boolean>;
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface OrdersCreateManyWithoutRestaurantsInput {
@@ -3405,7 +3405,7 @@ export interface RestaurantsCreateWithoutTimeDiscountsInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface RestaurantTypeCreateManyWithoutRestaurantsesInput {
@@ -3538,7 +3538,7 @@ export interface RestaurantsCreateWithoutOrdersesInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface TimeDiscountCreateManyWithoutRestaurantsInput {
@@ -3695,7 +3695,7 @@ export interface RestaurantsCreateWithoutUserReviewsesInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface HotDealsCreateManyWithoutRestaurantsesInput {
@@ -3821,7 +3821,7 @@ export interface RestaurantsCreateWithoutMondayInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface SaturdayCreateOneWithoutRestaurantsInput {
@@ -3929,7 +3929,7 @@ export interface RestaurantsCreateWithoutFridayInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface MondayCreateOneWithoutRestaurantsInput {
@@ -4037,7 +4037,7 @@ export interface RestaurantsCreateWithoutSaturdayInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface SundayCreateOneWithoutRestaurantsInput {
@@ -4145,7 +4145,7 @@ export interface RestaurantsCreateWithoutThursdayInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface TuesdayCreateOneWithoutRestaurantsInput {
@@ -4253,7 +4253,7 @@ export interface RestaurantsCreateWithoutSundayInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface ThursdayCreateOneWithoutRestaurantsInput {
@@ -4361,7 +4361,7 @@ export interface RestaurantsCreateWithoutTuesdayInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface WednesdayCreateOneWithoutRestaurantsInput {
@@ -4436,8 +4436,8 @@ export interface BrandTileCreateWithoutRestaurantsesInput {
   brandTileName: String;
 }
 
-export interface RestaurantsCreaterestaurantImageInput {
-  set?: Maybe<Json[] | Json>;
+export interface RestaurantsCreaterestaurantImagesInput {
+  set?: Maybe<String[] | String>;
 }
 
 export interface WednesdayCreateOneWithoutTimeDiscountsInput {
@@ -4490,7 +4490,7 @@ export interface RestaurantsCreateWithoutWednesdayInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface BrandTileUpdateInput {
@@ -4566,7 +4566,7 @@ export interface RestaurantsUpdateWithoutBrandTileDataInput {
   acceptsRenoPay?: Maybe<Boolean>;
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface OrdersUpdateManyWithoutRestaurantsInput {
@@ -4699,7 +4699,7 @@ export interface RestaurantsUpdateWithoutTimeDiscountsDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface RestaurantTypeUpdateManyWithoutRestaurantsesInput {
@@ -5029,7 +5029,7 @@ export interface RestaurantsUpdateWithoutOrdersesDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface TimeDiscountUpdateManyWithoutRestaurantsInput {
@@ -5258,7 +5258,7 @@ export interface RestaurantsUpdateWithoutUserReviewsesDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface HotDealsUpdateManyWithoutRestaurantsesInput {
@@ -5501,7 +5501,7 @@ export interface RestaurantsUpdateWithoutMondayDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface SaturdayUpdateOneWithoutRestaurantsInput {
@@ -5642,7 +5642,7 @@ export interface RestaurantsUpdateWithoutFridayDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface MondayUpdateOneWithoutRestaurantsInput {
@@ -5783,7 +5783,7 @@ export interface RestaurantsUpdateWithoutSaturdayDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface SundayUpdateOneWithoutRestaurantsInput {
@@ -5924,7 +5924,7 @@ export interface RestaurantsUpdateWithoutThursdayDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface TuesdayUpdateOneWithoutRestaurantsInput {
@@ -6065,7 +6065,7 @@ export interface RestaurantsUpdateWithoutSundayDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface ThursdayUpdateOneWithoutRestaurantsInput {
@@ -6206,7 +6206,7 @@ export interface RestaurantsUpdateWithoutTuesdayDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface WednesdayUpdateOneWithoutRestaurantsInput {
@@ -6502,8 +6502,8 @@ export interface BrandTileUpsertWithoutRestaurantsesInput {
   create: BrandTileCreateWithoutRestaurantsesInput;
 }
 
-export interface RestaurantsUpdaterestaurantImageInput {
-  set?: Maybe<Json[] | Json>;
+export interface RestaurantsUpdaterestaurantImagesInput {
+  set?: Maybe<String[] | String>;
 }
 
 export interface RestaurantsUpsertWithoutTuesdayInput {
@@ -6572,7 +6572,7 @@ export interface RestaurantsUpdateWithoutWednesdayDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface RestaurantsUpsertWithoutWednesdayInput {
@@ -7303,7 +7303,7 @@ export interface RestaurantsUpdateManyDataInput {
   acceptsRenoPay?: Maybe<Boolean>;
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface BrandTileUpdateManyMutationInput {
@@ -7428,7 +7428,7 @@ export interface RestaurantsCreateWithoutHotDealsesInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface HotDealsUpdateInput {
@@ -7502,7 +7502,7 @@ export interface RestaurantsUpdateWithoutHotDealsesDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface RestaurantsUpsertWithWhereUniqueWithoutHotDealsesInput {
@@ -7666,7 +7666,7 @@ export interface RestaurantsCreateWithoutRestaurantTypesInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface RestaurantTypeUpdateInput {
@@ -7745,7 +7745,7 @@ export interface RestaurantsUpdateWithoutRestaurantTypesDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface RestaurantsUpsertWithWhereUniqueWithoutRestaurantTypesInput {
@@ -7798,7 +7798,7 @@ export interface RestaurantsCreateInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsCreaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
 export interface RestaurantsUpdateInput {
@@ -7834,7 +7834,7 @@ export interface RestaurantsUpdateInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface RestaurantsUpdateManyMutationInput {
@@ -7857,7 +7857,7 @@ export interface RestaurantsUpdateManyMutationInput {
   acceptsRenoPay?: Maybe<Boolean>;
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
-  restaurantImage?: Maybe<RestaurantsUpdaterestaurantImageInput>;
+  restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
 }
 
 export interface SaturdayCreateInput {
@@ -8756,7 +8756,7 @@ export interface Restaurants {
   acceptsRenoPay: Boolean;
   renoCommision: Int;
   menu: Json[];
-  restaurantImage: Json[];
+  restaurantImages: String[];
 }
 
 export interface RestaurantsPromise extends Promise<Restaurants>, Fragmentable {
@@ -8833,7 +8833,7 @@ export interface RestaurantsPromise extends Promise<Restaurants>, Fragmentable {
   renoCommision: () => Promise<Int>;
   menu: () => Promise<Json[]>;
   brandTile: <T = BrandTilePromise>() => T;
-  restaurantImage: () => Promise<Json[]>;
+  restaurantImages: () => Promise<String[]>;
 }
 
 export interface RestaurantsSubscription
@@ -8914,7 +8914,7 @@ export interface RestaurantsSubscription
   renoCommision: () => Promise<AsyncIterator<Int>>;
   menu: () => Promise<AsyncIterator<Json[]>>;
   brandTile: <T = BrandTileSubscription>() => T;
-  restaurantImage: () => Promise<AsyncIterator<Json[]>>;
+  restaurantImages: () => Promise<AsyncIterator<String[]>>;
 }
 
 export interface RestaurantsNullablePromise
@@ -8993,7 +8993,7 @@ export interface RestaurantsNullablePromise
   renoCommision: () => Promise<Int>;
   menu: () => Promise<Json[]>;
   brandTile: <T = BrandTilePromise>() => T;
-  restaurantImage: () => Promise<Json[]>;
+  restaurantImages: () => Promise<String[]>;
 }
 
 export interface Orders {
@@ -11878,7 +11878,7 @@ export interface RestaurantsPreviousValues {
   acceptsRenoPay: Boolean;
   renoCommision: Int;
   menu: Json[];
-  restaurantImage: Json[];
+  restaurantImages: String[];
 }
 
 export interface RestaurantsPreviousValuesPromise
@@ -11904,7 +11904,7 @@ export interface RestaurantsPreviousValuesPromise
   acceptsRenoPay: () => Promise<Boolean>;
   renoCommision: () => Promise<Int>;
   menu: () => Promise<Json[]>;
-  restaurantImage: () => Promise<Json[]>;
+  restaurantImages: () => Promise<String[]>;
 }
 
 export interface RestaurantsPreviousValuesSubscription
@@ -11930,7 +11930,7 @@ export interface RestaurantsPreviousValuesSubscription
   acceptsRenoPay: () => Promise<AsyncIterator<Boolean>>;
   renoCommision: () => Promise<AsyncIterator<Int>>;
   menu: () => Promise<AsyncIterator<Json[]>>;
-  restaurantImage: () => Promise<AsyncIterator<Json[]>>;
+  restaurantImages: () => Promise<AsyncIterator<String[]>>;
 }
 
 export interface SaturdaySubscriptionPayload {

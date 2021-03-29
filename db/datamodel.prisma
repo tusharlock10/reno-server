@@ -144,7 +144,7 @@ type Restaurants @model {
   renoCommision:Int! @default(value: 0)
   menu: [Json!] @defaultValue(value: "[]") @scalarList(strategy: RELATION)
   brandTile: BrandTile @relation(link: INLINE)
-  restaurantImage: [Json!] @scalarList(strategy: RELATION)
+  restaurantImages: [String]! @scalarList(strategy: RELATION)
 }
 
 type Saturday @model {

@@ -2922,7 +2922,7 @@ type Restaurants {
   renoCommision: Int!
   menu: [Json!]!
   brandTile: BrandTile
-  restaurantImage: [Json!]!
+  restaurantImages: [String!]!
 }
 
 type RestaurantsConnection {
@@ -2965,7 +2965,7 @@ input RestaurantsCreateInput {
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 input RestaurantsCreateManyWithoutBrandTileInput {
@@ -3037,8 +3037,8 @@ input RestaurantsCreateOneWithoutWednesdayInput {
   connect: RestaurantsWhereUniqueInput
 }
 
-input RestaurantsCreaterestaurantImageInput {
-  set: [Json!]
+input RestaurantsCreaterestaurantImagesInput {
+  set: [String!]
 }
 
 input RestaurantsCreaterphoneInput {
@@ -3078,7 +3078,7 @@ input RestaurantsCreateWithoutBrandTileInput {
   acceptsRenoPay: Boolean
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 input RestaurantsCreateWithoutFridayInput {
@@ -3114,7 +3114,7 @@ input RestaurantsCreateWithoutFridayInput {
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 input RestaurantsCreateWithoutHotDealsesInput {
@@ -3150,7 +3150,7 @@ input RestaurantsCreateWithoutHotDealsesInput {
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 input RestaurantsCreateWithoutMondayInput {
@@ -3186,7 +3186,7 @@ input RestaurantsCreateWithoutMondayInput {
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 input RestaurantsCreateWithoutOrdersesInput {
@@ -3222,7 +3222,7 @@ input RestaurantsCreateWithoutOrdersesInput {
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 input RestaurantsCreateWithoutRestaurantTypesInput {
@@ -3258,7 +3258,7 @@ input RestaurantsCreateWithoutRestaurantTypesInput {
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 input RestaurantsCreateWithoutSaturdayInput {
@@ -3294,7 +3294,7 @@ input RestaurantsCreateWithoutSaturdayInput {
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 input RestaurantsCreateWithoutSundayInput {
@@ -3330,7 +3330,7 @@ input RestaurantsCreateWithoutSundayInput {
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 input RestaurantsCreateWithoutThursdayInput {
@@ -3366,7 +3366,7 @@ input RestaurantsCreateWithoutThursdayInput {
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 input RestaurantsCreateWithoutTimeDiscountsInput {
@@ -3402,7 +3402,7 @@ input RestaurantsCreateWithoutTimeDiscountsInput {
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 input RestaurantsCreateWithoutTuesdayInput {
@@ -3438,7 +3438,7 @@ input RestaurantsCreateWithoutTuesdayInput {
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 input RestaurantsCreateWithoutUserReviewsesInput {
@@ -3474,7 +3474,7 @@ input RestaurantsCreateWithoutUserReviewsesInput {
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 input RestaurantsCreateWithoutWednesdayInput {
@@ -3510,7 +3510,7 @@ input RestaurantsCreateWithoutWednesdayInput {
   renoCommision: Int
   menu: RestaurantsCreatemenuInput
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsCreaterestaurantImageInput
+  restaurantImages: RestaurantsCreaterestaurantImagesInput
 }
 
 type RestaurantsEdge {
@@ -3578,7 +3578,7 @@ type RestaurantsPreviousValues {
   acceptsRenoPay: Boolean!
   renoCommision: Int!
   menu: [Json!]!
-  restaurantImage: [Json!]!
+  restaurantImages: [String!]!
 }
 
 input RestaurantsScalarWhereInput {
@@ -3842,7 +3842,7 @@ input RestaurantsUpdateInput {
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateManyDataInput {
@@ -3865,7 +3865,7 @@ input RestaurantsUpdateManyDataInput {
   acceptsRenoPay: Boolean
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateManyMutationInput {
@@ -3888,7 +3888,7 @@ input RestaurantsUpdateManyMutationInput {
   acceptsRenoPay: Boolean
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateManyWithoutBrandTileInput {
@@ -4026,8 +4026,8 @@ input RestaurantsUpdateOneWithoutWednesdayInput {
   connect: RestaurantsWhereUniqueInput
 }
 
-input RestaurantsUpdaterestaurantImageInput {
-  set: [Json!]
+input RestaurantsUpdaterestaurantImagesInput {
+  set: [String!]
 }
 
 input RestaurantsUpdaterphoneInput {
@@ -4066,7 +4066,7 @@ input RestaurantsUpdateWithoutBrandTileDataInput {
   acceptsRenoPay: Boolean
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateWithoutFridayDataInput {
@@ -4101,7 +4101,7 @@ input RestaurantsUpdateWithoutFridayDataInput {
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateWithoutHotDealsesDataInput {
@@ -4136,7 +4136,7 @@ input RestaurantsUpdateWithoutHotDealsesDataInput {
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateWithoutMondayDataInput {
@@ -4171,7 +4171,7 @@ input RestaurantsUpdateWithoutMondayDataInput {
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateWithoutOrdersesDataInput {
@@ -4206,7 +4206,7 @@ input RestaurantsUpdateWithoutOrdersesDataInput {
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateWithoutRestaurantTypesDataInput {
@@ -4241,7 +4241,7 @@ input RestaurantsUpdateWithoutRestaurantTypesDataInput {
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateWithoutSaturdayDataInput {
@@ -4276,7 +4276,7 @@ input RestaurantsUpdateWithoutSaturdayDataInput {
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateWithoutSundayDataInput {
@@ -4311,7 +4311,7 @@ input RestaurantsUpdateWithoutSundayDataInput {
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateWithoutThursdayDataInput {
@@ -4346,7 +4346,7 @@ input RestaurantsUpdateWithoutThursdayDataInput {
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateWithoutTimeDiscountsDataInput {
@@ -4381,7 +4381,7 @@ input RestaurantsUpdateWithoutTimeDiscountsDataInput {
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateWithoutTuesdayDataInput {
@@ -4416,7 +4416,7 @@ input RestaurantsUpdateWithoutTuesdayDataInput {
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateWithoutUserReviewsesDataInput {
@@ -4451,7 +4451,7 @@ input RestaurantsUpdateWithoutUserReviewsesDataInput {
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateWithoutWednesdayDataInput {
@@ -4486,7 +4486,7 @@ input RestaurantsUpdateWithoutWednesdayDataInput {
   renoCommision: Int
   menu: RestaurantsUpdatemenuInput
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
-  restaurantImage: RestaurantsUpdaterestaurantImageInput
+  restaurantImages: RestaurantsUpdaterestaurantImagesInput
 }
 
 input RestaurantsUpdateWithWhereUniqueWithoutBrandTileInput {

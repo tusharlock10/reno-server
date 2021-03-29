@@ -1,12 +1,15 @@
-const jwt = require('jsonwebtoken');
-const { getCity } = require('../queries/purchase');
-const { getUser } = require('../queries/user');
-const db = require('../db/index');
-const {
-  GetRestaurant
-} = require('../queries/restaurant');
+const jwt = require("jsonwebtoken");
+const { getCity } = require("../queries/purchase");
+const { getUser } = require("../queries/user");
+const db = require("../db/index");
+const { GetRestaurant } = require("../queries/restaurant");
 const { validationResult } = require("express-validator");
 const middleware = {
+  logRequest(req, _, next) {
+    console.log(req.url);
+    next();
+  },
+
   asyncErrorHandler(fn) {
     return (req, res, next) => {
       Promise.resolve(fn(req, res, next)).catch(next);
@@ -32,10 +35,10 @@ const middleware = {
   // },
 
   isLoggedIn(req, res, next) {
-    const token = req.header('jwtToken');
+    const token = req.header("jwtToken");
     if (!token) {
       return res.status(401).json({
-        errors: [{ msg: 'No Token, auth denied !!' }]
+        errors: [{ msg: "No Token, auth denied !!" }],
       });
     }
     try {
@@ -44,18 +47,17 @@ const middleware = {
       next();
     } catch (error) {
       return res.status(401).json({
-        errors: [{ msg: 'Token not valid !!' }]
+        errors: [{ msg: "Token not valid !!" }],
       });
     }
   },
 
   isLoggedInRazorpay(req, res, next) {
-    
-    console.log(req.body)
+    console.log(req.body);
     const token = req.body.authToken;
     if (!token) {
       return res.status(401).json({
-        errors: [{ msg: 'No Token, auth denied !!' }]
+        errors: [{ msg: "No Token, auth denied !!" }],
       });
     }
     try {
@@ -64,11 +66,10 @@ const middleware = {
       next();
     } catch (error) {
       return res.status(401).json({
-        errors: [{ msg: 'Token not valid !!' }]
+        errors: [{ msg: "Token not valid !!" }],
       });
     }
   },
-  
 
   async isPremium(req, res, next) {
     const errors = validationResult(req);
@@ -81,28 +82,26 @@ const middleware = {
       query: GetRestaurant,
       variables: {
         id,
-        time
-      }
+        time,
+      },
     });
-    
-
 
     let city = response.data.restaurants.city;
     //split using multiple seprator(, and " ")
     city = city.split(/[\s,]+/);
-    
+
     //get city
     let cityData = await db.query({
       query: getCity,
-      variables: { city }
+      variables: { city },
     });
 
-    console.log(cityData.data)
+    console.log(cityData.data);
 
     //get user info
     const user = await db.query({
       query: getUser,
-      variables: { facebookID: req.user.facebookID }
+      variables: { facebookID: req.user.facebookID },
     });
 
     const expireDate = user.data.users[0].premiumExpireDate;
@@ -122,7 +121,7 @@ const middleware = {
 
     if (expireDate == null) {
       return res.status(403).json({
-        errors: [{ msg: 'You have not bought premium membership buy now!!' }]
+        errors: [{ msg: "You have not bought premium membership buy now!!" }],
       });
     }
 
@@ -131,16 +130,16 @@ const middleware = {
         errors: [
           {
             msg:
-              'You have used your first free booking please buy premium membership!!'
-          }
-        ]
+              "You have used your first free booking please buy premium membership!!",
+          },
+        ],
       });
     }
 
     return res.status(403).json({
-      errors: [{ msg: `Your premium membership has been expired!!` }]
+      errors: [{ msg: `Your premium membership has been expired!!` }],
     });
-  }
+  },
 };
 
 module.exports = middleware;

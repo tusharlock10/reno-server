@@ -22,7 +22,7 @@ const showSunday = gql`
       state
       imageurl
       remail
-      rphone
+      restaurantImages
       googlemapsurl
       about
       conditions
@@ -58,7 +58,7 @@ const showMonday = gql`
       state
       imageurl
       remail
-      rphone
+      restaurantImages
       googlemapsurl
       about
       conditions
@@ -94,7 +94,7 @@ const showTuesday = gql`
       state
       imageurl
       remail
-      rphone
+      restaurantImages
       googlemapsurl
       about
       conditions
@@ -130,7 +130,7 @@ const showWednesday = gql`
       state
       imageurl
       remail
-      rphone
+      restaurantImages
       googlemapsurl
       about
       conditions
@@ -166,7 +166,7 @@ const showThursday = gql`
       state
       imageurl
       remail
-      rphone
+      restaurantImages
       googlemapsurl
       about
       conditions
@@ -202,7 +202,7 @@ const showFriday = gql`
       state
       imageurl
       remail
-      rphone
+      restaurantImages
       googlemapsurl
       about
       conditions
@@ -238,7 +238,7 @@ const showSaturday = gql`
       state
       imageurl
       remail
-      rphone
+      restaurantImages
       googlemapsurl
       about
       conditions
