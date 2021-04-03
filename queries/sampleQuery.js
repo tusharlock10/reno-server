@@ -133,7 +133,7 @@ export const deleteUser = gql`
   }
 `;
 
-export const deleteOrder = gql`
+export const cancelOrder = gql`
   mutation deleteOrders($id: ID!) {
     deleteOrders(id: $id) {
       id

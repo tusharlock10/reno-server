@@ -6,7 +6,7 @@ const bcryptjs = require("bcryptjs");
 const { sendOtp, bookingConfirmation, cancelBooking } = require("../msg91");
 const {
   createOrder,
-  deleteOrder,
+  cancelOrder,
   bookingOtps,
   checkOtp,
   updateUserOtpField,
@@ -103,16 +103,16 @@ module.exports = {
   },
 
   async cancelRestaurantBooking(req, res, next) {
-    //creating order
+    //cancelling order
     const response = await db.mutate({
-      mutation: deleteOrder,
+      mutation: cancelOrder,
       variables: {
         id: req.params.order_id,
       },
     });
-    const cancelData = response.data.deleteOrders;
-    await cancelBooking(cancelData);
-    res.json(response.data.deleteOrders);
+    const cancelledOrder = response.data.updateOrders;
+    await cancelBooking(cancelledOrder);
+    res.json(cancelledOrder);
   },
 
   async bookingOtp(req, res, next) {

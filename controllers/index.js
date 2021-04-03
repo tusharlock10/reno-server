@@ -58,16 +58,19 @@ module.exports = {
 
     const orders = user.data.users[0].orderses;
     const upcomingOrders = [];
-    const pastOrders = [];
+    const completedOrders = [];
+
     orders.forEach((order) => {
       const orderTime = order.timeDiscount.time.split("-")[1];
       const orderDate = Date.parse(`${order.date} ${orderTime}`);
-      if (orderDate < Date.now()) {
+      if (order.cancelled) {
+        completedOrders.unshift(order);
+      } else if (orderDate < Date.now()) {
         if (order.unlockActive && !order.confirmed) {
           // check if order was unlocked but not paid, then its an upcoming order
           upcomingOrders.push(order);
         } else {
-          pastOrders.push(order);
+          completedOrders.unshift(order);
         }
         // console.log(order);
       } else {
@@ -76,7 +79,7 @@ module.exports = {
       }
     });
 
-    res.json({ pastOrders, upcomingOrders });
+    res.json({ completedOrders, upcomingOrders });
   },
 
   async typeRestaurants(req, res, next) {

@@ -2012,6 +2012,7 @@ type Orders {
   geolocation: String
   referrer: String
   confirmed: Boolean
+  cancelled: Boolean!
   amount: Int
   receipt: String
   paymentId: String
@@ -2040,6 +2041,7 @@ input OrdersCreateInput {
   geolocation: String
   referrer: String
   confirmed: Boolean
+  cancelled: Boolean
   amount: Int
   receipt: String
   paymentId: String
@@ -2076,6 +2078,7 @@ input OrdersCreateWithoutRestaurantsInput {
   geolocation: String
   referrer: String
   confirmed: Boolean
+  cancelled: Boolean
   amount: Int
   receipt: String
   paymentId: String
@@ -2097,6 +2100,7 @@ input OrdersCreateWithoutTimeDiscountInput {
   geolocation: String
   referrer: String
   confirmed: Boolean
+  cancelled: Boolean
   amount: Int
   receipt: String
   paymentId: String
@@ -2118,6 +2122,7 @@ input OrdersCreateWithoutUserInput {
   geolocation: String
   referrer: String
   confirmed: Boolean
+  cancelled: Boolean
   amount: Int
   receipt: String
   paymentId: String
@@ -2157,6 +2162,8 @@ enum OrdersOrderByInput {
   referrer_DESC
   confirmed_ASC
   confirmed_DESC
+  cancelled_ASC
+  cancelled_DESC
   amount_ASC
   amount_DESC
   receipt_ASC
@@ -2183,6 +2190,7 @@ type OrdersPreviousValues {
   geolocation: String
   referrer: String
   confirmed: Boolean
+  cancelled: Boolean!
   amount: Int
   receipt: String
   paymentId: String
@@ -2325,6 +2333,8 @@ input OrdersScalarWhereInput {
   referrer_not_ends_with: String
   confirmed: Boolean
   confirmed_not: Boolean
+  cancelled: Boolean
+  cancelled_not: Boolean
   amount: Int
   amount_not: Int
   amount_in: [Int!]
@@ -2426,6 +2436,7 @@ input OrdersUpdateInput {
   geolocation: String
   referrer: String
   confirmed: Boolean
+  cancelled: Boolean
   amount: Int
   receipt: String
   paymentId: String
@@ -2444,6 +2455,7 @@ input OrdersUpdateManyDataInput {
   geolocation: String
   referrer: String
   confirmed: Boolean
+  cancelled: Boolean
   amount: Int
   receipt: String
   paymentId: String
@@ -2462,6 +2474,7 @@ input OrdersUpdateManyMutationInput {
   geolocation: String
   referrer: String
   confirmed: Boolean
+  cancelled: Boolean
   amount: Int
   receipt: String
   paymentId: String
@@ -2523,6 +2536,7 @@ input OrdersUpdateWithoutRestaurantsDataInput {
   geolocation: String
   referrer: String
   confirmed: Boolean
+  cancelled: Boolean
   amount: Int
   receipt: String
   paymentId: String
@@ -2543,6 +2557,7 @@ input OrdersUpdateWithoutTimeDiscountDataInput {
   geolocation: String
   referrer: String
   confirmed: Boolean
+  cancelled: Boolean
   amount: Int
   receipt: String
   paymentId: String
@@ -2563,6 +2578,7 @@ input OrdersUpdateWithoutUserDataInput {
   geolocation: String
   referrer: String
   confirmed: Boolean
+  cancelled: Boolean
   amount: Int
   receipt: String
   paymentId: String
@@ -2741,6 +2757,8 @@ input OrdersWhereInput {
   referrer_not_ends_with: String
   confirmed: Boolean
   confirmed_not: Boolean
+  cancelled: Boolean
+  cancelled_not: Boolean
   amount: Int
   amount_not: Int
   amount_in: [Int!]

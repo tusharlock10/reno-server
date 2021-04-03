@@ -33,10 +33,10 @@ router.post(
   asyncErrorHandler(restaurantBooking)
 );
 
-// @Route    DELETE '/api/v1/cancelBooking/:order_id'
+// @Route    POST '/api/v1/cancelBooking/:order_id'
 // @desc     Cancel booking
 // @access   Private
-router.delete(
+router.post(
   "/cancelBooking/:order_id",
   isLoggedIn,
   asyncErrorHandler(cancelRestaurantBooking)

@@ -50,21 +50,29 @@ const createOrder = gql`
   }
 `;
 
-const deleteOrder = gql`
-  mutation deleteOrders($id: ID!) {
-    deleteOrders(where: { id: $id }) {
+const cancelOrder = gql`
+  mutation cancelOrder($id: ID!) {
+    updateOrders(where: { id: $id }, data: { cancelled: true }) {
       id
-      restaurants {
-        name
-      }
+      name
+      mobile
+      people
+      date
+      unlockActive
+      confirmed
+      cancelled
       timeDiscount {
         time
         discount
       }
-      mobile
-      name
-      people
-      date
+      restaurants {
+        id
+        googlemapsurl
+        name
+        rating
+        imageurl
+        city
+      }
     }
   }
 `;
@@ -171,7 +179,7 @@ const updateOrderPaymentConfirmed = gql`
 
 module.exports = {
   createOrder,
-  deleteOrder,
+  cancelOrder,
   bookingOtps,
   checkOtp,
   updateUserOtpField,

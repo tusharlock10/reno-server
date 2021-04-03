@@ -107,6 +107,7 @@ const orderses = gql`
         date
         unlockActive
         confirmed
+        cancelled
         timeDiscount {
           time
           discount
@@ -118,6 +119,7 @@ const orderses = gql`
           rating
           imageurl
           city
+          acceptsRenoPay
         }
       }
     }

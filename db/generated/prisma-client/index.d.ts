@@ -996,6 +996,8 @@ export type OrdersOrderByInput =
   | "referrer_DESC"
   | "confirmed_ASC"
   | "confirmed_DESC"
+  | "cancelled_ASC"
+  | "cancelled_DESC"
   | "amount_ASC"
   | "amount_DESC"
   | "receipt_ASC"
@@ -1808,6 +1810,8 @@ export interface OrdersWhereInput {
   referrer_not_ends_with?: Maybe<String>;
   confirmed?: Maybe<Boolean>;
   confirmed_not?: Maybe<Boolean>;
+  cancelled?: Maybe<Boolean>;
+  cancelled_not?: Maybe<Boolean>;
   amount?: Maybe<Int>;
   amount_not?: Maybe<Int>;
   amount_in?: Maybe<Int[] | Int>;
@@ -3322,6 +3326,7 @@ export interface OrdersCreateWithoutRestaurantsInput {
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
   confirmed?: Maybe<Boolean>;
+  cancelled?: Maybe<Boolean>;
   amount?: Maybe<Int>;
   receipt?: Maybe<String>;
   paymentId?: Maybe<String>;
@@ -3493,6 +3498,7 @@ export interface OrdersCreateWithoutUserInput {
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
   confirmed?: Maybe<Boolean>;
+  cancelled?: Maybe<Boolean>;
   amount?: Maybe<Int>;
   receipt?: Maybe<String>;
   paymentId?: Maybe<String>;
@@ -3606,6 +3612,7 @@ export interface OrdersCreateWithoutTimeDiscountInput {
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
   confirmed?: Maybe<Boolean>;
+  cancelled?: Maybe<Boolean>;
   amount?: Maybe<Int>;
   receipt?: Maybe<String>;
   paymentId?: Maybe<String>;
@@ -4610,6 +4617,7 @@ export interface OrdersUpdateWithoutRestaurantsDataInput {
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
   confirmed?: Maybe<Boolean>;
+  cancelled?: Maybe<Boolean>;
   amount?: Maybe<Int>;
   receipt?: Maybe<String>;
   paymentId?: Maybe<String>;
@@ -4981,6 +4989,7 @@ export interface OrdersUpdateWithoutUserDataInput {
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
   confirmed?: Maybe<Boolean>;
+  cancelled?: Maybe<Boolean>;
   amount?: Maybe<Int>;
   receipt?: Maybe<String>;
   paymentId?: Maybe<String>;
@@ -5141,6 +5150,7 @@ export interface OrdersUpdateWithoutTimeDiscountDataInput {
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
   confirmed?: Maybe<Boolean>;
+  cancelled?: Maybe<Boolean>;
   amount?: Maybe<Int>;
   receipt?: Maybe<String>;
   paymentId?: Maybe<String>;
@@ -6926,6 +6936,8 @@ export interface OrdersScalarWhereInput {
   referrer_not_ends_with?: Maybe<String>;
   confirmed?: Maybe<Boolean>;
   confirmed_not?: Maybe<Boolean>;
+  cancelled?: Maybe<Boolean>;
+  cancelled_not?: Maybe<Boolean>;
   amount?: Maybe<Int>;
   amount_not?: Maybe<Int>;
   amount_in?: Maybe<Int[] | Int>;
@@ -7011,6 +7023,7 @@ export interface OrdersUpdateManyDataInput {
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
   confirmed?: Maybe<Boolean>;
+  cancelled?: Maybe<Boolean>;
   amount?: Maybe<Int>;
   receipt?: Maybe<String>;
   paymentId?: Maybe<String>;
@@ -7567,6 +7580,7 @@ export interface OrdersCreateInput {
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
   confirmed?: Maybe<Boolean>;
+  cancelled?: Maybe<Boolean>;
   amount?: Maybe<Int>;
   receipt?: Maybe<String>;
   paymentId?: Maybe<String>;
@@ -7588,6 +7602,7 @@ export interface OrdersUpdateInput {
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
   confirmed?: Maybe<Boolean>;
+  cancelled?: Maybe<Boolean>;
   amount?: Maybe<Int>;
   receipt?: Maybe<String>;
   paymentId?: Maybe<String>;
@@ -7606,6 +7621,7 @@ export interface OrdersUpdateManyMutationInput {
   geolocation?: Maybe<String>;
   referrer?: Maybe<String>;
   confirmed?: Maybe<Boolean>;
+  cancelled?: Maybe<Boolean>;
   amount?: Maybe<Int>;
   receipt?: Maybe<String>;
   paymentId?: Maybe<String>;
@@ -9010,6 +9026,7 @@ export interface Orders {
   geolocation?: String;
   referrer?: String;
   confirmed?: Boolean;
+  cancelled: Boolean;
   amount?: Int;
   receipt?: String;
   paymentId?: String;
@@ -9034,6 +9051,7 @@ export interface OrdersPromise extends Promise<Orders>, Fragmentable {
   geolocation: () => Promise<String>;
   referrer: () => Promise<String>;
   confirmed: () => Promise<Boolean>;
+  cancelled: () => Promise<Boolean>;
   amount: () => Promise<Int>;
   receipt: () => Promise<String>;
   paymentId: () => Promise<String>;
@@ -9060,6 +9078,7 @@ export interface OrdersSubscription
   geolocation: () => Promise<AsyncIterator<String>>;
   referrer: () => Promise<AsyncIterator<String>>;
   confirmed: () => Promise<AsyncIterator<Boolean>>;
+  cancelled: () => Promise<AsyncIterator<Boolean>>;
   amount: () => Promise<AsyncIterator<Int>>;
   receipt: () => Promise<AsyncIterator<String>>;
   paymentId: () => Promise<AsyncIterator<String>>;
@@ -9086,6 +9105,7 @@ export interface OrdersNullablePromise
   geolocation: () => Promise<String>;
   referrer: () => Promise<String>;
   confirmed: () => Promise<Boolean>;
+  cancelled: () => Promise<Boolean>;
   amount: () => Promise<Int>;
   receipt: () => Promise<String>;
   paymentId: () => Promise<String>;
@@ -11717,6 +11737,7 @@ export interface OrdersPreviousValues {
   geolocation?: String;
   referrer?: String;
   confirmed?: Boolean;
+  cancelled: Boolean;
   amount?: Int;
   receipt?: String;
   paymentId?: String;
@@ -11740,6 +11761,7 @@ export interface OrdersPreviousValuesPromise
   geolocation: () => Promise<String>;
   referrer: () => Promise<String>;
   confirmed: () => Promise<Boolean>;
+  cancelled: () => Promise<Boolean>;
   amount: () => Promise<Int>;
   receipt: () => Promise<String>;
   paymentId: () => Promise<String>;
@@ -11763,6 +11785,7 @@ export interface OrdersPreviousValuesSubscription
   geolocation: () => Promise<AsyncIterator<String>>;
   referrer: () => Promise<AsyncIterator<String>>;
   confirmed: () => Promise<AsyncIterator<Boolean>>;
+  cancelled: () => Promise<AsyncIterator<Boolean>>;
   amount: () => Promise<AsyncIterator<Int>>;
   receipt: () => Promise<AsyncIterator<String>>;
   paymentId: () => Promise<AsyncIterator<String>>;

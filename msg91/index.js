@@ -41,7 +41,7 @@ module.exports = {
       },
     });
   },
-  async cancelBooking(cancelData) {
+  async cancelBooking(cancelledOrder) {
     if (process.env.__DEV__) {
       return null;
     }
@@ -52,14 +52,14 @@ module.exports = {
       date,
       restaurants,
       timeDiscount,
-    } = cancelData;
+    } = cancelledOrder;
     await axios({
       method: "POST",
       url: "https://api.msg91.com/api/sendhttp.php",
       params: {
         sender: "RENOIN",
         message: `
-        Your booking has been canceled successfully.
+        Your booking has been cancelled.
          Booking details: Name: ${name}.
          Restaurant: ${restaurants.name}. 
          Date: ${date}.
