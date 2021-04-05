@@ -8,7 +8,7 @@
 const payload = {
   user: {
     id: 'cjgz4df2gjjnu0189b65wj1r4',
-    facebookID: '1640814676035545'
+    facebookID: '1640814676035545' 
   }
 };
 
