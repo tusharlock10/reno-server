@@ -1,0 +1,17 @@
+version: '3'
+services:
+  prisma:
+    image: prismagraphql/prisma:1.34
+    restart: always
+    ports:
+      - '4466:4466'
+    environment:
+      PRISMA_CONFIG: |
+        port: 4466
+        databases:
+          default:
+            connector: postgres
+            host: reno-db.cluster-c423kt9unlrp.ap-south-1.rds.amazonaws.com
+            port: 5432
+            user: reno
+            password: TQKi5eJIWObDGSig1AsV
