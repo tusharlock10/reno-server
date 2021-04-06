@@ -92,6 +92,6 @@ var models = [
 exports.Prisma = prisma_lib_1.makePrismaClientClass({
   typeDefs,
   models,
-  endpoint: `https://eu1.prisma.sh/naman-singh/Reno-Prod/dev`
+  endpoint: `http://65.1.155.16:4466`
 });
 exports.prisma = new exports.Prisma();

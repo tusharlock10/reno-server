@@ -4,7 +4,7 @@ const fetch = require("node-fetch");
 const { InMemoryCache } = require("apollo-cache-inmemory");
 
 const link = createHttpLink({
-  uri: "https://eu1.prisma.sh/naman-singh/Reno-Prod/dev",
+  uri: "http://65.1.155.16:4466",
   fetch: fetch
 });
 
