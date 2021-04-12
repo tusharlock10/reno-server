@@ -40,6 +40,8 @@ app.use("/api/v1/restaurant", require("./routes/restaurant"));
 
 app.use("/api/v1/restaurant/:restaurant_id/review", require("./routes/review"));
 
+app.use("/api/v1", require("./routes/copyData")); // Disable in production
+
 app.use(function (err, req, res, next) {
   //error handler
   console.log(err);

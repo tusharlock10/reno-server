@@ -16,6 +16,7 @@ ENV razorpayKeyId = 'rzp_test_oCjDks1GbKEPfO'
 ENV razorpayKeySecret = "ELBZtrR7vZ9N7TLKQnKtesCB"
 ENV googleMatrixApi="AIzaSyDnobPUMbgP7-jMK3OV0UehklnKkjdIblk"
 ENV msg91OTPTemplate="60520bdc674a84416d68aa41"
+ENV TZ = "Asia/Kolkata"
 
 EXPOSE 5000
 
