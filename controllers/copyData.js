@@ -23,27 +23,27 @@ const {
   updateUserReviews
 } = require("../queries/copyData");
 
-const adses = require("../db/data/adses.json");
-const blogs = require("../db/data/blogs.json");
-const brandTiles = require("../db/data/brandTiles.json");
-const cities = require("../db/data/cities.json");
-const hotDealses = require("../db/data/hotDealses.json");
-const miscs = require("../db/data/miscs.json");
+// const adses = require("../db/data/adses.json");
+// const blogs = require("../db/data/blogs.json");
+// const brandTiles = require("../db/data/brandTiles.json");
+// const cities = require("../db/data/cities.json");
+// const hotDealses = require("../db/data/hotDealses.json");
+// const miscs = require("../db/data/miscs.json");
 
-const mondays = require("../db/data/mondays.json");
-const tuesdays = require("../db/data/tuesdays.json");
-const wednesdays = require("../db/data/wednesdays.json");
-const thursdays = require("../db/data/thursdays.json");
-const fridays = require("../db/data/fridays.json");
-const saturdays = require("../db/data/saturdays.json");
-const sundays = require("../db/data/sundays.json");
+// const mondays = require("../db/data/mondays.json");
+// const tuesdays = require("../db/data/tuesdays.json");
+// const wednesdays = require("../db/data/wednesdays.json");
+// const thursdays = require("../db/data/thursdays.json");
+// const fridays = require("../db/data/fridays.json");
+// const saturdays = require("../db/data/saturdays.json");
+// const sundays = require("../db/data/sundays.json");
 
-const orderses = require("../db/data/orderses.json");
-const restaurantTypes = require("../db/data/restaurantTypes.json");
-const restaurantses = require("../db/data/restaurantses.json");
-const timeDiscounts = require("../db/data/timeDiscounts.json");
-const users = require("../db/data/users.json");
-const userReviewses = require("../db/data/userReviewses.json");
+// const orderses = require("../db/data/orderses.json");
+// const restaurantTypes = require("../db/data/restaurantTypes.json");
+// const restaurantses = require("../db/data/restaurantses.json");
+// const timeDiscounts = require("../db/data/timeDiscounts.json");
+// const users = require("../db/data/users.json");
+// const userReviewses = require("../db/data/userReviewses.json");
 
 const updateAdsInDB = async () => {
   const results = [];
