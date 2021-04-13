@@ -53,7 +53,6 @@ const middleware = {
   },
 
   isLoggedInRazorpay(req, res, next) {
-    console.log(req.body);
     const token = req.body.authToken;
     if (!token) {
       return res.status(401).json({
@@ -95,8 +94,6 @@ const middleware = {
       query: getCity,
       variables: { city },
     });
-
-    console.log(cityData.data);
 
     //get user info
     const user = await db.query({

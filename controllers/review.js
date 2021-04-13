@@ -52,7 +52,6 @@ module.exports = {
     }
 
     avgRating = Math.round(avgRating.toFixed(1));
-    console.log(avgRating);
     //updateRating
     const updateRating = await db.mutate({
       mutation: updateRestaurantRating,

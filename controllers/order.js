@@ -26,7 +26,6 @@ module.exports = {
     //check otp validity
 
     const otp = req.body.otp;
-    console.log(otp);
 
     const currentTime = moment(req.body.date).toISOString();
 
@@ -80,7 +79,6 @@ module.exports = {
 
     const bookingData = response.data.createOrders;
     await bookingConfirmation(req.body, bookingData);
-    console.log("done", response);
     res.json({ confirmed: true, bookingData });
   },
 
@@ -131,7 +129,6 @@ module.exports = {
     });
 
     await sendOtp(otp, mobile);
-    console.log(otp);
     res.json(response.data.updateUser);
   },
 

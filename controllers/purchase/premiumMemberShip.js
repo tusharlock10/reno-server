@@ -8,7 +8,6 @@ const db = require('../../db');
 
 module.exports = {
   async getPremiumMembership(req, res, next) {
-    console.log(req.body);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.json({ errors: errors.array() });
@@ -54,7 +53,6 @@ module.exports = {
     let totalAmount;
 
     if (days == '90') {
-      console.log(days);
       totalAmount = cityData.premiumAmmount90;
     }
     if (days == '180') {
@@ -64,7 +62,6 @@ module.exports = {
       totalAmount = cityData.premiumAmmount360;
     }
 
-    console.log(totalAmount);
     amount = Math.round(totalAmount * 100);
 
     var options = {
@@ -99,7 +96,6 @@ module.exports = {
       razorpay_order_id + '|' + razorpay_payment_id,
       process.env.razorpayKeySecret
     );
-    console.log(req.body);
 
     if (generated_signature != req.body.razorpay_signature) {
       return res.json({
@@ -132,7 +128,6 @@ module.exports = {
         premiumExpireDate
       }
     });
-    console.log(user);
 
     // res.json({data:user.data.updateUser,status:1});
     // res.send({ data: user.data.updateUser, status: 1 });

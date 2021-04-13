@@ -57,33 +57,7 @@ module.exports = {
       variables: { facebookID: req.user.facebookID },
     });
 
-    const orders = user.data.users[0].orderses;
-    const upcomingOrders = [];
-    const completedOrders = [];
-
-    orders.forEach((order) => {
-      const orderTime = order.timeDiscount.time.split("-")[1];
-      const hours=orderTime.split(':')[0]
-      const minutes=orderTime.split(':')[1]
-      const orderDate = moment(order.date).set('hours', hours).set('minutes', minutes)
-      
-      if (order.cancelled) {
-        completedOrders.unshift(order);
-      } else if (orderDate < moment()) {
-        if (order.unlockActive && !order.confirmed) {
-          // check if order was unlocked but not paid, then its an upcoming order
-          upcomingOrders.push(order);
-        } else {
-          completedOrders.unshift(order);
-        }
-        // console.log(order);
-      } else {
-        upcomingOrders.push(order);
-        // console.log(order);
-      }
-    });
-
-    res.json({ completedOrders, upcomingOrders });
+    res.json(user.data.users[0].orderses);
   },
 
   async typeRestaurants(req, res, next) {

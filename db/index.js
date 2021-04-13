@@ -26,7 +26,7 @@ try {
     defaultOptions: defaultOptions
   });
 
-  console.log("database running......");
+  console.log("Connected to DB");
 } catch (error) {
   console.log(error);
   process.exit(1);
