@@ -80,7 +80,7 @@ type Orders @model {
   restaurants: Restaurants @relation(link: INLINE)
   timeDiscount: TimeDiscount @relation(link: INLINE)
   user: User! @relation(link:INLINE)
-  date: String!
+  date: DateTime!
   totalDiscount: Int! @default(value: 0)
   people: Int!
   bookingid: String!

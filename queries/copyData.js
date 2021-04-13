@@ -292,7 +292,7 @@ const updateOrders = gql`
     $restaurants: RestaurantsUpdateOneWithoutOrdersesInput
     $timeDiscount: TimeDiscountUpdateOneWithoutOrdersesInput
     $user: UserUpdateOneRequiredWithoutOrdersesInput
-    $date: String
+    $date: DateTime
     $totalDiscount: Int
     $people: Int
     $bookingid: String

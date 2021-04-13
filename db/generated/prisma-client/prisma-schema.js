@@ -2002,7 +2002,7 @@ type Orders {
   restaurants: Restaurants
   timeDiscount: TimeDiscount
   user: User!
-  date: String!
+  date: DateTime!
   totalDiscount: Int!
   people: Int!
   bookingid: String!
@@ -2031,7 +2031,7 @@ input OrdersCreateInput {
   restaurants: RestaurantsCreateOneWithoutOrdersesInput
   timeDiscount: TimeDiscountCreateOneWithoutOrdersesInput
   user: UserCreateOneWithoutOrdersesInput!
-  date: String!
+  date: DateTime!
   totalDiscount: Int
   people: Int!
   bookingid: String!
@@ -2068,7 +2068,7 @@ input OrdersCreateWithoutRestaurantsInput {
   id: ID
   timeDiscount: TimeDiscountCreateOneWithoutOrdersesInput
   user: UserCreateOneWithoutOrdersesInput!
-  date: String!
+  date: DateTime!
   totalDiscount: Int
   people: Int!
   bookingid: String!
@@ -2090,7 +2090,7 @@ input OrdersCreateWithoutTimeDiscountInput {
   id: ID
   restaurants: RestaurantsCreateOneWithoutOrdersesInput
   user: UserCreateOneWithoutOrdersesInput!
-  date: String!
+  date: DateTime!
   totalDiscount: Int
   people: Int!
   bookingid: String!
@@ -2112,7 +2112,7 @@ input OrdersCreateWithoutUserInput {
   id: ID
   restaurants: RestaurantsCreateOneWithoutOrdersesInput
   timeDiscount: TimeDiscountCreateOneWithoutOrdersesInput
-  date: String!
+  date: DateTime!
   totalDiscount: Int
   people: Int!
   bookingid: String!
@@ -2180,7 +2180,7 @@ type OrdersPreviousValues {
   createdAt: DateTime!
   updatedAt: DateTime!
   id: ID!
-  date: String!
+  date: DateTime!
   totalDiscount: Int!
   people: Int!
   bookingid: String!
@@ -2229,20 +2229,14 @@ input OrdersScalarWhereInput {
   id_not_starts_with: ID
   id_ends_with: ID
   id_not_ends_with: ID
-  date: String
-  date_not: String
-  date_in: [String!]
-  date_not_in: [String!]
-  date_lt: String
-  date_lte: String
-  date_gt: String
-  date_gte: String
-  date_contains: String
-  date_not_contains: String
-  date_starts_with: String
-  date_not_starts_with: String
-  date_ends_with: String
-  date_not_ends_with: String
+  date: DateTime
+  date_not: DateTime
+  date_in: [DateTime!]
+  date_not_in: [DateTime!]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_gt: DateTime
+  date_gte: DateTime
   totalDiscount: Int
   totalDiscount_not: Int
   totalDiscount_in: [Int!]
@@ -2426,7 +2420,7 @@ input OrdersUpdateInput {
   restaurants: RestaurantsUpdateOneWithoutOrdersesInput
   timeDiscount: TimeDiscountUpdateOneWithoutOrdersesInput
   user: UserUpdateOneRequiredWithoutOrdersesInput
-  date: String
+  date: DateTime
   totalDiscount: Int
   people: Int
   bookingid: String
@@ -2445,7 +2439,7 @@ input OrdersUpdateInput {
 }
 
 input OrdersUpdateManyDataInput {
-  date: String
+  date: DateTime
   totalDiscount: Int
   people: Int
   bookingid: String
@@ -2464,7 +2458,7 @@ input OrdersUpdateManyDataInput {
 }
 
 input OrdersUpdateManyMutationInput {
-  date: String
+  date: DateTime
   totalDiscount: Int
   people: Int
   bookingid: String
@@ -2526,7 +2520,7 @@ input OrdersUpdateManyWithWhereNestedInput {
 input OrdersUpdateWithoutRestaurantsDataInput {
   timeDiscount: TimeDiscountUpdateOneWithoutOrdersesInput
   user: UserUpdateOneRequiredWithoutOrdersesInput
-  date: String
+  date: DateTime
   totalDiscount: Int
   people: Int
   bookingid: String
@@ -2547,7 +2541,7 @@ input OrdersUpdateWithoutRestaurantsDataInput {
 input OrdersUpdateWithoutTimeDiscountDataInput {
   restaurants: RestaurantsUpdateOneWithoutOrdersesInput
   user: UserUpdateOneRequiredWithoutOrdersesInput
-  date: String
+  date: DateTime
   totalDiscount: Int
   people: Int
   bookingid: String
@@ -2568,7 +2562,7 @@ input OrdersUpdateWithoutTimeDiscountDataInput {
 input OrdersUpdateWithoutUserDataInput {
   restaurants: RestaurantsUpdateOneWithoutOrdersesInput
   timeDiscount: TimeDiscountUpdateOneWithoutOrdersesInput
-  date: String
+  date: DateTime
   totalDiscount: Int
   people: Int
   bookingid: String
@@ -2653,20 +2647,14 @@ input OrdersWhereInput {
   restaurants: RestaurantsWhereInput
   timeDiscount: TimeDiscountWhereInput
   user: UserWhereInput
-  date: String
-  date_not: String
-  date_in: [String!]
-  date_not_in: [String!]
-  date_lt: String
-  date_lte: String
-  date_gt: String
-  date_gte: String
-  date_contains: String
-  date_not_contains: String
-  date_starts_with: String
-  date_not_starts_with: String
-  date_ends_with: String
-  date_not_ends_with: String
+  date: DateTime
+  date_not: DateTime
+  date_in: [DateTime!]
+  date_not_in: [DateTime!]
+  date_lt: DateTime
+  date_lte: DateTime
+  date_gt: DateTime
+  date_gte: DateTime
   totalDiscount: Int
   totalDiscount_not: Int
   totalDiscount_in: [Int!]

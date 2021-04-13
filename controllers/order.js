@@ -1,4 +1,5 @@
 const { validationResult } = require("express-validator");
+const moment = require("moment");
 const Razorpay = require("razorpay");
 const uuid = require("uuid");
 const db = require("../db");
@@ -27,9 +28,7 @@ module.exports = {
     const otp = req.body.otp;
     console.log(otp);
 
-    let currentTime = Number(req.body.date);
-    currentTime = new Date(currentTime);
-    currentTime = currentTime.toISOString();
+    const currentTime = moment(req.body.date).toISOString();
 
     const getUser = await db.query({
       query: checkOtp,
@@ -61,27 +60,10 @@ module.exports = {
     });
 
     const bookingid = Math.floor(Math.random() * 100000000 + 1).toString();
-    let {
-      restaurantsId,
-      timeDiscountId,
-      people,
-      mobile,
-      name,
-      date,
-    } = req.body;
+    let { restaurantsId, timeDiscountId, people, mobile, name } = req.body;
     let userId = req.user.id;
     people = Number(people);
 
-    var options = {
-      weekday: "long",
-      year: "numeric",
-      month: "long",
-      day: "numeric",
-    };
-    const dateIso = new Date().toLocaleDateString("en-US", options);
-    // console.log(dateIso);
-    // const dateIso = new Date().toDateString();
-    console.log(currentTime);
     const response = await db.mutate({
       mutation: createOrder,
       variables: {
@@ -90,7 +72,7 @@ module.exports = {
         userId,
         bookingid,
         people,
-        date: dateIso,
+        date: moment().toISOString(),
         mobile,
         name,
       },
@@ -166,10 +148,11 @@ module.exports = {
     // check if that orders has the deal unlocked
     // check if the date has passed
 
-    const response = await db.mutate({
-      mutation: updateOrderUnlocked,
-      variables: { orderId, geolocation },
-    });
+    let variables = { orderId, geolocation };
+    variables = { ...variables };
+    const mutation = updateOrderUnlocked;
+
+    const response = await db.mutate({ mutation, variables });
 
     res.send(response.data.updateOrders);
   },

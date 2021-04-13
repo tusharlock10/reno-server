@@ -7,7 +7,7 @@ const createOrder = gql`
     $userId: ID!
     $bookingid: String!
     $people: Int!
-    $date: String!
+    $date: DateTime!
     $mobile: String!
     $name: String!
     $referrer: String
@@ -140,6 +140,7 @@ const updateOrderUnlocked = gql`
         rating
         imageurl
         city
+        acceptsRenoPay
       }
     }
   }

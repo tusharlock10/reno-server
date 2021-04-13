@@ -1,14 +1,15 @@
-const { validationResult } = require("express-validator"),
-  db = require("../db"),
-  {
-    getBrandTiles,
-    showBrandTile,
-    searchRestaurant,
-    typeRestaurants,
-    orderses,
-    cities,
-    getMisc,
-  } = require("../queries/index");
+const { validationResult } = require("express-validator");
+const moment = require("moment");
+const db = require("../db");
+const {
+  getBrandTiles,
+  showBrandTile,
+  searchRestaurant,
+  typeRestaurants,
+  orderses,
+  cities,
+  getMisc,
+} = require("../queries/index");
 
 module.exports = {
   async indexBrandTiles(req, res, next) {
@@ -62,10 +63,13 @@ module.exports = {
 
     orders.forEach((order) => {
       const orderTime = order.timeDiscount.time.split("-")[1];
-      const orderDate = Date.parse(`${order.date} ${orderTime}`);
+      const hours=orderTime.split(':')[0]
+      const minutes=orderTime.split(':')[1]
+      const orderDate = moment(order.date).set('hours', hours).set('minutes', minutes)
+      
       if (order.cancelled) {
         completedOrders.unshift(order);
-      } else if (orderDate < Date.now()) {
+      } else if (orderDate < moment()) {
         if (order.unlockActive && !order.confirmed) {
           // check if order was unlocked but not paid, then its an upcoming order
           upcomingOrders.push(order);

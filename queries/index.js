@@ -6,6 +6,9 @@ const getBrandTiles = gql`
       imageurl
       type
       id
+      restaurantses {
+        id
+      }
     }
   }
 `;
@@ -98,7 +101,7 @@ const typeRestaurants = gql`
 
 const orderses = gql`
   query orderses($facebookID: String!) {
-    users(where: { facebookID: $facebookID }) {
+    users(where: { facebookID: $facebookID }, orderBy:updatedAt_DESC) {
       orderses {
         id
         name

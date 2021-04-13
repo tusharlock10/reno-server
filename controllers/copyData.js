@@ -494,27 +494,27 @@ const updateUserReviewsInDB = async () => {
 module.exports = {
   async copyData(_, res, __) {
     let results = [];
-    results.push(await updateAdsInDB());
-    results.push(await updateBlogInDB());
-    results.push(await updateBrandTileInDB());
-    results.push(await updatecityInDB());
-    results.push(await updateHotDealsInDB());
-    results.push(await updateMiscInDB());
+    // results.push(await updateAdsInDB());
+    // results.push(await updateBlogInDB());
+    // results.push(await updateBrandTileInDB());
+    // results.push(await updatecityInDB());
+    // results.push(await updateHotDealsInDB());
+    // results.push(await updateMiscInDB());
 
-    results.push(await updateMondayInDB());
-    results.push(await updateTuesdayInDB());
-    results.push(await updateWednesdayInDB());
-    results.push(await updateThursdayInDB());
-    results.push(await updateFridayInDB());
-    results.push(await updateSaturdayInDB());
-    results.push(await updateSundayInDB());
+    // results.push(await updateMondayInDB());
+    // results.push(await updateTuesdayInDB());
+    // results.push(await updateWednesdayInDB());
+    // results.push(await updateThursdayInDB());
+    // results.push(await updateFridayInDB());
+    // results.push(await updateSaturdayInDB());
+    // results.push(await updateSundayInDB());
 
-    results.push(await updateOrdersInDB());
-    results.push(await updateRestaurantTypeInDB());
-    results.push(await updateRestaurantsInDB());
-    results.push(await updateTimeDiscountInDB());
-    results.push(await updateUserInDB());
-    results.push(await updateUserReviewsInDB());
+    // results.push(await updateOrdersInDB());
+    // results.push(await updateRestaurantTypeInDB());
+    // results.push(await updateRestaurantsInDB());
+    // results.push(await updateTimeDiscountInDB());
+    // results.push(await updateUserInDB());
+    // results.push(await updateUserReviewsInDB());
 
     res.json(results);
   },

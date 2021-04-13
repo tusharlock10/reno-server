@@ -1706,20 +1706,14 @@ export interface OrdersWhereInput {
   restaurants?: Maybe<RestaurantsWhereInput>;
   timeDiscount?: Maybe<TimeDiscountWhereInput>;
   user?: Maybe<UserWhereInput>;
-  date?: Maybe<String>;
-  date_not?: Maybe<String>;
-  date_in?: Maybe<String[] | String>;
-  date_not_in?: Maybe<String[] | String>;
-  date_lt?: Maybe<String>;
-  date_lte?: Maybe<String>;
-  date_gt?: Maybe<String>;
-  date_gte?: Maybe<String>;
-  date_contains?: Maybe<String>;
-  date_not_contains?: Maybe<String>;
-  date_starts_with?: Maybe<String>;
-  date_not_starts_with?: Maybe<String>;
-  date_ends_with?: Maybe<String>;
-  date_not_ends_with?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
   totalDiscount?: Maybe<Int>;
   totalDiscount_not?: Maybe<Int>;
   totalDiscount_in?: Maybe<Int[] | Int>;
@@ -3316,7 +3310,7 @@ export interface OrdersCreateWithoutRestaurantsInput {
   id?: Maybe<ID_Input>;
   timeDiscount?: Maybe<TimeDiscountCreateOneWithoutOrdersesInput>;
   user: UserCreateOneWithoutOrdersesInput;
-  date: String;
+  date: DateTimeInput;
   totalDiscount?: Maybe<Int>;
   people: Int;
   bookingid: String;
@@ -3488,7 +3482,7 @@ export interface OrdersCreateWithoutUserInput {
   id?: Maybe<ID_Input>;
   restaurants?: Maybe<RestaurantsCreateOneWithoutOrdersesInput>;
   timeDiscount?: Maybe<TimeDiscountCreateOneWithoutOrdersesInput>;
-  date: String;
+  date: DateTimeInput;
   totalDiscount?: Maybe<Int>;
   people: Int;
   bookingid: String;
@@ -3602,7 +3596,7 @@ export interface OrdersCreateWithoutTimeDiscountInput {
   id?: Maybe<ID_Input>;
   restaurants?: Maybe<RestaurantsCreateOneWithoutOrdersesInput>;
   user: UserCreateOneWithoutOrdersesInput;
-  date: String;
+  date: DateTimeInput;
   totalDiscount?: Maybe<Int>;
   people: Int;
   bookingid: String;
@@ -4607,7 +4601,7 @@ export interface OrdersUpdateWithWhereUniqueWithoutRestaurantsInput {
 export interface OrdersUpdateWithoutRestaurantsDataInput {
   timeDiscount?: Maybe<TimeDiscountUpdateOneWithoutOrdersesInput>;
   user?: Maybe<UserUpdateOneRequiredWithoutOrdersesInput>;
-  date?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
   totalDiscount?: Maybe<Int>;
   people?: Maybe<Int>;
   bookingid?: Maybe<String>;
@@ -4979,7 +4973,7 @@ export interface OrdersUpdateWithWhereUniqueWithoutUserInput {
 export interface OrdersUpdateWithoutUserDataInput {
   restaurants?: Maybe<RestaurantsUpdateOneWithoutOrdersesInput>;
   timeDiscount?: Maybe<TimeDiscountUpdateOneWithoutOrdersesInput>;
-  date?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
   totalDiscount?: Maybe<Int>;
   people?: Maybe<Int>;
   bookingid?: Maybe<String>;
@@ -5140,7 +5134,7 @@ export interface OrdersUpdateWithWhereUniqueWithoutTimeDiscountInput {
 export interface OrdersUpdateWithoutTimeDiscountDataInput {
   restaurants?: Maybe<RestaurantsUpdateOneWithoutOrdersesInput>;
   user?: Maybe<UserUpdateOneRequiredWithoutOrdersesInput>;
-  date?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
   totalDiscount?: Maybe<Int>;
   people?: Maybe<Int>;
   bookingid?: Maybe<String>;
@@ -6832,20 +6826,14 @@ export interface OrdersScalarWhereInput {
   id_not_starts_with?: Maybe<ID_Input>;
   id_ends_with?: Maybe<ID_Input>;
   id_not_ends_with?: Maybe<ID_Input>;
-  date?: Maybe<String>;
-  date_not?: Maybe<String>;
-  date_in?: Maybe<String[] | String>;
-  date_not_in?: Maybe<String[] | String>;
-  date_lt?: Maybe<String>;
-  date_lte?: Maybe<String>;
-  date_gt?: Maybe<String>;
-  date_gte?: Maybe<String>;
-  date_contains?: Maybe<String>;
-  date_not_contains?: Maybe<String>;
-  date_starts_with?: Maybe<String>;
-  date_not_starts_with?: Maybe<String>;
-  date_ends_with?: Maybe<String>;
-  date_not_ends_with?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
+  date_not?: Maybe<DateTimeInput>;
+  date_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  date_lt?: Maybe<DateTimeInput>;
+  date_lte?: Maybe<DateTimeInput>;
+  date_gt?: Maybe<DateTimeInput>;
+  date_gte?: Maybe<DateTimeInput>;
   totalDiscount?: Maybe<Int>;
   totalDiscount_not?: Maybe<Int>;
   totalDiscount_in?: Maybe<Int[] | Int>;
@@ -7013,7 +7001,7 @@ export interface OrdersUpdateManyWithWhereNestedInput {
 }
 
 export interface OrdersUpdateManyDataInput {
-  date?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
   totalDiscount?: Maybe<Int>;
   people?: Maybe<Int>;
   bookingid?: Maybe<String>;
@@ -7570,7 +7558,7 @@ export interface OrdersCreateInput {
   restaurants?: Maybe<RestaurantsCreateOneWithoutOrdersesInput>;
   timeDiscount?: Maybe<TimeDiscountCreateOneWithoutOrdersesInput>;
   user: UserCreateOneWithoutOrdersesInput;
-  date: String;
+  date: DateTimeInput;
   totalDiscount?: Maybe<Int>;
   people: Int;
   bookingid: String;
@@ -7592,7 +7580,7 @@ export interface OrdersUpdateInput {
   restaurants?: Maybe<RestaurantsUpdateOneWithoutOrdersesInput>;
   timeDiscount?: Maybe<TimeDiscountUpdateOneWithoutOrdersesInput>;
   user?: Maybe<UserUpdateOneRequiredWithoutOrdersesInput>;
-  date?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
   totalDiscount?: Maybe<Int>;
   people?: Maybe<Int>;
   bookingid?: Maybe<String>;
@@ -7611,7 +7599,7 @@ export interface OrdersUpdateInput {
 }
 
 export interface OrdersUpdateManyMutationInput {
-  date?: Maybe<String>;
+  date?: Maybe<DateTimeInput>;
   totalDiscount?: Maybe<Int>;
   people?: Maybe<Int>;
   bookingid?: Maybe<String>;
@@ -9016,7 +9004,7 @@ export interface Orders {
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   id: ID_Output;
-  date: String;
+  date: DateTimeOutput;
   totalDiscount: Int;
   people: Int;
   bookingid: String;
@@ -9041,7 +9029,7 @@ export interface OrdersPromise extends Promise<Orders>, Fragmentable {
   restaurants: <T = RestaurantsPromise>() => T;
   timeDiscount: <T = TimeDiscountPromise>() => T;
   user: <T = UserPromise>() => T;
-  date: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
   totalDiscount: () => Promise<Int>;
   people: () => Promise<Int>;
   bookingid: () => Promise<String>;
@@ -9068,7 +9056,7 @@ export interface OrdersSubscription
   restaurants: <T = RestaurantsSubscription>() => T;
   timeDiscount: <T = TimeDiscountSubscription>() => T;
   user: <T = UserSubscription>() => T;
-  date: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
   totalDiscount: () => Promise<AsyncIterator<Int>>;
   people: () => Promise<AsyncIterator<Int>>;
   bookingid: () => Promise<AsyncIterator<String>>;
@@ -9095,7 +9083,7 @@ export interface OrdersNullablePromise
   restaurants: <T = RestaurantsPromise>() => T;
   timeDiscount: <T = TimeDiscountPromise>() => T;
   user: <T = UserPromise>() => T;
-  date: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
   totalDiscount: () => Promise<Int>;
   people: () => Promise<Int>;
   bookingid: () => Promise<String>;
@@ -11727,7 +11715,7 @@ export interface OrdersPreviousValues {
   createdAt: DateTimeOutput;
   updatedAt: DateTimeOutput;
   id: ID_Output;
-  date: String;
+  date: DateTimeOutput;
   totalDiscount: Int;
   people: Int;
   bookingid: String;
@@ -11751,7 +11739,7 @@ export interface OrdersPreviousValuesPromise
   createdAt: () => Promise<DateTimeOutput>;
   updatedAt: () => Promise<DateTimeOutput>;
   id: () => Promise<ID_Output>;
-  date: () => Promise<String>;
+  date: () => Promise<DateTimeOutput>;
   totalDiscount: () => Promise<Int>;
   people: () => Promise<Int>;
   bookingid: () => Promise<String>;
@@ -11775,7 +11763,7 @@ export interface OrdersPreviousValuesSubscription
   createdAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   updatedAt: () => Promise<AsyncIterator<DateTimeOutput>>;
   id: () => Promise<AsyncIterator<ID_Output>>;
-  date: () => Promise<AsyncIterator<String>>;
+  date: () => Promise<AsyncIterator<DateTimeOutput>>;
   totalDiscount: () => Promise<AsyncIterator<Int>>;
   people: () => Promise<AsyncIterator<Int>>;
   bookingid: () => Promise<AsyncIterator<String>>;
