@@ -146,8 +146,9 @@ module.exports = {
     // check if the date has passed
 
     let variables = { orderId, geolocation };
-    variables = { ...variables };
     const mutation = updateOrderUnlocked;
+
+    console.log("unlockDeal : ", variables)
 
     const response = await db.mutate({ mutation, variables });
 

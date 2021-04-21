@@ -458,7 +458,7 @@ const allRestaurants = gql`
   }
 `;
 
-const allRestaurantsInCity = gql`
+const sundayNearbyRestaurants = gql`
   query allRestaurants($time: String!, $city: String!) {
     restaurantses(where: { city_contains: $city }) {
       id
@@ -471,14 +471,170 @@ const allRestaurantsInCity = gql`
       address
       latitude
       longitude
-      timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
-        id
-        time
-        day
-        newdiscount
-        exhausted
-        discount
-        daychange
+      sunday {
+        timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+          time
+          sunExhaust
+          sunDiscount
+          day
+          id
+        }
+      }
+    }
+  }
+`;
+
+const mondayNearbyRestaurants = gql`
+  query allRestaurants($time: String!, $city: String!) {
+    restaurantses(where: { city_contains: $city }) {
+      id
+      name
+      city
+      rating
+      state
+      imageurl
+      googlemapsurl
+      address
+      latitude
+      longitude
+      monday {
+        timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+          time
+          monExhaust
+          monDiscount
+          day
+          id
+        }
+      }
+    }
+  }
+`;
+
+const tuesdayNearbyRestaurants = gql`
+  query allRestaurants($time: String!, $city: String!) {
+    restaurantses(where: { city_contains: $city }) {
+      id
+      name
+      city
+      rating
+      state
+      imageurl
+      googlemapsurl
+      address
+      latitude
+      longitude
+      tuesday {
+        timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+          time
+          tueExhaust
+          tueDiscount
+          day
+          id
+        }
+      }
+    }
+  }
+`;
+
+const wednesdayNearbyRestaurants = gql`
+  query allRestaurants($time: String!, $city: String!) {
+    restaurantses(where: { city_contains: $city }) {
+      id
+      name
+      city
+      rating
+      state
+      imageurl
+      googlemapsurl
+      address
+      latitude
+      longitude
+      wednesday {
+        timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+          time
+          wedExhaust
+          wedDiscount
+          day
+          id
+        }
+      }
+    }
+  }
+`;
+
+const thursdayNearbyRestaurants = gql`
+  query allRestaurants($time: String!, $city: String!) {
+    restaurantses(where: { city_contains: $city }) {
+      id
+      name
+      city
+      rating
+      state
+      imageurl
+      googlemapsurl
+      address
+      latitude
+      longitude
+      thursday {
+        timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+          time
+          thuExhaust
+          thuDiscount
+          day
+          id
+        }
+      }
+    }
+  }
+`;
+
+const fridayNearbyRestaurants = gql`
+  query allRestaurants($time: String!, $city: String!) {
+    restaurantses(where: { city_contains: $city }) {
+      id
+      name
+      city
+      rating
+      state
+      imageurl
+      googlemapsurl
+      address
+      latitude
+      longitude
+      friday {
+        timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+          time
+          friExhaust
+          friDiscount
+          day
+          id
+        }
+      }
+    }
+  }
+`;
+
+const saturdayNearbyRestaurants = gql`
+  query allRestaurants($time: String!, $city: String!) {
+    restaurantses(where: { city_contains: $city }) {
+      id
+      name
+      city
+      rating
+      state
+      imageurl
+      googlemapsurl
+      address
+      latitude
+      longitude
+      saturday {
+        timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+          time
+          satExhaust
+          satDiscount
+          day
+          id
+        }
       }
     }
   }
@@ -517,7 +673,7 @@ module.exports = {
   allRestaurantTypes,
   updateRestaurantRating,
   allRestaurants,
-  allRestaurantsInCity,
+  sundayNearbyRestaurants,
   updateRestaurantGeoCode,
   getRestaurants,
   sunday,
@@ -534,4 +690,11 @@ module.exports = {
   showThursday,
   showFriday,
   showSaturday,
+  sundayNearbyRestaurants,
+  mondayNearbyRestaurants,
+  tuesdayNearbyRestaurants,
+  wednesdayNearbyRestaurants,
+  thursdayNearbyRestaurants,
+  fridayNearbyRestaurants,
+  saturdayNearbyRestaurants,
 };
