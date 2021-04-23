@@ -3,9 +3,9 @@ const axios = require("axios");
 module.exports = {
   //send otp for booking
   async sendOtp(otp, number) {
-    if (process.env.__DEV__) {
-      return null;
-    }
+    // if (process.env.__DEV__) {
+    //   return null;
+    // }
     await axios.default.get("https://api.msg91.com/api/v5/otp", {
       params: {
         mobile: `+91${number}`,
@@ -18,9 +18,9 @@ module.exports = {
 
   //send otp for login
   async bookingConfirmation(userData, bookingData) {
-    if (process.env.__DEV__) {
-      return null;
-    }
+    // if (process.env.__DEV__) {
+    //   return null;
+    // }
     const { restaurants, timeDiscount } = bookingData;
     const { people, mobile, name, date } = userData;
     await axios({
@@ -42,9 +42,9 @@ module.exports = {
     });
   },
   async cancelBooking(cancelledOrder) {
-    if (process.env.__DEV__) {
-      return null;
-    }
+    // if (process.env.__DEV__) {
+    //   return null;
+    // }
     const {
       name,
       mobile,

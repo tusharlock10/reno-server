@@ -3,7 +3,6 @@ const moment = require("moment");
 const Razorpay = require("razorpay");
 const uuid = require("uuid");
 const db = require("../db");
-const bcryptjs = require("bcryptjs");
 const { sendOtp, bookingConfirmation, cancelBooking } = require("../msg91");
 const {
   createOrder,
@@ -17,7 +16,7 @@ const {
 const { razorpayKeyId, razorpayKeySecret } = process.env;
 
 module.exports = {
-  async restaurantBooking(req, res, next) {
+  async restaurantBooking(req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       return res.json({ errors: errors.array() });
@@ -44,10 +43,7 @@ module.exports = {
       return res.send({ errors });
     }
 
-    const isOtpMatched = await bcryptjs.compare(
-      otp,
-      getUser.data.users[0].bookingOtp
-    );
+    const isOtpMatched = otp === getUser.data.users[0].bookingOtp;
 
     if (!isOtpMatched) {
       return res.send({ confirmed: false, message: "Invalid Otp" });
@@ -104,15 +100,13 @@ module.exports = {
     const { mobile } = req.body;
     const id = req.user.id;
 
-    let otp = "";
+    let bookingOtp = "";
     if (process.env.__DEV__) {
       // in dev mode, otp is 0000 for convenience
-      otp = "0000";
+      bookingOtp = "0000";
     } else {
-      otp = Math.floor(Math.random() * 10000 + 1).toString();
+      bookingOtp = Math.floor(Math.random() * 10000 + 1).toString();
     }
-    const salt = await bcryptjs.genSalt(10);
-    const bookingOtp = await bcryptjs.hashSync(otp, salt);
 
     let otpExpires = Date.now() + 300000;
     otpExpires = new Date(otpExpires);
@@ -128,7 +122,7 @@ module.exports = {
       },
     });
 
-    await sendOtp(otp, mobile);
+    await sendOtp(bookingOtp, mobile);
     res.json(response.data.updateUser);
   },
 
@@ -148,7 +142,7 @@ module.exports = {
     let variables = { orderId, geolocation };
     const mutation = updateOrderUnlocked;
 
-    console.log("unlockDeal : ", variables)
+    console.log("unlockDeal : ", variables);
 
     const response = await db.mutate({ mutation, variables });
 

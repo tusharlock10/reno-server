@@ -270,7 +270,6 @@ jwt.sign(
 
 // Generate salt for admin
 
- const bcryptjs=require("bcryptjs")
 
 // const generate=async function salt(password) {
 //  const salt =await bcryptjs.genSalt(10);
