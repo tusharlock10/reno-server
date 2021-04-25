@@ -5,7 +5,15 @@ const {
   getBrandTiles,
   showBrandTile,
   searchRestaurant,
-  typeRestaurants,
+
+  sundayTypeRestaurants,
+  mondayTypeRestaurants,
+  tuesdayTypeRestaurants,
+  wednesdayTypeRestaurants,
+  thursdayTypeRestaurants,
+  fridayTypeRestaurants,
+  saturdayTypeRestaurants,
+
   orderses,
   cities,
   getMisc,
@@ -74,8 +82,22 @@ module.exports = {
     let minute = new Date(halfHour).getMinutes();
     const time = `${`0${hour}`.slice(-2)}:${`0${minute}`.slice(-2)}`;
 
+    let date = new Date();
+    date = date.getDay(date);
+    let today = setDay(date);
+
+    const dayQueries = {
+      sunday: sundayTypeRestaurants,
+      monday: mondayTypeRestaurants,
+      tuesday: tuesdayTypeRestaurants,
+      wednesday: wednesdayTypeRestaurants,
+      thursday: thursdayTypeRestaurants,
+      friday: fridayTypeRestaurants,
+      saturday: saturdayTypeRestaurants,
+    };
+
     const response = await db.query({
-      query: typeRestaurants,
+      query: dayQueries[today],
       variables: {
         typeId,
         city,
@@ -98,4 +120,31 @@ module.exports = {
     });
     res.json(misc.data.miscs[0]);
   },
+};
+
+const setDay = function getDay(date) {
+  let day;
+  if (date == 0) {
+    day = "sunday";
+  }
+  if (date == 1) {
+    day = "monday";
+  }
+  if (date == 2) {
+    day = "tuesday";
+  }
+  if (date == 3) {
+    day = "wednesday";
+  }
+  if (date == 4) {
+    day = "thursday";
+  }
+  if (date == 5) {
+    day = "friday";
+  }
+  if (date == 6) {
+    day = "saturday";
+  }
+
+  return day;
 };

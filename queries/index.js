@@ -47,33 +47,7 @@ const searchRestaurant = gql`
   }
 `;
 
-// const typeRestaurants = gql`
-//   query Restaurants($type: String!, $city: String!, $time: String!) {
-//     restaurantTypes(where: { type_contains: $type }) {
-//       restaurantses(where: { city_contains: $city }) {
-//         id
-//         name
-//         city
-//         rating
-//         state
-//         imageurl
-//         googlemapsurl
-//         address
-//         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
-//           id
-//           time
-//           day
-//           newdiscount
-//           exhausted
-//           discount
-//           daychange
-//         }
-//       }
-//     }
-//   }
-// `;
-
-const typeRestaurants = gql`
+const sundayTypeRestaurants = gql`
   query Restaurants($typeId: ID!, $city: String!, $time: String!) {
     restaurantTypes(where: { id: $typeId }) {
       restaurantses(where: { city_contains: $city }) {
@@ -85,14 +59,170 @@ const typeRestaurants = gql`
         imageurl
         googlemapsurl
         address
-        timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
-          id
-          time
-          day
-          newdiscount
-          exhausted
-          discount
-          daychange
+        sunday {
+          timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+            time
+            sunExhaust
+            sunDiscount
+            day
+            id
+          }
+        }
+      }
+    }
+  }
+`;
+
+const mondayTypeRestaurants = gql`
+  query Restaurants($typeId: ID!, $city: String!, $time: String!) {
+    restaurantTypes(where: { id: $typeId }) {
+      restaurantses(where: { city_contains: $city }) {
+        id
+        name
+        city
+        rating
+        state
+        imageurl
+        googlemapsurl
+        address
+        monday {
+          timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+            time
+            monExhaust
+            monDiscount
+            day
+            id
+          }
+        }
+      }
+    }
+  }
+`;
+
+const tuesdayTypeRestaurants = gql`
+  query Restaurants($typeId: ID!, $city: String!, $time: String!) {
+    restaurantTypes(where: { id: $typeId }) {
+      restaurantses(where: { city_contains: $city }) {
+        id
+        name
+        city
+        rating
+        state
+        imageurl
+        googlemapsurl
+        address
+        tuesday {
+          timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+            time
+            tueExhaust
+            tueDiscount
+            day
+            id
+          }
+        }
+      }
+    }
+  }
+`;
+
+const wednesdayTypeRestaurants = gql`
+  query Restaurants($typeId: ID!, $city: String!, $time: String!) {
+    restaurantTypes(where: { id: $typeId }) {
+      restaurantses(where: { city_contains: $city }) {
+        id
+        name
+        city
+        rating
+        state
+        imageurl
+        googlemapsurl
+        address
+        wednesday {
+          timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+            time
+            wedExhaust
+            wedDiscount
+            day
+            id
+          }
+        }
+      }
+    }
+  }
+`;
+
+const thursdayTypeRestaurants = gql`
+  query Restaurants($typeId: ID!, $city: String!, $time: String!) {
+    restaurantTypes(where: { id: $typeId }) {
+      restaurantses(where: { city_contains: $city }) {
+        id
+        name
+        city
+        rating
+        state
+        imageurl
+        googlemapsurl
+        address
+        thursday {
+          timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+            time
+            thuExhaust
+            thuDiscount
+            day
+            id
+          }
+        }
+      }
+    }
+  }
+`;
+
+const fridayTypeRestaurants = gql`
+  query Restaurants($typeId: ID!, $city: String!, $time: String!) {
+    restaurantTypes(where: { id: $typeId }) {
+      restaurantses(where: { city_contains: $city }) {
+        id
+        name
+        city
+        rating
+        state
+        imageurl
+        googlemapsurl
+        address
+        friday {
+          timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+            time
+            friExhaust
+            friDiscount
+            day
+            id
+          }
+        }
+      }
+    }
+  }
+`;
+
+const saturdayTypeRestaurants = gql`
+  query Restaurants($typeId: ID!, $city: String!, $time: String!) {
+    restaurantTypes(where: { id: $typeId }) {
+      restaurantses(where: { city_contains: $city }) {
+        id
+        name
+        city
+        rating
+        state
+        imageurl
+        googlemapsurl
+        address
+        saturday {
+          timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
+            time
+            satExhaust
+            satDiscount
+            day
+            id
+          }
         }
       }
     }
@@ -101,7 +231,7 @@ const typeRestaurants = gql`
 
 const orderses = gql`
   query orderses($facebookID: String!) {
-    users(where: { facebookID: $facebookID }, orderBy:updatedAt_DESC) {
+    users(where: { facebookID: $facebookID }, orderBy: updatedAt_DESC) {
       orderses {
         id
         name
@@ -156,7 +286,15 @@ module.exports = {
   getBrandTiles,
   showBrandTile,
   searchRestaurant,
-  typeRestaurants,
+
+  sundayTypeRestaurants,
+  mondayTypeRestaurants,
+  tuesdayTypeRestaurants,
+  wednesdayTypeRestaurants,
+  thursdayTypeRestaurants,
+  fridayTypeRestaurants,
+  saturdayTypeRestaurants,
+  
   orderses,
   cities,
   getMisc,

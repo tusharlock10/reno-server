@@ -26,13 +26,10 @@ module.exports = {
 
     const otp = req.body.otp;
 
-    const currentTime = moment(req.body.date).toISOString();
-
     const getUser = await db.query({
       query: checkOtp,
       variables: {
         id: req.user.id,
-        currentTime,
       },
     });
 

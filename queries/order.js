@@ -98,8 +98,8 @@ const bookingOtps = gql`
 `;
 
 const checkOtp = gql`
-  query getUser($id: ID!, $currentTime: DateTime!) {
-    users(where: { id: $id, otpExpires_gt: $currentTime }) {
+  query getUser($id: ID!) {
+    users(where: { id: $id}) {
       otpExpires
       bookingOtp
     }
