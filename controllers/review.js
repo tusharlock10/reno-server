@@ -1,6 +1,11 @@
 const { validationResult } = require("express-validator"),
   db = require("../db"),
-  { createUserReview, getUserReview } = require("../queries/review"),
+  {
+    createUserReview,
+    updateUserReview,
+    getUserReview,
+    getUserRestaurantReview,
+  } = require("../queries/review"),
   { GetRestaurant, updateRestaurantRating } = require("../queries/restaurant");
 
 module.exports = {
@@ -17,23 +22,37 @@ module.exports = {
     let reviews = await db.query({
       query: getUserReview,
       variables: {
-        restaurantsId: id
-      }
+        restaurantsId: id,
+      },
     });
 
-    let { review, rating } = req.body;
+    let { review, rating, reviewId } = req.body;
     rating = Number(rating);
 
-    //creating review
-    const response = await db.mutate({
-      mutation: createUserReview,
-      variables: {
-        review,
-        rating,
-        userId: req.user.id, //req.user.userId
-        restaurantsId: req.params.restaurant_id
-      }
-    });
+    //creating/updating review
+    let response = null;
+    if (reviewId) {
+      response = await db.mutate({
+        mutation: updateUserReview,
+        variables: {
+          review,
+          rating,
+          reviewId,
+        },
+      });
+      response = response.data.updateUserReviews;
+    } else {
+      response = await db.mutate({
+        mutation: createUserReview,
+        variables: {
+          review,
+          rating,
+          userId: req.user.id, //req.user.userId
+          restaurantsId: req.params.restaurant_id,
+        },
+      });
+      response = response.data.createUserReviews;
+    }
 
     //Avg Rating Calculation
     reviews = reviews.data.restaurants.userReviewses;
@@ -41,11 +60,13 @@ module.exports = {
     var totalRating = 0;
     var totalNoOfRating = 0;
 
-    reviews.forEach(review => {
-      totalRating = totalRating + review.rating;
-      totalNoOfRating++;
+    reviews.forEach((review) => {
+      if (review.id !== reviewId) {
+        totalRating = totalRating + review.rating;
+        totalNoOfRating++;
+      }
     });
-    totalRating = totalRating + response.data.createUserReviews.rating;
+    totalRating = totalRating + response.rating;
     totalNoOfRating++;
     if (totalRating) {
       avgRating = totalRating / totalNoOfRating;
@@ -53,36 +74,37 @@ module.exports = {
 
     avgRating = Math.round(avgRating.toFixed(1));
     //updateRating
-    const updateRating = await db.mutate({
+    await db.mutate({
       mutation: updateRestaurantRating,
       variables: {
         id,
-        rating: avgRating
-      }
+        rating: avgRating,
+      },
     });
 
-    res.json(response.data.createUserReviews);
+    res.json(response);
   },
   //Reviews Show
   async reviewShow(req, res, next) {
     const response = await db.query({
       query: getUserReview,
       variables: {
-        restaurantsId: req.params.restaurant_id
-      }
+        restaurantsId: req.params.restaurant_id,
+      },
     });
 
     res.json(response.data.restaurants.userReviewses);
-  }
-  //Reviews Update
-  //async reviewUpdate(req, res, next) {},
-  // Reviews Destroy
-  //   async reviewDestroy(req, res, next) {
-  //     await Coupon.findByIdAndUpdate(req.params.id, {
-  //       $pull: { reviews: req.params.review_id }
-  //     });
-  //     await Review.findByIdAndRemove(req.params.review_id);
-  //     req.session.success = "Review deleted successfully!";
-  //     res.redirect(`/coupons/${req.params.id}`);
-  //   }
+  },
+
+  async userRestaurantReview(req, res) {
+    const userId = req.user.id;
+    const restaurantId = req.params.restaurant_id;
+
+
+    const response = await db.query({
+      query: getUserRestaurantReview,
+      variables: { userId, restaurantId },
+    });
+    res.json(response.data.userReviewses[0]);
+  },
 };

@@ -4,7 +4,8 @@ const { check } = require("express-validator");
 const { isLoggedIn, asyncErrorHandler } = require("../middleware/index");
 const {
   reviewCreate,
-  reviewShow
+  reviewShow,
+  userRestaurantReview
 } = require("../controllers/review");
 
 // @Route    GET '/api/v1/restaurant/:restaurant_id/review'
@@ -24,6 +25,16 @@ router.post(
   ],
   isLoggedIn,
   asyncErrorHandler(reviewCreate)
+);
+
+// @Route    GET '/api/v1/restaurant/:restaurant_id/review/user'
+// @desc     Gets the review made by the user for that restaurant
+// @access   Private
+
+router.get(
+  "/user",
+  isLoggedIn,
+  asyncErrorHandler(userRestaurantReview)
 );
 
 module.exports = router;

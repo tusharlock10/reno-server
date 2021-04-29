@@ -15,15 +15,26 @@ const createUserReview = gql`
         rating: $rating
       }
     ) {
-      user {
-        firstname
-        lastname
-      }
+      id
       review
       rating
     }
   }
 `;
+
+const updateUserReview = gql`
+  mutation updateUserReview($reviewId: ID!, $review: String!, $rating: Int!) {
+    updateUserReviews(
+      data: { review: $review, rating: $rating }
+      where: { id: $reviewId }
+    ) {
+      id
+      review
+      rating
+    }
+  }
+`;
+
 //ID="cjiblwnkpm7pj0197c9o5diei"
 const getUserReview = gql`
   query getUserReview($restaurantsId: ID!) {
@@ -43,4 +54,21 @@ const getUserReview = gql`
   }
 `;
 
-module.exports = { createUserReview, getUserReview };
+const getUserRestaurantReview = gql`
+  query getUserReview($userId: ID!, $restaurantId: ID!) {
+    userReviewses(
+      where: { user: { id: $userId }, restaurants: { id: $restaurantId } }
+    ) {
+      id
+      review
+      rating
+    }
+  }
+`;
+
+module.exports = {
+  createUserReview,
+  updateUserReview,
+  getUserReview,
+  getUserRestaurantReview,
+};
