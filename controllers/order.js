@@ -139,8 +139,6 @@ module.exports = {
     let variables = { orderId, geolocation };
     const mutation = updateOrderUnlocked;
 
-    console.log("unlockDeal : ", variables);
-
     const response = await db.mutate({ mutation, variables });
 
     res.send(response.data.updateOrders);

@@ -19,6 +19,7 @@ module.exports = {
 
     const id = req.params.restaurant_id;
     //avg rating
+
     let reviews = await db.query({
       query: getUserReview,
       variables: {
@@ -55,7 +56,7 @@ module.exports = {
     }
 
     //Avg Rating Calculation
-    reviews = reviews.data.restaurants.userReviewses;
+    reviews = reviews.data.userReviewses;
     var avgRating = 0;
     var totalRating = 0;
     var totalNoOfRating = 0;

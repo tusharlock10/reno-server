@@ -37,6 +37,7 @@ const createOrder = gql`
         googlemapsurl
       }
       timeDiscount {
+        id
         time
         discount
       }
@@ -62,6 +63,7 @@ const cancelOrder = gql`
       confirmed
       cancelled
       timeDiscount {
+        id
         time
         discount
       }
@@ -92,6 +94,7 @@ const bookingOtps = gql`
       }
       where: { id: $id }
     ) {
+      id
       mobile
     }
   }
@@ -100,6 +103,7 @@ const bookingOtps = gql`
 const checkOtp = gql`
   query getUser($id: ID!) {
     users(where: { id: $id}) {
+      id
       otpExpires
       bookingOtp
     }
@@ -112,6 +116,7 @@ const updateUserOtpField = gql`
       data: { otpExpires: null, bookingOtp: null }
       where: { id: $id }
     ) {
+      id
       otpExpires
       bookingOtp
     }
@@ -131,10 +136,12 @@ const updateOrderUnlocked = gql`
       date
       unlockActive
       timeDiscount {
+        id
         time
         discount
       }
       restaurants {
+        id
         googlemapsurl
         name
         rating

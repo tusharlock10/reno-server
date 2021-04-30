@@ -12,6 +12,7 @@ const getRenoCommission = gql`
 const getCity = gql`
   query getCity($city: [String!]!) {
     cities(where: { city_in: $city }) {
+      id
       city
       isPremium
       premiumAmmount90
@@ -34,6 +35,7 @@ const updateUserPremiumDetails = gql`
       }
       where: { id: $id }
     ) {
+      id
       premiumExpireDate
       premiumStartDate
     }

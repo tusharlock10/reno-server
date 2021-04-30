@@ -4,11 +4,10 @@ const { getUser } = require("../queries/user");
 const db = require("../db/index");
 const { GetRestaurant } = require("../queries/restaurant");
 const { validationResult } = require("express-validator");
+const morgan = require('morgan')
+
 const middleware = {
-  logRequest(req, _, next) {
-    console.log(req.url);
-    next();
-  },
+  logRequest:morgan('common'),
 
   asyncErrorHandler(fn) {
     return (req, res, next) => {

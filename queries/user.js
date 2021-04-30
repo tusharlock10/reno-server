@@ -55,6 +55,7 @@ const updateUserInstallLocations = gql`
       data: { installLocation: $installLocation }
       where: { id: $id }
     ) {
+      id
       installLocation
     }
   }
@@ -66,6 +67,7 @@ const updateUserCurrentLocations = gql`
       data: { currentLocation: $currentLocation }
       where: { id: $id }
     ) {
+      id
       currentLocation
     }
   }

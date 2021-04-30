@@ -86,6 +86,7 @@ const mondayTypeRestaurants = gql`
         googlemapsurl
         address
         monday {
+          id
           timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
             time
             monExhaust
@@ -112,6 +113,7 @@ const tuesdayTypeRestaurants = gql`
         googlemapsurl
         address
         tuesday {
+          id
           timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
             time
             tueExhaust
@@ -138,6 +140,7 @@ const wednesdayTypeRestaurants = gql`
         googlemapsurl
         address
         wednesday {
+          id
           timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
             time
             wedExhaust
@@ -164,6 +167,7 @@ const thursdayTypeRestaurants = gql`
         googlemapsurl
         address
         thursday {
+          id
           timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
             time
             thuExhaust
@@ -190,6 +194,7 @@ const fridayTypeRestaurants = gql`
         googlemapsurl
         address
         friday {
+          id
           timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
             time
             friExhaust
@@ -216,6 +221,7 @@ const saturdayTypeRestaurants = gql`
         googlemapsurl
         address
         saturday {
+          id
           timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
             time
             satExhaust
@@ -242,6 +248,7 @@ const orderses = gql`
         confirmed
         cancelled
         timeDiscount {
+          id
           time
           discount
         }
@@ -262,6 +269,7 @@ const orderses = gql`
 const cities = gql`
   query {
     cities {
+      id
       city
       isPremium
       premiumAmmount90
@@ -275,6 +283,7 @@ const cities = gql`
 const getMisc = gql`
   {
     miscs {
+      id
       faq
       fup
       id

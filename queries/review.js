@@ -38,18 +38,16 @@ const updateUserReview = gql`
 //ID="cjiblwnkpm7pj0197c9o5diei"
 const getUserReview = gql`
   query getUserReview($restaurantsId: ID!) {
-    restaurants(where: { id: $restaurantsId }) {
-      userReviewses {
+    userReviewses(where: { restaurants: { id: $restaurantsId } }) {
+      id
+      createdAt
+      user {
         id
-        createdAt
-        user {
-          id
-          firstname
-          lastname
-        }
-        review
-        rating
+        firstname
+        lastname
       }
+      review
+      rating
     }
   }
 `;

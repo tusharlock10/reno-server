@@ -28,14 +28,17 @@ const showSunday = gql`
       conditions
       menu
       userReviewses {
+        id
         review
         rating
         user {
+          id
           firstname
           profileImage
         }
       }
       sunday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           sunExhaust
@@ -64,14 +67,17 @@ const showMonday = gql`
       conditions
       menu
       userReviewses {
+        id
         review
         rating
         user {
+          id
           firstname
           profileImage
         }
       }
       monday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           monExhaust
@@ -100,14 +106,17 @@ const showTuesday = gql`
       conditions
       menu
       userReviewses {
+        id
         review
         rating
         user {
+          id
           firstname
           profileImage
         }
       }
       tuesday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           tueExhaust
@@ -136,14 +145,17 @@ const showWednesday = gql`
       conditions
       menu
       userReviewses {
+        id
         review
         rating
         user {
+          id
           firstname
           profileImage
         }
       }
       wednesday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           wedExhaust
@@ -172,14 +184,17 @@ const showThursday = gql`
       conditions
       menu
       userReviewses {
+        id
         review
         rating
         user {
+          id
           firstname
           profileImage
         }
       }
       thursday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           thuExhaust
@@ -208,14 +223,17 @@ const showFriday = gql`
       conditions
       menu
       userReviewses {
+        id
         review
         rating
         user {
+          id
           firstname
           profileImage
         }
       }
       friday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           friExhaust
@@ -244,14 +262,17 @@ const showSaturday = gql`
       conditions
       menu
       userReviewses {
+        id
         review
         rating
         user {
+          id
           firstname
           profileImage
         }
       }
       saturday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           satExhaust
@@ -276,6 +297,7 @@ const sunday = gql`
       googlemapsurl
       acceptsRenoPay
       sunday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           sunExhaust
@@ -300,6 +322,7 @@ const monday = gql`
       googlemapsurl
       acceptsRenoPay
       monday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           monExhaust
@@ -324,6 +347,7 @@ const tuesday = gql`
       googlemapsurl
       acceptsRenoPay
       tuesday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           tueExhaust
@@ -348,6 +372,7 @@ const wednesday = gql`
       googlemapsurl
       acceptsRenoPay
       wednesday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           wedExhaust
@@ -372,6 +397,7 @@ const thursday = gql`
       googlemapsurl
       acceptsRenoPay
       thursday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           thuExhaust
@@ -396,6 +422,7 @@ const friday = gql`
       googlemapsurl
       acceptsRenoPay
       friday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           friExhaust
@@ -420,6 +447,7 @@ const saturday = gql`
       googlemapsurl
       acceptsRenoPay
       saturday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           satExhaust
@@ -472,6 +500,7 @@ const sundayNearbyRestaurants = gql`
       latitude
       longitude
       sunday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           sunExhaust
@@ -498,6 +527,7 @@ const mondayNearbyRestaurants = gql`
       latitude
       longitude
       monday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           monExhaust
@@ -524,6 +554,7 @@ const tuesdayNearbyRestaurants = gql`
       latitude
       longitude
       tuesday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           tueExhaust
@@ -550,6 +581,7 @@ const wednesdayNearbyRestaurants = gql`
       latitude
       longitude
       wednesday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           wedExhaust
@@ -576,6 +608,7 @@ const thursdayNearbyRestaurants = gql`
       latitude
       longitude
       thursday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           thuExhaust
@@ -602,6 +635,7 @@ const fridayNearbyRestaurants = gql`
       latitude
       longitude
       friday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           friExhaust
@@ -628,6 +662,7 @@ const saturdayNearbyRestaurants = gql`
       latitude
       longitude
       saturday {
+        id
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           satExhaust
@@ -652,6 +687,7 @@ const getRestaurants = gql`
 const updateRestaurantRating = gql`
   mutation Restaurants($id: ID!, $rating: Float!) {
     updateRestaurants(data: { rating: $rating }, where: { id: $id }) {
+      id
       rating
     }
   }
@@ -663,6 +699,7 @@ const updateRestaurantGeoCode = gql`
       data: { latitude: $latitude, longitude: $longitude }
       where: { id: $id }
     ) {
+      id
       longitude
       latitude
     }
