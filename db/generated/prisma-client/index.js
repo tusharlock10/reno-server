@@ -87,6 +87,10 @@ var models = [
   {
     name: "city",
     embedded: false
+  },
+  {
+    name: "RenoPass",
+    embedded: false
   }
 ];
 exports.Prisma = prisma_lib_1.makePrismaClientClass({

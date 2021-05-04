@@ -233,13 +233,14 @@ type User @model {
   typeAccess: String! @default(value: "user")
   password:String 
   installLocation: String
-  isPremiumUser:String 
   currentLocation: String
   profileImage:String	
 	bookingOtp:String	
 	otpExpires:DateTime	
+  isPremiumUser:String
 	premiumStartDate:DateTime	
 	premiumExpireDate:DateTime
+  renoPass:RenoPass
 }
 
 type UserReviews @model {
@@ -268,5 +269,18 @@ type city @model{
   premiumAmmount180:Int!@default(value:0)
   premiumAmmount360:Int!@default(value:0)
   imageUrl:String
+}
 
+type RenoPass @model{
+  id: ID! @id
+  user:User @relation(link: INLINE)
+  city:city! @relation(link: INLINE)
+  premiumStartDate:DateTime!
+	premiumExpireDate:DateTime!
+  days:String!
+  amount: Int!,
+  receipt: String!,
+  paymentId: String!,
+  paymentOrderId: String!,
+  paymentDescription: String!,
 }

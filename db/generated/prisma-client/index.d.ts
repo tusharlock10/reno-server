@@ -26,6 +26,7 @@ export interface Exists {
   misc: (where?: MiscWhereInput) => Promise<boolean>;
   monday: (where?: MondayWhereInput) => Promise<boolean>;
   orders: (where?: OrdersWhereInput) => Promise<boolean>;
+  renoPass: (where?: RenoPassWhereInput) => Promise<boolean>;
   restaurantType: (where?: RestaurantTypeWhereInput) => Promise<boolean>;
   restaurants: (where?: RestaurantsWhereInput) => Promise<boolean>;
   saturday: (where?: SaturdayWhereInput) => Promise<boolean>;
@@ -248,6 +249,25 @@ export interface Prisma {
     first?: Int;
     last?: Int;
   }) => OrdersConnectionPromise;
+  renoPass: (where: RenoPassWhereUniqueInput) => RenoPassNullablePromise;
+  renoPasses: (args?: {
+    where?: RenoPassWhereInput;
+    orderBy?: RenoPassOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => FragmentableArray<RenoPass>;
+  renoPassesConnection: (args?: {
+    where?: RenoPassWhereInput;
+    orderBy?: RenoPassOrderByInput;
+    skip?: Int;
+    after?: String;
+    before?: String;
+    first?: Int;
+    last?: Int;
+  }) => RenoPassConnectionPromise;
   restaurantType: (
     where: RestaurantTypeWhereUniqueInput
   ) => RestaurantTypeNullablePromise;
@@ -631,6 +651,22 @@ export interface Prisma {
   }) => OrdersPromise;
   deleteOrders: (where: OrdersWhereUniqueInput) => OrdersPromise;
   deleteManyOrderses: (where?: OrdersWhereInput) => BatchPayloadPromise;
+  createRenoPass: (data: RenoPassCreateInput) => RenoPassPromise;
+  updateRenoPass: (args: {
+    data: RenoPassUpdateInput;
+    where: RenoPassWhereUniqueInput;
+  }) => RenoPassPromise;
+  updateManyRenoPasses: (args: {
+    data: RenoPassUpdateManyMutationInput;
+    where?: RenoPassWhereInput;
+  }) => BatchPayloadPromise;
+  upsertRenoPass: (args: {
+    where: RenoPassWhereUniqueInput;
+    create: RenoPassCreateInput;
+    update: RenoPassUpdateInput;
+  }) => RenoPassPromise;
+  deleteRenoPass: (where: RenoPassWhereUniqueInput) => RenoPassPromise;
+  deleteManyRenoPasses: (where?: RenoPassWhereInput) => BatchPayloadPromise;
   createRestaurantType: (
     data: RestaurantTypeCreateInput
   ) => RestaurantTypePromise;
@@ -860,6 +896,9 @@ export interface Subscription {
   orders: (
     where?: OrdersSubscriptionWhereInput
   ) => OrdersSubscriptionPayloadSubscription;
+  renoPass: (
+    where?: RenoPassSubscriptionWhereInput
+  ) => RenoPassSubscriptionPayloadSubscription;
   restaurantType: (
     where?: RestaurantTypeSubscriptionWhereInput
   ) => RestaurantTypeSubscriptionPayloadSubscription;
@@ -1159,6 +1198,26 @@ export type MondayOrderByInput =
   | "order_ASC"
   | "order_DESC";
 
+export type RenoPassOrderByInput =
+  | "id_ASC"
+  | "id_DESC"
+  | "premiumStartDate_ASC"
+  | "premiumStartDate_DESC"
+  | "premiumExpireDate_ASC"
+  | "premiumExpireDate_DESC"
+  | "days_ASC"
+  | "days_DESC"
+  | "amount_ASC"
+  | "amount_DESC"
+  | "receipt_ASC"
+  | "receipt_DESC"
+  | "paymentId_ASC"
+  | "paymentId_DESC"
+  | "paymentOrderId_ASC"
+  | "paymentOrderId_DESC"
+  | "paymentDescription_ASC"
+  | "paymentDescription_DESC";
+
 export type SaturdayOrderByInput =
   | "exhausted_ASC"
   | "exhausted_DESC"
@@ -1224,8 +1283,6 @@ export type UserOrderByInput =
   | "password_DESC"
   | "installLocation_ASC"
   | "installLocation_DESC"
-  | "isPremiumUser_ASC"
-  | "isPremiumUser_DESC"
   | "currentLocation_ASC"
   | "currentLocation_DESC"
   | "profileImage_ASC"
@@ -1234,6 +1291,8 @@ export type UserOrderByInput =
   | "bookingOtp_DESC"
   | "otpExpires_ASC"
   | "otpExpires_DESC"
+  | "isPremiumUser_ASC"
+  | "isPremiumUser_DESC"
   | "premiumStartDate_ASC"
   | "premiumStartDate_DESC"
   | "premiumExpireDate_ASC"
@@ -2453,20 +2512,6 @@ export interface UserWhereInput {
   installLocation_not_starts_with?: Maybe<String>;
   installLocation_ends_with?: Maybe<String>;
   installLocation_not_ends_with?: Maybe<String>;
-  isPremiumUser?: Maybe<String>;
-  isPremiumUser_not?: Maybe<String>;
-  isPremiumUser_in?: Maybe<String[] | String>;
-  isPremiumUser_not_in?: Maybe<String[] | String>;
-  isPremiumUser_lt?: Maybe<String>;
-  isPremiumUser_lte?: Maybe<String>;
-  isPremiumUser_gt?: Maybe<String>;
-  isPremiumUser_gte?: Maybe<String>;
-  isPremiumUser_contains?: Maybe<String>;
-  isPremiumUser_not_contains?: Maybe<String>;
-  isPremiumUser_starts_with?: Maybe<String>;
-  isPremiumUser_not_starts_with?: Maybe<String>;
-  isPremiumUser_ends_with?: Maybe<String>;
-  isPremiumUser_not_ends_with?: Maybe<String>;
   currentLocation?: Maybe<String>;
   currentLocation_not?: Maybe<String>;
   currentLocation_in?: Maybe<String[] | String>;
@@ -2517,6 +2562,20 @@ export interface UserWhereInput {
   otpExpires_lte?: Maybe<DateTimeInput>;
   otpExpires_gt?: Maybe<DateTimeInput>;
   otpExpires_gte?: Maybe<DateTimeInput>;
+  isPremiumUser?: Maybe<String>;
+  isPremiumUser_not?: Maybe<String>;
+  isPremiumUser_in?: Maybe<String[] | String>;
+  isPremiumUser_not_in?: Maybe<String[] | String>;
+  isPremiumUser_lt?: Maybe<String>;
+  isPremiumUser_lte?: Maybe<String>;
+  isPremiumUser_gt?: Maybe<String>;
+  isPremiumUser_gte?: Maybe<String>;
+  isPremiumUser_contains?: Maybe<String>;
+  isPremiumUser_not_contains?: Maybe<String>;
+  isPremiumUser_starts_with?: Maybe<String>;
+  isPremiumUser_not_starts_with?: Maybe<String>;
+  isPremiumUser_ends_with?: Maybe<String>;
+  isPremiumUser_not_ends_with?: Maybe<String>;
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumStartDate_not?: Maybe<DateTimeInput>;
   premiumStartDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
@@ -2533,6 +2592,7 @@ export interface UserWhereInput {
   premiumExpireDate_lte?: Maybe<DateTimeInput>;
   premiumExpireDate_gt?: Maybe<DateTimeInput>;
   premiumExpireDate_gte?: Maybe<DateTimeInput>;
+  renoPass?: Maybe<RenoPassWhereInput>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
@@ -2596,6 +2656,196 @@ export interface UserReviewsWhereInput {
   AND?: Maybe<UserReviewsWhereInput[] | UserReviewsWhereInput>;
   OR?: Maybe<UserReviewsWhereInput[] | UserReviewsWhereInput>;
   NOT?: Maybe<UserReviewsWhereInput[] | UserReviewsWhereInput>;
+}
+
+export interface RenoPassWhereInput {
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  user?: Maybe<UserWhereInput>;
+  city?: Maybe<cityWhereInput>;
+  premiumStartDate?: Maybe<DateTimeInput>;
+  premiumStartDate_not?: Maybe<DateTimeInput>;
+  premiumStartDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  premiumStartDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  premiumStartDate_lt?: Maybe<DateTimeInput>;
+  premiumStartDate_lte?: Maybe<DateTimeInput>;
+  premiumStartDate_gt?: Maybe<DateTimeInput>;
+  premiumStartDate_gte?: Maybe<DateTimeInput>;
+  premiumExpireDate?: Maybe<DateTimeInput>;
+  premiumExpireDate_not?: Maybe<DateTimeInput>;
+  premiumExpireDate_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  premiumExpireDate_not_in?: Maybe<DateTimeInput[] | DateTimeInput>;
+  premiumExpireDate_lt?: Maybe<DateTimeInput>;
+  premiumExpireDate_lte?: Maybe<DateTimeInput>;
+  premiumExpireDate_gt?: Maybe<DateTimeInput>;
+  premiumExpireDate_gte?: Maybe<DateTimeInput>;
+  days?: Maybe<String>;
+  days_not?: Maybe<String>;
+  days_in?: Maybe<String[] | String>;
+  days_not_in?: Maybe<String[] | String>;
+  days_lt?: Maybe<String>;
+  days_lte?: Maybe<String>;
+  days_gt?: Maybe<String>;
+  days_gte?: Maybe<String>;
+  days_contains?: Maybe<String>;
+  days_not_contains?: Maybe<String>;
+  days_starts_with?: Maybe<String>;
+  days_not_starts_with?: Maybe<String>;
+  days_ends_with?: Maybe<String>;
+  days_not_ends_with?: Maybe<String>;
+  amount?: Maybe<Int>;
+  amount_not?: Maybe<Int>;
+  amount_in?: Maybe<Int[] | Int>;
+  amount_not_in?: Maybe<Int[] | Int>;
+  amount_lt?: Maybe<Int>;
+  amount_lte?: Maybe<Int>;
+  amount_gt?: Maybe<Int>;
+  amount_gte?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  receipt_not?: Maybe<String>;
+  receipt_in?: Maybe<String[] | String>;
+  receipt_not_in?: Maybe<String[] | String>;
+  receipt_lt?: Maybe<String>;
+  receipt_lte?: Maybe<String>;
+  receipt_gt?: Maybe<String>;
+  receipt_gte?: Maybe<String>;
+  receipt_contains?: Maybe<String>;
+  receipt_not_contains?: Maybe<String>;
+  receipt_starts_with?: Maybe<String>;
+  receipt_not_starts_with?: Maybe<String>;
+  receipt_ends_with?: Maybe<String>;
+  receipt_not_ends_with?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentId_not?: Maybe<String>;
+  paymentId_in?: Maybe<String[] | String>;
+  paymentId_not_in?: Maybe<String[] | String>;
+  paymentId_lt?: Maybe<String>;
+  paymentId_lte?: Maybe<String>;
+  paymentId_gt?: Maybe<String>;
+  paymentId_gte?: Maybe<String>;
+  paymentId_contains?: Maybe<String>;
+  paymentId_not_contains?: Maybe<String>;
+  paymentId_starts_with?: Maybe<String>;
+  paymentId_not_starts_with?: Maybe<String>;
+  paymentId_ends_with?: Maybe<String>;
+  paymentId_not_ends_with?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentOrderId_not?: Maybe<String>;
+  paymentOrderId_in?: Maybe<String[] | String>;
+  paymentOrderId_not_in?: Maybe<String[] | String>;
+  paymentOrderId_lt?: Maybe<String>;
+  paymentOrderId_lte?: Maybe<String>;
+  paymentOrderId_gt?: Maybe<String>;
+  paymentOrderId_gte?: Maybe<String>;
+  paymentOrderId_contains?: Maybe<String>;
+  paymentOrderId_not_contains?: Maybe<String>;
+  paymentOrderId_starts_with?: Maybe<String>;
+  paymentOrderId_not_starts_with?: Maybe<String>;
+  paymentOrderId_ends_with?: Maybe<String>;
+  paymentOrderId_not_ends_with?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
+  paymentDescription_not?: Maybe<String>;
+  paymentDescription_in?: Maybe<String[] | String>;
+  paymentDescription_not_in?: Maybe<String[] | String>;
+  paymentDescription_lt?: Maybe<String>;
+  paymentDescription_lte?: Maybe<String>;
+  paymentDescription_gt?: Maybe<String>;
+  paymentDescription_gte?: Maybe<String>;
+  paymentDescription_contains?: Maybe<String>;
+  paymentDescription_not_contains?: Maybe<String>;
+  paymentDescription_starts_with?: Maybe<String>;
+  paymentDescription_not_starts_with?: Maybe<String>;
+  paymentDescription_ends_with?: Maybe<String>;
+  paymentDescription_not_ends_with?: Maybe<String>;
+  AND?: Maybe<RenoPassWhereInput[] | RenoPassWhereInput>;
+  OR?: Maybe<RenoPassWhereInput[] | RenoPassWhereInput>;
+  NOT?: Maybe<RenoPassWhereInput[] | RenoPassWhereInput>;
+}
+
+export interface cityWhereInput {
+  city?: Maybe<String>;
+  city_not?: Maybe<String>;
+  city_in?: Maybe<String[] | String>;
+  city_not_in?: Maybe<String[] | String>;
+  city_lt?: Maybe<String>;
+  city_lte?: Maybe<String>;
+  city_gt?: Maybe<String>;
+  city_gte?: Maybe<String>;
+  city_contains?: Maybe<String>;
+  city_not_contains?: Maybe<String>;
+  city_starts_with?: Maybe<String>;
+  city_not_starts_with?: Maybe<String>;
+  city_ends_with?: Maybe<String>;
+  city_not_ends_with?: Maybe<String>;
+  isPremium?: Maybe<Boolean>;
+  isPremium_not?: Maybe<Boolean>;
+  id?: Maybe<ID_Input>;
+  id_not?: Maybe<ID_Input>;
+  id_in?: Maybe<ID_Input[] | ID_Input>;
+  id_not_in?: Maybe<ID_Input[] | ID_Input>;
+  id_lt?: Maybe<ID_Input>;
+  id_lte?: Maybe<ID_Input>;
+  id_gt?: Maybe<ID_Input>;
+  id_gte?: Maybe<ID_Input>;
+  id_contains?: Maybe<ID_Input>;
+  id_not_contains?: Maybe<ID_Input>;
+  id_starts_with?: Maybe<ID_Input>;
+  id_not_starts_with?: Maybe<ID_Input>;
+  id_ends_with?: Maybe<ID_Input>;
+  id_not_ends_with?: Maybe<ID_Input>;
+  premiumAmmount90?: Maybe<Int>;
+  premiumAmmount90_not?: Maybe<Int>;
+  premiumAmmount90_in?: Maybe<Int[] | Int>;
+  premiumAmmount90_not_in?: Maybe<Int[] | Int>;
+  premiumAmmount90_lt?: Maybe<Int>;
+  premiumAmmount90_lte?: Maybe<Int>;
+  premiumAmmount90_gt?: Maybe<Int>;
+  premiumAmmount90_gte?: Maybe<Int>;
+  premiumAmmount180?: Maybe<Int>;
+  premiumAmmount180_not?: Maybe<Int>;
+  premiumAmmount180_in?: Maybe<Int[] | Int>;
+  premiumAmmount180_not_in?: Maybe<Int[] | Int>;
+  premiumAmmount180_lt?: Maybe<Int>;
+  premiumAmmount180_lte?: Maybe<Int>;
+  premiumAmmount180_gt?: Maybe<Int>;
+  premiumAmmount180_gte?: Maybe<Int>;
+  premiumAmmount360?: Maybe<Int>;
+  premiumAmmount360_not?: Maybe<Int>;
+  premiumAmmount360_in?: Maybe<Int[] | Int>;
+  premiumAmmount360_not_in?: Maybe<Int[] | Int>;
+  premiumAmmount360_lt?: Maybe<Int>;
+  premiumAmmount360_lte?: Maybe<Int>;
+  premiumAmmount360_gt?: Maybe<Int>;
+  premiumAmmount360_gte?: Maybe<Int>;
+  imageUrl?: Maybe<String>;
+  imageUrl_not?: Maybe<String>;
+  imageUrl_in?: Maybe<String[] | String>;
+  imageUrl_not_in?: Maybe<String[] | String>;
+  imageUrl_lt?: Maybe<String>;
+  imageUrl_lte?: Maybe<String>;
+  imageUrl_gt?: Maybe<String>;
+  imageUrl_gte?: Maybe<String>;
+  imageUrl_contains?: Maybe<String>;
+  imageUrl_not_contains?: Maybe<String>;
+  imageUrl_starts_with?: Maybe<String>;
+  imageUrl_not_starts_with?: Maybe<String>;
+  imageUrl_ends_with?: Maybe<String>;
+  imageUrl_not_ends_with?: Maybe<String>;
+  AND?: Maybe<cityWhereInput[] | cityWhereInput>;
+  OR?: Maybe<cityWhereInput[] | cityWhereInput>;
+  NOT?: Maybe<cityWhereInput[] | cityWhereInput>;
 }
 
 export interface RestaurantTypeWhereInput {
@@ -3074,6 +3324,10 @@ export type OrdersWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
 
+export type RenoPassWhereUniqueInput = AtLeastOne<{
+  id: Maybe<ID_Input>;
+}>;
+
 export type RestaurantTypeWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
@@ -3121,80 +3375,6 @@ export type WednesdayWhereUniqueInput = AtLeastOne<{
 export type cityWhereUniqueInput = AtLeastOne<{
   id: Maybe<ID_Input>;
 }>;
-
-export interface cityWhereInput {
-  city?: Maybe<String>;
-  city_not?: Maybe<String>;
-  city_in?: Maybe<String[] | String>;
-  city_not_in?: Maybe<String[] | String>;
-  city_lt?: Maybe<String>;
-  city_lte?: Maybe<String>;
-  city_gt?: Maybe<String>;
-  city_gte?: Maybe<String>;
-  city_contains?: Maybe<String>;
-  city_not_contains?: Maybe<String>;
-  city_starts_with?: Maybe<String>;
-  city_not_starts_with?: Maybe<String>;
-  city_ends_with?: Maybe<String>;
-  city_not_ends_with?: Maybe<String>;
-  isPremium?: Maybe<Boolean>;
-  isPremium_not?: Maybe<Boolean>;
-  id?: Maybe<ID_Input>;
-  id_not?: Maybe<ID_Input>;
-  id_in?: Maybe<ID_Input[] | ID_Input>;
-  id_not_in?: Maybe<ID_Input[] | ID_Input>;
-  id_lt?: Maybe<ID_Input>;
-  id_lte?: Maybe<ID_Input>;
-  id_gt?: Maybe<ID_Input>;
-  id_gte?: Maybe<ID_Input>;
-  id_contains?: Maybe<ID_Input>;
-  id_not_contains?: Maybe<ID_Input>;
-  id_starts_with?: Maybe<ID_Input>;
-  id_not_starts_with?: Maybe<ID_Input>;
-  id_ends_with?: Maybe<ID_Input>;
-  id_not_ends_with?: Maybe<ID_Input>;
-  premiumAmmount90?: Maybe<Int>;
-  premiumAmmount90_not?: Maybe<Int>;
-  premiumAmmount90_in?: Maybe<Int[] | Int>;
-  premiumAmmount90_not_in?: Maybe<Int[] | Int>;
-  premiumAmmount90_lt?: Maybe<Int>;
-  premiumAmmount90_lte?: Maybe<Int>;
-  premiumAmmount90_gt?: Maybe<Int>;
-  premiumAmmount90_gte?: Maybe<Int>;
-  premiumAmmount180?: Maybe<Int>;
-  premiumAmmount180_not?: Maybe<Int>;
-  premiumAmmount180_in?: Maybe<Int[] | Int>;
-  premiumAmmount180_not_in?: Maybe<Int[] | Int>;
-  premiumAmmount180_lt?: Maybe<Int>;
-  premiumAmmount180_lte?: Maybe<Int>;
-  premiumAmmount180_gt?: Maybe<Int>;
-  premiumAmmount180_gte?: Maybe<Int>;
-  premiumAmmount360?: Maybe<Int>;
-  premiumAmmount360_not?: Maybe<Int>;
-  premiumAmmount360_in?: Maybe<Int[] | Int>;
-  premiumAmmount360_not_in?: Maybe<Int[] | Int>;
-  premiumAmmount360_lt?: Maybe<Int>;
-  premiumAmmount360_lte?: Maybe<Int>;
-  premiumAmmount360_gt?: Maybe<Int>;
-  premiumAmmount360_gte?: Maybe<Int>;
-  imageUrl?: Maybe<String>;
-  imageUrl_not?: Maybe<String>;
-  imageUrl_in?: Maybe<String[] | String>;
-  imageUrl_not_in?: Maybe<String[] | String>;
-  imageUrl_lt?: Maybe<String>;
-  imageUrl_lte?: Maybe<String>;
-  imageUrl_gt?: Maybe<String>;
-  imageUrl_gte?: Maybe<String>;
-  imageUrl_contains?: Maybe<String>;
-  imageUrl_not_contains?: Maybe<String>;
-  imageUrl_starts_with?: Maybe<String>;
-  imageUrl_not_starts_with?: Maybe<String>;
-  imageUrl_ends_with?: Maybe<String>;
-  imageUrl_not_ends_with?: Maybe<String>;
-  AND?: Maybe<cityWhereInput[] | cityWhereInput>;
-  OR?: Maybe<cityWhereInput[] | cityWhereInput>;
-  NOT?: Maybe<cityWhereInput[] | cityWhereInput>;
-}
 
 export interface AdsCreateInput {
   city: String;
@@ -3464,13 +3644,14 @@ export interface UserCreateWithoutUserReviewsesInput {
   typeAccess?: Maybe<String>;
   password?: Maybe<String>;
   installLocation?: Maybe<String>;
-  isPremiumUser?: Maybe<String>;
   currentLocation?: Maybe<String>;
   profileImage?: Maybe<String>;
   bookingOtp?: Maybe<String>;
   otpExpires?: Maybe<DateTimeInput>;
+  isPremiumUser?: Maybe<String>;
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
+  renoPass?: Maybe<RenoPassCreateOneWithoutUserInput>;
 }
 
 export interface OrdersCreateManyWithoutUserInput {
@@ -3635,13 +3816,14 @@ export interface UserCreateWithoutOrdersesInput {
   typeAccess?: Maybe<String>;
   password?: Maybe<String>;
   installLocation?: Maybe<String>;
-  isPremiumUser?: Maybe<String>;
   currentLocation?: Maybe<String>;
   profileImage?: Maybe<String>;
   bookingOtp?: Maybe<String>;
   otpExpires?: Maybe<DateTimeInput>;
+  isPremiumUser?: Maybe<String>;
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
+  renoPass?: Maybe<RenoPassCreateOneWithoutUserInput>;
 }
 
 export interface UserReviewsCreateManyWithoutUserInput {
@@ -4494,6 +4676,39 @@ export interface RestaurantsCreateWithoutWednesdayInput {
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
 }
 
+export interface RenoPassCreateOneWithoutUserInput {
+  create?: Maybe<RenoPassCreateWithoutUserInput>;
+  connect?: Maybe<RenoPassWhereUniqueInput>;
+}
+
+export interface RenoPassCreateWithoutUserInput {
+  id?: Maybe<ID_Input>;
+  city?: Maybe<cityCreateOneInput>;
+  premiumStartDate: DateTimeInput;
+  premiumExpireDate: DateTimeInput;
+  days: String;
+  amount: Int;
+  receipt: String;
+  paymentId: String;
+  paymentOrderId: String;
+  paymentDescription: String;
+}
+
+export interface cityCreateOneInput {
+  create?: Maybe<cityCreateInput>;
+  connect?: Maybe<cityWhereUniqueInput>;
+}
+
+export interface cityCreateInput {
+  city: String;
+  isPremium?: Maybe<Boolean>;
+  id?: Maybe<ID_Input>;
+  premiumAmmount90?: Maybe<Int>;
+  premiumAmmount180?: Maybe<Int>;
+  premiumAmmount360?: Maybe<Int>;
+  imageUrl?: Maybe<String>;
+}
+
 export interface BrandTileUpdateInput {
   type?: Maybe<String>;
   imageurl?: Maybe<String>;
@@ -4935,13 +5150,14 @@ export interface UserUpdateWithoutUserReviewsesDataInput {
   typeAccess?: Maybe<String>;
   password?: Maybe<String>;
   installLocation?: Maybe<String>;
-  isPremiumUser?: Maybe<String>;
   currentLocation?: Maybe<String>;
   profileImage?: Maybe<String>;
   bookingOtp?: Maybe<String>;
   otpExpires?: Maybe<DateTimeInput>;
+  isPremiumUser?: Maybe<String>;
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
+  renoPass?: Maybe<RenoPassUpdateOneWithoutUserInput>;
 }
 
 export interface OrdersUpdateManyWithoutUserInput {
@@ -5174,13 +5390,14 @@ export interface UserUpdateWithoutOrdersesDataInput {
   typeAccess?: Maybe<String>;
   password?: Maybe<String>;
   installLocation?: Maybe<String>;
-  isPremiumUser?: Maybe<String>;
   currentLocation?: Maybe<String>;
   profileImage?: Maybe<String>;
   bookingOtp?: Maybe<String>;
   otpExpires?: Maybe<DateTimeInput>;
+  isPremiumUser?: Maybe<String>;
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
+  renoPass?: Maybe<RenoPassUpdateOneWithoutUserInput>;
 }
 
 export interface UserReviewsUpdateManyWithoutUserInput {
@@ -6784,6 +7001,55 @@ export interface UserReviewsUpdateManyDataInput {
   rating?: Maybe<Int>;
 }
 
+export interface RenoPassUpdateOneWithoutUserInput {
+  create?: Maybe<RenoPassCreateWithoutUserInput>;
+  update?: Maybe<RenoPassUpdateWithoutUserDataInput>;
+  upsert?: Maybe<RenoPassUpsertWithoutUserInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<RenoPassWhereUniqueInput>;
+}
+
+export interface RenoPassUpdateWithoutUserDataInput {
+  city?: Maybe<cityUpdateOneInput>;
+  premiumStartDate?: Maybe<DateTimeInput>;
+  premiumExpireDate?: Maybe<DateTimeInput>;
+  days?: Maybe<String>;
+  amount?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
+}
+
+export interface cityUpdateOneInput {
+  create?: Maybe<cityCreateInput>;
+  update?: Maybe<cityUpdateDataInput>;
+  upsert?: Maybe<cityUpsertNestedInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
+  connect?: Maybe<cityWhereUniqueInput>;
+}
+
+export interface cityUpdateDataInput {
+  city?: Maybe<String>;
+  isPremium?: Maybe<Boolean>;
+  premiumAmmount90?: Maybe<Int>;
+  premiumAmmount180?: Maybe<Int>;
+  premiumAmmount360?: Maybe<Int>;
+  imageUrl?: Maybe<String>;
+}
+
+export interface cityUpsertNestedInput {
+  update: cityUpdateDataInput;
+  create: cityCreateInput;
+}
+
+export interface RenoPassUpsertWithoutUserInput {
+  update: RenoPassUpdateWithoutUserDataInput;
+  create: RenoPassCreateWithoutUserInput;
+}
+
 export interface UserUpsertWithoutOrdersesInput {
   update: UserUpdateWithoutOrdersesDataInput;
   create: UserCreateWithoutOrdersesInput;
@@ -7617,6 +7883,112 @@ export interface OrdersUpdateManyMutationInput {
   paymentDescription?: Maybe<String>;
 }
 
+export interface RenoPassCreateInput {
+  id?: Maybe<ID_Input>;
+  user: UserCreateOneWithoutRenoPassInput;
+  city?: Maybe<cityCreateOneInput>;
+  premiumStartDate: DateTimeInput;
+  premiumExpireDate: DateTimeInput;
+  days: String;
+  amount: Int;
+  receipt: String;
+  paymentId: String;
+  paymentOrderId: String;
+  paymentDescription: String;
+}
+
+export interface UserCreateOneWithoutRenoPassInput {
+  create?: Maybe<UserCreateWithoutRenoPassInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserCreateWithoutRenoPassInput {
+  email?: Maybe<String>;
+  firstname?: Maybe<String>;
+  id?: Maybe<ID_Input>;
+  facebookID: String;
+  lastname?: Maybe<String>;
+  mobile?: Maybe<String>;
+  totalOrders?: Maybe<Int>;
+  orderses?: Maybe<OrdersCreateManyWithoutUserInput>;
+  contactSync?: Maybe<Boolean>;
+  userReviewses?: Maybe<UserReviewsCreateManyWithoutUserInput>;
+  isBlocked?: Maybe<Boolean>;
+  promoCode?: Maybe<String>;
+  userPromoCount?: Maybe<Int>;
+  typeAccess?: Maybe<String>;
+  password?: Maybe<String>;
+  installLocation?: Maybe<String>;
+  currentLocation?: Maybe<String>;
+  profileImage?: Maybe<String>;
+  bookingOtp?: Maybe<String>;
+  otpExpires?: Maybe<DateTimeInput>;
+  isPremiumUser?: Maybe<String>;
+  premiumStartDate?: Maybe<DateTimeInput>;
+  premiumExpireDate?: Maybe<DateTimeInput>;
+}
+
+export interface RenoPassUpdateInput {
+  user?: Maybe<UserUpdateOneRequiredWithoutRenoPassInput>;
+  city?: Maybe<cityUpdateOneInput>;
+  premiumStartDate?: Maybe<DateTimeInput>;
+  premiumExpireDate?: Maybe<DateTimeInput>;
+  days?: Maybe<String>;
+  amount?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
+}
+
+export interface UserUpdateOneRequiredWithoutRenoPassInput {
+  create?: Maybe<UserCreateWithoutRenoPassInput>;
+  update?: Maybe<UserUpdateWithoutRenoPassDataInput>;
+  upsert?: Maybe<UserUpsertWithoutRenoPassInput>;
+  connect?: Maybe<UserWhereUniqueInput>;
+}
+
+export interface UserUpdateWithoutRenoPassDataInput {
+  email?: Maybe<String>;
+  firstname?: Maybe<String>;
+  facebookID?: Maybe<String>;
+  lastname?: Maybe<String>;
+  mobile?: Maybe<String>;
+  totalOrders?: Maybe<Int>;
+  orderses?: Maybe<OrdersUpdateManyWithoutUserInput>;
+  contactSync?: Maybe<Boolean>;
+  userReviewses?: Maybe<UserReviewsUpdateManyWithoutUserInput>;
+  isBlocked?: Maybe<Boolean>;
+  promoCode?: Maybe<String>;
+  userPromoCount?: Maybe<Int>;
+  typeAccess?: Maybe<String>;
+  password?: Maybe<String>;
+  installLocation?: Maybe<String>;
+  currentLocation?: Maybe<String>;
+  profileImage?: Maybe<String>;
+  bookingOtp?: Maybe<String>;
+  otpExpires?: Maybe<DateTimeInput>;
+  isPremiumUser?: Maybe<String>;
+  premiumStartDate?: Maybe<DateTimeInput>;
+  premiumExpireDate?: Maybe<DateTimeInput>;
+}
+
+export interface UserUpsertWithoutRenoPassInput {
+  update: UserUpdateWithoutRenoPassDataInput;
+  create: UserCreateWithoutRenoPassInput;
+}
+
+export interface RenoPassUpdateManyMutationInput {
+  premiumStartDate?: Maybe<DateTimeInput>;
+  premiumExpireDate?: Maybe<DateTimeInput>;
+  days?: Maybe<String>;
+  amount?: Maybe<Int>;
+  receipt?: Maybe<String>;
+  paymentId?: Maybe<String>;
+  paymentOrderId?: Maybe<String>;
+  paymentDescription?: Maybe<String>;
+}
+
 export interface RestaurantTypeCreateInput {
   id?: Maybe<ID_Input>;
   restaurantses?: Maybe<RestaurantsCreateManyWithoutRestaurantTypesInput>;
@@ -8052,13 +8424,14 @@ export interface UserCreateInput {
   typeAccess?: Maybe<String>;
   password?: Maybe<String>;
   installLocation?: Maybe<String>;
-  isPremiumUser?: Maybe<String>;
   currentLocation?: Maybe<String>;
   profileImage?: Maybe<String>;
   bookingOtp?: Maybe<String>;
   otpExpires?: Maybe<DateTimeInput>;
+  isPremiumUser?: Maybe<String>;
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
+  renoPass?: Maybe<RenoPassCreateOneWithoutUserInput>;
 }
 
 export interface UserUpdateInput {
@@ -8077,13 +8450,14 @@ export interface UserUpdateInput {
   typeAccess?: Maybe<String>;
   password?: Maybe<String>;
   installLocation?: Maybe<String>;
-  isPremiumUser?: Maybe<String>;
   currentLocation?: Maybe<String>;
   profileImage?: Maybe<String>;
   bookingOtp?: Maybe<String>;
   otpExpires?: Maybe<DateTimeInput>;
+  isPremiumUser?: Maybe<String>;
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
+  renoPass?: Maybe<RenoPassUpdateOneWithoutUserInput>;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -8100,11 +8474,11 @@ export interface UserUpdateManyMutationInput {
   typeAccess?: Maybe<String>;
   password?: Maybe<String>;
   installLocation?: Maybe<String>;
-  isPremiumUser?: Maybe<String>;
   currentLocation?: Maybe<String>;
   profileImage?: Maybe<String>;
   bookingOtp?: Maybe<String>;
   otpExpires?: Maybe<DateTimeInput>;
+  isPremiumUser?: Maybe<String>;
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
 }
@@ -8147,16 +8521,6 @@ export interface WednesdayUpdateInput {
 export interface WednesdayUpdateManyMutationInput {
   exhausted?: Maybe<Boolean>;
   order?: Maybe<Int>;
-}
-
-export interface cityCreateInput {
-  city: String;
-  isPremium?: Maybe<Boolean>;
-  id?: Maybe<ID_Input>;
-  premiumAmmount90?: Maybe<Int>;
-  premiumAmmount180?: Maybe<Int>;
-  premiumAmmount360?: Maybe<Int>;
-  imageUrl?: Maybe<String>;
 }
 
 export interface cityUpdateInput {
@@ -8299,6 +8663,21 @@ export interface OrdersSubscriptionWhereInput {
   AND?: Maybe<OrdersSubscriptionWhereInput[] | OrdersSubscriptionWhereInput>;
   OR?: Maybe<OrdersSubscriptionWhereInput[] | OrdersSubscriptionWhereInput>;
   NOT?: Maybe<OrdersSubscriptionWhereInput[] | OrdersSubscriptionWhereInput>;
+}
+
+export interface RenoPassSubscriptionWhereInput {
+  mutation_in?: Maybe<MutationType[] | MutationType>;
+  updatedFields_contains?: Maybe<String>;
+  updatedFields_contains_every?: Maybe<String[] | String>;
+  updatedFields_contains_some?: Maybe<String[] | String>;
+  node?: Maybe<RenoPassWhereInput>;
+  AND?: Maybe<
+    RenoPassSubscriptionWhereInput[] | RenoPassSubscriptionWhereInput
+  >;
+  OR?: Maybe<RenoPassSubscriptionWhereInput[] | RenoPassSubscriptionWhereInput>;
+  NOT?: Maybe<
+    RenoPassSubscriptionWhereInput[] | RenoPassSubscriptionWhereInput
+  >;
 }
 
 export interface RestaurantTypeSubscriptionWhereInput {
@@ -9681,11 +10060,11 @@ export interface User {
   typeAccess: String;
   password?: String;
   installLocation?: String;
-  isPremiumUser?: String;
   currentLocation?: String;
   profileImage?: String;
   bookingOtp?: String;
   otpExpires?: DateTimeOutput;
+  isPremiumUser?: String;
   premiumStartDate?: DateTimeOutput;
   premiumExpireDate?: DateTimeOutput;
 }
@@ -9725,13 +10104,14 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   typeAccess: () => Promise<String>;
   password: () => Promise<String>;
   installLocation: () => Promise<String>;
-  isPremiumUser: () => Promise<String>;
   currentLocation: () => Promise<String>;
   profileImage: () => Promise<String>;
   bookingOtp: () => Promise<String>;
   otpExpires: () => Promise<DateTimeOutput>;
+  isPremiumUser: () => Promise<String>;
   premiumStartDate: () => Promise<DateTimeOutput>;
   premiumExpireDate: () => Promise<DateTimeOutput>;
+  renoPass: <T = RenoPassPromise>() => T;
 }
 
 export interface UserSubscription
@@ -9771,13 +10151,14 @@ export interface UserSubscription
   typeAccess: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   installLocation: () => Promise<AsyncIterator<String>>;
-  isPremiumUser: () => Promise<AsyncIterator<String>>;
   currentLocation: () => Promise<AsyncIterator<String>>;
   profileImage: () => Promise<AsyncIterator<String>>;
   bookingOtp: () => Promise<AsyncIterator<String>>;
   otpExpires: () => Promise<AsyncIterator<DateTimeOutput>>;
+  isPremiumUser: () => Promise<AsyncIterator<String>>;
   premiumStartDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   premiumExpireDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  renoPass: <T = RenoPassSubscription>() => T;
 }
 
 export interface UserNullablePromise
@@ -9817,13 +10198,14 @@ export interface UserNullablePromise
   typeAccess: () => Promise<String>;
   password: () => Promise<String>;
   installLocation: () => Promise<String>;
-  isPremiumUser: () => Promise<String>;
   currentLocation: () => Promise<String>;
   profileImage: () => Promise<String>;
   bookingOtp: () => Promise<String>;
   otpExpires: () => Promise<DateTimeOutput>;
+  isPremiumUser: () => Promise<String>;
   premiumStartDate: () => Promise<DateTimeOutput>;
   premiumExpireDate: () => Promise<DateTimeOutput>;
+  renoPass: <T = RenoPassPromise>() => T;
 }
 
 export interface UserReviews {
@@ -9866,6 +10248,108 @@ export interface UserReviewsNullablePromise
   rating: () => Promise<Int>;
   restaurants: <T = RestaurantsPromise>() => T;
   user: <T = UserPromise>() => T;
+}
+
+export interface RenoPass {
+  id: ID_Output;
+  premiumStartDate: DateTimeOutput;
+  premiumExpireDate: DateTimeOutput;
+  days: String;
+  amount: Int;
+  receipt: String;
+  paymentId: String;
+  paymentOrderId: String;
+  paymentDescription: String;
+}
+
+export interface RenoPassPromise extends Promise<RenoPass>, Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  city: <T = cityPromise>() => T;
+  premiumStartDate: () => Promise<DateTimeOutput>;
+  premiumExpireDate: () => Promise<DateTimeOutput>;
+  days: () => Promise<String>;
+  amount: () => Promise<Int>;
+  receipt: () => Promise<String>;
+  paymentId: () => Promise<String>;
+  paymentOrderId: () => Promise<String>;
+  paymentDescription: () => Promise<String>;
+}
+
+export interface RenoPassSubscription
+  extends Promise<AsyncIterator<RenoPass>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  user: <T = UserSubscription>() => T;
+  city: <T = citySubscription>() => T;
+  premiumStartDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  premiumExpireDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  days: () => Promise<AsyncIterator<String>>;
+  amount: () => Promise<AsyncIterator<Int>>;
+  receipt: () => Promise<AsyncIterator<String>>;
+  paymentId: () => Promise<AsyncIterator<String>>;
+  paymentOrderId: () => Promise<AsyncIterator<String>>;
+  paymentDescription: () => Promise<AsyncIterator<String>>;
+}
+
+export interface RenoPassNullablePromise
+  extends Promise<RenoPass | null>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  user: <T = UserPromise>() => T;
+  city: <T = cityPromise>() => T;
+  premiumStartDate: () => Promise<DateTimeOutput>;
+  premiumExpireDate: () => Promise<DateTimeOutput>;
+  days: () => Promise<String>;
+  amount: () => Promise<Int>;
+  receipt: () => Promise<String>;
+  paymentId: () => Promise<String>;
+  paymentOrderId: () => Promise<String>;
+  paymentDescription: () => Promise<String>;
+}
+
+export interface city {
+  city: String;
+  isPremium: Boolean;
+  id: ID_Output;
+  premiumAmmount90: Int;
+  premiumAmmount180: Int;
+  premiumAmmount360: Int;
+  imageUrl?: String;
+}
+
+export interface cityPromise extends Promise<city>, Fragmentable {
+  city: () => Promise<String>;
+  isPremium: () => Promise<Boolean>;
+  id: () => Promise<ID_Output>;
+  premiumAmmount90: () => Promise<Int>;
+  premiumAmmount180: () => Promise<Int>;
+  premiumAmmount360: () => Promise<Int>;
+  imageUrl: () => Promise<String>;
+}
+
+export interface citySubscription
+  extends Promise<AsyncIterator<city>>,
+    Fragmentable {
+  city: () => Promise<AsyncIterator<String>>;
+  isPremium: () => Promise<AsyncIterator<Boolean>>;
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  premiumAmmount90: () => Promise<AsyncIterator<Int>>;
+  premiumAmmount180: () => Promise<AsyncIterator<Int>>;
+  premiumAmmount360: () => Promise<AsyncIterator<Int>>;
+  imageUrl: () => Promise<AsyncIterator<String>>;
+}
+
+export interface cityNullablePromise
+  extends Promise<city | null>,
+    Fragmentable {
+  city: () => Promise<String>;
+  isPremium: () => Promise<Boolean>;
+  id: () => Promise<ID_Output>;
+  premiumAmmount90: () => Promise<Int>;
+  premiumAmmount180: () => Promise<Int>;
+  premiumAmmount360: () => Promise<Int>;
+  imageUrl: () => Promise<String>;
 }
 
 export interface RestaurantType {
@@ -10550,6 +11034,62 @@ export interface AggregateOrdersSubscription
   count: () => Promise<AsyncIterator<Int>>;
 }
 
+export interface RenoPassConnection {
+  pageInfo: PageInfo;
+  edges: RenoPassEdge[];
+}
+
+export interface RenoPassConnectionPromise
+  extends Promise<RenoPassConnection>,
+    Fragmentable {
+  pageInfo: <T = PageInfoPromise>() => T;
+  edges: <T = FragmentableArray<RenoPassEdge>>() => T;
+  aggregate: <T = AggregateRenoPassPromise>() => T;
+}
+
+export interface RenoPassConnectionSubscription
+  extends Promise<AsyncIterator<RenoPassConnection>>,
+    Fragmentable {
+  pageInfo: <T = PageInfoSubscription>() => T;
+  edges: <T = Promise<AsyncIterator<RenoPassEdgeSubscription>>>() => T;
+  aggregate: <T = AggregateRenoPassSubscription>() => T;
+}
+
+export interface RenoPassEdge {
+  node: RenoPass;
+  cursor: String;
+}
+
+export interface RenoPassEdgePromise
+  extends Promise<RenoPassEdge>,
+    Fragmentable {
+  node: <T = RenoPassPromise>() => T;
+  cursor: () => Promise<String>;
+}
+
+export interface RenoPassEdgeSubscription
+  extends Promise<AsyncIterator<RenoPassEdge>>,
+    Fragmentable {
+  node: <T = RenoPassSubscription>() => T;
+  cursor: () => Promise<AsyncIterator<String>>;
+}
+
+export interface AggregateRenoPass {
+  count: Int;
+}
+
+export interface AggregateRenoPassPromise
+  extends Promise<AggregateRenoPass>,
+    Fragmentable {
+  count: () => Promise<Int>;
+}
+
+export interface AggregateRenoPassSubscription
+  extends Promise<AsyncIterator<AggregateRenoPass>>,
+    Fragmentable {
+  count: () => Promise<AsyncIterator<Int>>;
+}
+
 export interface RestaurantTypeConnection {
   pageInfo: PageInfo;
   edges: RestaurantTypeEdge[];
@@ -11102,50 +11642,6 @@ export interface AggregateWednesdaySubscription
   extends Promise<AsyncIterator<AggregateWednesday>>,
     Fragmentable {
   count: () => Promise<AsyncIterator<Int>>;
-}
-
-export interface city {
-  city: String;
-  isPremium: Boolean;
-  id: ID_Output;
-  premiumAmmount90: Int;
-  premiumAmmount180: Int;
-  premiumAmmount360: Int;
-  imageUrl?: String;
-}
-
-export interface cityPromise extends Promise<city>, Fragmentable {
-  city: () => Promise<String>;
-  isPremium: () => Promise<Boolean>;
-  id: () => Promise<ID_Output>;
-  premiumAmmount90: () => Promise<Int>;
-  premiumAmmount180: () => Promise<Int>;
-  premiumAmmount360: () => Promise<Int>;
-  imageUrl: () => Promise<String>;
-}
-
-export interface citySubscription
-  extends Promise<AsyncIterator<city>>,
-    Fragmentable {
-  city: () => Promise<AsyncIterator<String>>;
-  isPremium: () => Promise<AsyncIterator<Boolean>>;
-  id: () => Promise<AsyncIterator<ID_Output>>;
-  premiumAmmount90: () => Promise<AsyncIterator<Int>>;
-  premiumAmmount180: () => Promise<AsyncIterator<Int>>;
-  premiumAmmount360: () => Promise<AsyncIterator<Int>>;
-  imageUrl: () => Promise<AsyncIterator<String>>;
-}
-
-export interface cityNullablePromise
-  extends Promise<city | null>,
-    Fragmentable {
-  city: () => Promise<String>;
-  isPremium: () => Promise<Boolean>;
-  id: () => Promise<ID_Output>;
-  premiumAmmount90: () => Promise<Int>;
-  premiumAmmount180: () => Promise<Int>;
-  premiumAmmount360: () => Promise<Int>;
-  imageUrl: () => Promise<String>;
 }
 
 export interface cityConnection {
@@ -11781,6 +12277,71 @@ export interface OrdersPreviousValuesSubscription
   paymentDescription: () => Promise<AsyncIterator<String>>;
 }
 
+export interface RenoPassSubscriptionPayload {
+  mutation: MutationType;
+  node: RenoPass;
+  updatedFields: String[];
+  previousValues: RenoPassPreviousValues;
+}
+
+export interface RenoPassSubscriptionPayloadPromise
+  extends Promise<RenoPassSubscriptionPayload>,
+    Fragmentable {
+  mutation: () => Promise<MutationType>;
+  node: <T = RenoPassPromise>() => T;
+  updatedFields: () => Promise<String[]>;
+  previousValues: <T = RenoPassPreviousValuesPromise>() => T;
+}
+
+export interface RenoPassSubscriptionPayloadSubscription
+  extends Promise<AsyncIterator<RenoPassSubscriptionPayload>>,
+    Fragmentable {
+  mutation: () => Promise<AsyncIterator<MutationType>>;
+  node: <T = RenoPassSubscription>() => T;
+  updatedFields: () => Promise<AsyncIterator<String[]>>;
+  previousValues: <T = RenoPassPreviousValuesSubscription>() => T;
+}
+
+export interface RenoPassPreviousValues {
+  id: ID_Output;
+  premiumStartDate: DateTimeOutput;
+  premiumExpireDate: DateTimeOutput;
+  days: String;
+  amount: Int;
+  receipt: String;
+  paymentId: String;
+  paymentOrderId: String;
+  paymentDescription: String;
+}
+
+export interface RenoPassPreviousValuesPromise
+  extends Promise<RenoPassPreviousValues>,
+    Fragmentable {
+  id: () => Promise<ID_Output>;
+  premiumStartDate: () => Promise<DateTimeOutput>;
+  premiumExpireDate: () => Promise<DateTimeOutput>;
+  days: () => Promise<String>;
+  amount: () => Promise<Int>;
+  receipt: () => Promise<String>;
+  paymentId: () => Promise<String>;
+  paymentOrderId: () => Promise<String>;
+  paymentDescription: () => Promise<String>;
+}
+
+export interface RenoPassPreviousValuesSubscription
+  extends Promise<AsyncIterator<RenoPassPreviousValues>>,
+    Fragmentable {
+  id: () => Promise<AsyncIterator<ID_Output>>;
+  premiumStartDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  premiumExpireDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  days: () => Promise<AsyncIterator<String>>;
+  amount: () => Promise<AsyncIterator<Int>>;
+  receipt: () => Promise<AsyncIterator<String>>;
+  paymentId: () => Promise<AsyncIterator<String>>;
+  paymentOrderId: () => Promise<AsyncIterator<String>>;
+  paymentDescription: () => Promise<AsyncIterator<String>>;
+}
+
 export interface RestaurantTypeSubscriptionPayload {
   mutation: MutationType;
   node: RestaurantType;
@@ -12278,11 +12839,11 @@ export interface UserPreviousValues {
   typeAccess: String;
   password?: String;
   installLocation?: String;
-  isPremiumUser?: String;
   currentLocation?: String;
   profileImage?: String;
   bookingOtp?: String;
   otpExpires?: DateTimeOutput;
+  isPremiumUser?: String;
   premiumStartDate?: DateTimeOutput;
   premiumExpireDate?: DateTimeOutput;
 }
@@ -12306,11 +12867,11 @@ export interface UserPreviousValuesPromise
   typeAccess: () => Promise<String>;
   password: () => Promise<String>;
   installLocation: () => Promise<String>;
-  isPremiumUser: () => Promise<String>;
   currentLocation: () => Promise<String>;
   profileImage: () => Promise<String>;
   bookingOtp: () => Promise<String>;
   otpExpires: () => Promise<DateTimeOutput>;
+  isPremiumUser: () => Promise<String>;
   premiumStartDate: () => Promise<DateTimeOutput>;
   premiumExpireDate: () => Promise<DateTimeOutput>;
 }
@@ -12334,11 +12895,11 @@ export interface UserPreviousValuesSubscription
   typeAccess: () => Promise<AsyncIterator<String>>;
   password: () => Promise<AsyncIterator<String>>;
   installLocation: () => Promise<AsyncIterator<String>>;
-  isPremiumUser: () => Promise<AsyncIterator<String>>;
   currentLocation: () => Promise<AsyncIterator<String>>;
   profileImage: () => Promise<AsyncIterator<String>>;
   bookingOtp: () => Promise<AsyncIterator<String>>;
   otpExpires: () => Promise<AsyncIterator<DateTimeOutput>>;
+  isPremiumUser: () => Promise<AsyncIterator<String>>;
   premiumStartDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   premiumExpireDate: () => Promise<AsyncIterator<DateTimeOutput>>;
 }
@@ -12629,6 +13190,10 @@ export const models: Model[] = [
   },
   {
     name: "city",
+    embedded: false
+  },
+  {
+    name: "RenoPass",
     embedded: false
   }
 ];

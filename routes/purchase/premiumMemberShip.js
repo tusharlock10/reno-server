@@ -7,30 +7,30 @@ const express = require('express'),
   } = require('../../middleware'),
   { check } = require('express-validator'),
   {
-    getPremiumMembership,
-    postPremiumMembership,
+    createPremiumMembershipOrder,
+    confirmPremiumMembershipOrder,
     getCityPremiumAmount
   } = require('../../controllers/purchase/premiumMemberShip');
 
-//@Route    POST '/api/v1/reno/get-premium-membership'
+//@Route    POST '/api/v1/createPremiumMembershipOrder'
 //@desc     Show premium membership buy page
 //@access   Private
 
 router.post(
-  '/reno/get-premium-membership',
+  '/createPremiumMembershipOrder',
   check('days', 'days are required !!').exists(),
   isLoggedIn,
-  asyncErrorHandler(getPremiumMembership)
+  asyncErrorHandler(createPremiumMembershipOrder)
 );
 
-//@Route    POST '/api/v1/get-premium-membership'
+//@Route    POST '/api/v1/confirmPremiumMembershipOrder'
 //@desc     make the user premium member
 //@access   Private
 
 router.post(
-  '/get-premium-membership',
-  isLoggedInRazorpay,
-  asyncErrorHandler(postPremiumMembership)
+  '/confirmPremiumMembershipOrder',
+  isLoggedIn,
+  asyncErrorHandler(confirmPremiumMembershipOrder)
 );
 
 //@Route    GET '/api/v1/city/premiumAmount'

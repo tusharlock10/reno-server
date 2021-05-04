@@ -9,6 +9,7 @@ const { validationResult } = require("express-validator"),
   } = require("../queries/user"),
   { successRegisterMail } = require("../nodemailer"),
   jwt = require("jsonwebtoken");
+const { razorpayKeyId } = process.env;
 
 module.exports = {
   //facebookID -> (google,fb,guest id)
@@ -75,7 +76,7 @@ module.exports = {
       variables: { facebookID: req.user.facebookID },
     });
 
-    res.json(user.data.users[0]);
+    res.json({ ...user.data.users[0], razorpayKeyId });
   },
 
   async updateUserInstallLocation(req, res, next) {

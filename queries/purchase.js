@@ -22,18 +22,32 @@ const getCity = gql`
   }
 `;
 
-const updateUserPremiumDetails = gql`
-  mutation updateUser(
+const createRenoPass = gql`
+  mutation createRenoPass(
+    $user: ID!
+    $city: ID!
     $premiumStartDate: DateTime!
     $premiumExpireDate: DateTime!
-    $id: ID!
+    $days: String!
+    $amount: Int!
+    $receipt: String!
+    $paymentId: String!
+    $paymentOrderId: String!
+    $paymentDescription: String!
   ) {
-    updateUser(
+    createRenoPass(
       data: {
+        user: { connect: { id: $user } }
+        city: { connect: { id: $city } }
         premiumStartDate: $premiumStartDate
         premiumExpireDate: $premiumExpireDate
+        days: $days
+        amount: $amount
+        receipt: $receipt
+        paymentId: $paymentId
+        paymentOrderId: $paymentOrderId
+        paymentDescription: $paymentDescription
       }
-      where: { id: $id }
     ) {
       id
       premiumExpireDate
@@ -42,5 +56,29 @@ const updateUserPremiumDetails = gql`
   }
 `;
 
+const updateUserRenoPass = gql`
+  mutation updateUserRenoPass($id: ID!, $renoPassId: ID!) {
+    updateUser(
+      where: { id: $id }
+      data: { renoPass: { connect: { id: $renoPassId } } }
+    ) {
+      id
+    }
+  }
+`;
 
-module.exports = { getRenoCommission, getCity, updateUserPremiumDetails };
+const getCityById = gql`
+  query getCityId($city: String!) {
+    cities(where: { city_contains: $city }) {
+      id
+    }
+  }
+`;
+
+module.exports = {
+  getRenoCommission,
+  getCity,
+  createRenoPass,
+  updateUserRenoPass,
+  getCityById,
+};

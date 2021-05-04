@@ -174,6 +174,10 @@ type AggregateOrders {
   count: Int!
 }
 
+type AggregateRenoPass {
+  count: Int!
+}
+
 type AggregateRestaurants {
   count: Int!
 }
@@ -655,6 +659,11 @@ input cityCreateInput {
   imageUrl: String
 }
 
+input cityCreateOneInput {
+  create: cityCreateInput
+  connect: cityWhereUniqueInput
+}
+
 type cityEdge {
   node: city!
   cursor: String!
@@ -705,6 +714,15 @@ input citySubscriptionWhereInput {
   NOT: [citySubscriptionWhereInput!]
 }
 
+input cityUpdateDataInput {
+  city: String
+  isPremium: Boolean
+  premiumAmmount90: Int
+  premiumAmmount180: Int
+  premiumAmmount360: Int
+  imageUrl: String
+}
+
 input cityUpdateInput {
   city: String
   isPremium: Boolean
@@ -721,6 +739,20 @@ input cityUpdateManyMutationInput {
   premiumAmmount180: Int
   premiumAmmount360: Int
   imageUrl: String
+}
+
+input cityUpdateOneInput {
+  create: cityCreateInput
+  update: cityUpdateDataInput
+  upsert: cityUpsertNestedInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: cityWhereUniqueInput
+}
+
+input cityUpsertNestedInput {
+  update: cityUpdateDataInput!
+  create: cityCreateInput!
 }
 
 input cityWhereInput {
@@ -1917,6 +1949,12 @@ type Mutation {
   upsertOrders(where: OrdersWhereUniqueInput!, create: OrdersCreateInput!, update: OrdersUpdateInput!): Orders!
   deleteOrders(where: OrdersWhereUniqueInput!): Orders
   deleteManyOrderses(where: OrdersWhereInput): BatchPayload!
+  createRenoPass(data: RenoPassCreateInput!): RenoPass!
+  updateRenoPass(data: RenoPassUpdateInput!, where: RenoPassWhereUniqueInput!): RenoPass
+  updateManyRenoPasses(data: RenoPassUpdateManyMutationInput!, where: RenoPassWhereInput): BatchPayload!
+  upsertRenoPass(where: RenoPassWhereUniqueInput!, create: RenoPassCreateInput!, update: RenoPassUpdateInput!): RenoPass!
+  deleteRenoPass(where: RenoPassWhereUniqueInput!): RenoPass
+  deleteManyRenoPasses(where: RenoPassWhereInput): BatchPayload!
   createRestaurantType(data: RestaurantTypeCreateInput!): RestaurantType!
   updateRestaurantType(data: RestaurantTypeUpdateInput!, where: RestaurantTypeWhereUniqueInput!): RestaurantType
   updateManyRestaurantTypes(data: RestaurantTypeUpdateManyMutationInput!, where: RestaurantTypeWhereInput): BatchPayload!
@@ -2858,6 +2896,9 @@ type Query {
   orders(where: OrdersWhereUniqueInput!): Orders
   orderses(where: OrdersWhereInput, orderBy: OrdersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Orders]!
   ordersesConnection(where: OrdersWhereInput, orderBy: OrdersOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): OrdersConnection!
+  renoPass(where: RenoPassWhereUniqueInput!): RenoPass
+  renoPasses(where: RenoPassWhereInput, orderBy: RenoPassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [RenoPass]!
+  renoPassesConnection(where: RenoPassWhereInput, orderBy: RenoPassOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RenoPassConnection!
   restaurantType(where: RestaurantTypeWhereUniqueInput!): RestaurantType
   restaurantTypes(where: RestaurantTypeWhereInput, orderBy: RestaurantTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [RestaurantType]!
   restaurantTypesConnection(where: RestaurantTypeWhereInput, orderBy: RestaurantTypeOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): RestaurantTypeConnection!
@@ -2892,6 +2933,284 @@ type Query {
   cities(where: cityWhereInput, orderBy: cityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [city]!
   citiesConnection(where: cityWhereInput, orderBy: cityOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): cityConnection!
   node(id: ID!): Node
+}
+
+type RenoPass {
+  id: ID!
+  user: User!
+  city: city
+  premiumStartDate: DateTime!
+  premiumExpireDate: DateTime!
+  days: String!
+  amount: Int!
+  receipt: String!
+  paymentId: String!
+  paymentOrderId: String!
+  paymentDescription: String!
+}
+
+type RenoPassConnection {
+  pageInfo: PageInfo!
+  edges: [RenoPassEdge]!
+  aggregate: AggregateRenoPass!
+}
+
+input RenoPassCreateInput {
+  id: ID
+  user: UserCreateOneWithoutRenoPassInput!
+  city: cityCreateOneInput
+  premiumStartDate: DateTime!
+  premiumExpireDate: DateTime!
+  days: String!
+  amount: Int!
+  receipt: String!
+  paymentId: String!
+  paymentOrderId: String!
+  paymentDescription: String!
+}
+
+input RenoPassCreateOneWithoutUserInput {
+  create: RenoPassCreateWithoutUserInput
+  connect: RenoPassWhereUniqueInput
+}
+
+input RenoPassCreateWithoutUserInput {
+  id: ID
+  city: cityCreateOneInput
+  premiumStartDate: DateTime!
+  premiumExpireDate: DateTime!
+  days: String!
+  amount: Int!
+  receipt: String!
+  paymentId: String!
+  paymentOrderId: String!
+  paymentDescription: String!
+}
+
+type RenoPassEdge {
+  node: RenoPass!
+  cursor: String!
+}
+
+enum RenoPassOrderByInput {
+  id_ASC
+  id_DESC
+  premiumStartDate_ASC
+  premiumStartDate_DESC
+  premiumExpireDate_ASC
+  premiumExpireDate_DESC
+  days_ASC
+  days_DESC
+  amount_ASC
+  amount_DESC
+  receipt_ASC
+  receipt_DESC
+  paymentId_ASC
+  paymentId_DESC
+  paymentOrderId_ASC
+  paymentOrderId_DESC
+  paymentDescription_ASC
+  paymentDescription_DESC
+}
+
+type RenoPassPreviousValues {
+  id: ID!
+  premiumStartDate: DateTime!
+  premiumExpireDate: DateTime!
+  days: String!
+  amount: Int!
+  receipt: String!
+  paymentId: String!
+  paymentOrderId: String!
+  paymentDescription: String!
+}
+
+type RenoPassSubscriptionPayload {
+  mutation: MutationType!
+  node: RenoPass
+  updatedFields: [String!]
+  previousValues: RenoPassPreviousValues
+}
+
+input RenoPassSubscriptionWhereInput {
+  mutation_in: [MutationType!]
+  updatedFields_contains: String
+  updatedFields_contains_every: [String!]
+  updatedFields_contains_some: [String!]
+  node: RenoPassWhereInput
+  AND: [RenoPassSubscriptionWhereInput!]
+  OR: [RenoPassSubscriptionWhereInput!]
+  NOT: [RenoPassSubscriptionWhereInput!]
+}
+
+input RenoPassUpdateInput {
+  user: UserUpdateOneRequiredWithoutRenoPassInput
+  city: cityUpdateOneInput
+  premiumStartDate: DateTime
+  premiumExpireDate: DateTime
+  days: String
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
+}
+
+input RenoPassUpdateManyMutationInput {
+  premiumStartDate: DateTime
+  premiumExpireDate: DateTime
+  days: String
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
+}
+
+input RenoPassUpdateOneWithoutUserInput {
+  create: RenoPassCreateWithoutUserInput
+  update: RenoPassUpdateWithoutUserDataInput
+  upsert: RenoPassUpsertWithoutUserInput
+  delete: Boolean
+  disconnect: Boolean
+  connect: RenoPassWhereUniqueInput
+}
+
+input RenoPassUpdateWithoutUserDataInput {
+  city: cityUpdateOneInput
+  premiumStartDate: DateTime
+  premiumExpireDate: DateTime
+  days: String
+  amount: Int
+  receipt: String
+  paymentId: String
+  paymentOrderId: String
+  paymentDescription: String
+}
+
+input RenoPassUpsertWithoutUserInput {
+  update: RenoPassUpdateWithoutUserDataInput!
+  create: RenoPassCreateWithoutUserInput!
+}
+
+input RenoPassWhereInput {
+  id: ID
+  id_not: ID
+  id_in: [ID!]
+  id_not_in: [ID!]
+  id_lt: ID
+  id_lte: ID
+  id_gt: ID
+  id_gte: ID
+  id_contains: ID
+  id_not_contains: ID
+  id_starts_with: ID
+  id_not_starts_with: ID
+  id_ends_with: ID
+  id_not_ends_with: ID
+  user: UserWhereInput
+  city: cityWhereInput
+  premiumStartDate: DateTime
+  premiumStartDate_not: DateTime
+  premiumStartDate_in: [DateTime!]
+  premiumStartDate_not_in: [DateTime!]
+  premiumStartDate_lt: DateTime
+  premiumStartDate_lte: DateTime
+  premiumStartDate_gt: DateTime
+  premiumStartDate_gte: DateTime
+  premiumExpireDate: DateTime
+  premiumExpireDate_not: DateTime
+  premiumExpireDate_in: [DateTime!]
+  premiumExpireDate_not_in: [DateTime!]
+  premiumExpireDate_lt: DateTime
+  premiumExpireDate_lte: DateTime
+  premiumExpireDate_gt: DateTime
+  premiumExpireDate_gte: DateTime
+  days: String
+  days_not: String
+  days_in: [String!]
+  days_not_in: [String!]
+  days_lt: String
+  days_lte: String
+  days_gt: String
+  days_gte: String
+  days_contains: String
+  days_not_contains: String
+  days_starts_with: String
+  days_not_starts_with: String
+  days_ends_with: String
+  days_not_ends_with: String
+  amount: Int
+  amount_not: Int
+  amount_in: [Int!]
+  amount_not_in: [Int!]
+  amount_lt: Int
+  amount_lte: Int
+  amount_gt: Int
+  amount_gte: Int
+  receipt: String
+  receipt_not: String
+  receipt_in: [String!]
+  receipt_not_in: [String!]
+  receipt_lt: String
+  receipt_lte: String
+  receipt_gt: String
+  receipt_gte: String
+  receipt_contains: String
+  receipt_not_contains: String
+  receipt_starts_with: String
+  receipt_not_starts_with: String
+  receipt_ends_with: String
+  receipt_not_ends_with: String
+  paymentId: String
+  paymentId_not: String
+  paymentId_in: [String!]
+  paymentId_not_in: [String!]
+  paymentId_lt: String
+  paymentId_lte: String
+  paymentId_gt: String
+  paymentId_gte: String
+  paymentId_contains: String
+  paymentId_not_contains: String
+  paymentId_starts_with: String
+  paymentId_not_starts_with: String
+  paymentId_ends_with: String
+  paymentId_not_ends_with: String
+  paymentOrderId: String
+  paymentOrderId_not: String
+  paymentOrderId_in: [String!]
+  paymentOrderId_not_in: [String!]
+  paymentOrderId_lt: String
+  paymentOrderId_lte: String
+  paymentOrderId_gt: String
+  paymentOrderId_gte: String
+  paymentOrderId_contains: String
+  paymentOrderId_not_contains: String
+  paymentOrderId_starts_with: String
+  paymentOrderId_not_starts_with: String
+  paymentOrderId_ends_with: String
+  paymentOrderId_not_ends_with: String
+  paymentDescription: String
+  paymentDescription_not: String
+  paymentDescription_in: [String!]
+  paymentDescription_not_in: [String!]
+  paymentDescription_lt: String
+  paymentDescription_lte: String
+  paymentDescription_gt: String
+  paymentDescription_gte: String
+  paymentDescription_contains: String
+  paymentDescription_not_contains: String
+  paymentDescription_starts_with: String
+  paymentDescription_not_starts_with: String
+  paymentDescription_ends_with: String
+  paymentDescription_not_ends_with: String
+  AND: [RenoPassWhereInput!]
+  OR: [RenoPassWhereInput!]
+  NOT: [RenoPassWhereInput!]
+}
+
+input RenoPassWhereUniqueInput {
+  id: ID
 }
 
 type Restaurants {
@@ -5365,6 +5684,7 @@ type Subscription {
   misc(where: MiscSubscriptionWhereInput): MiscSubscriptionPayload
   monday(where: MondaySubscriptionWhereInput): MondaySubscriptionPayload
   orders(where: OrdersSubscriptionWhereInput): OrdersSubscriptionPayload
+  renoPass(where: RenoPassSubscriptionWhereInput): RenoPassSubscriptionPayload
   restaurantType(where: RestaurantTypeSubscriptionWhereInput): RestaurantTypeSubscriptionPayload
   restaurants(where: RestaurantsSubscriptionWhereInput): RestaurantsSubscriptionPayload
   saturday(where: SaturdaySubscriptionWhereInput): SaturdaySubscriptionPayload
@@ -7309,13 +7629,14 @@ type User {
   typeAccess: String!
   password: String
   installLocation: String
-  isPremiumUser: String
   currentLocation: String
   profileImage: String
   bookingOtp: String
   otpExpires: DateTime
+  isPremiumUser: String
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
+  renoPass: RenoPass
 }
 
 type UserConnection {
@@ -7341,17 +7662,23 @@ input UserCreateInput {
   typeAccess: String
   password: String
   installLocation: String
-  isPremiumUser: String
   currentLocation: String
   profileImage: String
   bookingOtp: String
   otpExpires: DateTime
+  isPremiumUser: String
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
+  renoPass: RenoPassCreateOneWithoutUserInput
 }
 
 input UserCreateOneWithoutOrdersesInput {
   create: UserCreateWithoutOrdersesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserCreateOneWithoutRenoPassInput {
+  create: UserCreateWithoutRenoPassInput
   connect: UserWhereUniqueInput
 }
 
@@ -7376,11 +7703,38 @@ input UserCreateWithoutOrdersesInput {
   typeAccess: String
   password: String
   installLocation: String
-  isPremiumUser: String
   currentLocation: String
   profileImage: String
   bookingOtp: String
   otpExpires: DateTime
+  isPremiumUser: String
+  premiumStartDate: DateTime
+  premiumExpireDate: DateTime
+  renoPass: RenoPassCreateOneWithoutUserInput
+}
+
+input UserCreateWithoutRenoPassInput {
+  email: String
+  firstname: String
+  id: ID
+  facebookID: String!
+  lastname: String
+  mobile: String
+  totalOrders: Int
+  orderses: OrdersCreateManyWithoutUserInput
+  contactSync: Boolean
+  userReviewses: UserReviewsCreateManyWithoutUserInput
+  isBlocked: Boolean
+  promoCode: String
+  userPromoCount: Int
+  typeAccess: String
+  password: String
+  installLocation: String
+  currentLocation: String
+  profileImage: String
+  bookingOtp: String
+  otpExpires: DateTime
+  isPremiumUser: String
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
 }
@@ -7401,13 +7755,14 @@ input UserCreateWithoutUserReviewsesInput {
   typeAccess: String
   password: String
   installLocation: String
-  isPremiumUser: String
   currentLocation: String
   profileImage: String
   bookingOtp: String
   otpExpires: DateTime
+  isPremiumUser: String
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
+  renoPass: RenoPassCreateOneWithoutUserInput
 }
 
 type UserEdge {
@@ -7448,8 +7803,6 @@ enum UserOrderByInput {
   password_DESC
   installLocation_ASC
   installLocation_DESC
-  isPremiumUser_ASC
-  isPremiumUser_DESC
   currentLocation_ASC
   currentLocation_DESC
   profileImage_ASC
@@ -7458,6 +7811,8 @@ enum UserOrderByInput {
   bookingOtp_DESC
   otpExpires_ASC
   otpExpires_DESC
+  isPremiumUser_ASC
+  isPremiumUser_DESC
   premiumStartDate_ASC
   premiumStartDate_DESC
   premiumExpireDate_ASC
@@ -7481,11 +7836,11 @@ type UserPreviousValues {
   typeAccess: String!
   password: String
   installLocation: String
-  isPremiumUser: String
   currentLocation: String
   profileImage: String
   bookingOtp: String
   otpExpires: DateTime
+  isPremiumUser: String
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
 }
@@ -7818,13 +8173,14 @@ input UserUpdateInput {
   typeAccess: String
   password: String
   installLocation: String
-  isPremiumUser: String
   currentLocation: String
   profileImage: String
   bookingOtp: String
   otpExpires: DateTime
+  isPremiumUser: String
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
+  renoPass: RenoPassUpdateOneWithoutUserInput
 }
 
 input UserUpdateManyMutationInput {
@@ -7841,11 +8197,11 @@ input UserUpdateManyMutationInput {
   typeAccess: String
   password: String
   installLocation: String
-  isPremiumUser: String
   currentLocation: String
   profileImage: String
   bookingOtp: String
   otpExpires: DateTime
+  isPremiumUser: String
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
 }
@@ -7854,6 +8210,13 @@ input UserUpdateOneRequiredWithoutOrdersesInput {
   create: UserCreateWithoutOrdersesInput
   update: UserUpdateWithoutOrdersesDataInput
   upsert: UserUpsertWithoutOrdersesInput
+  connect: UserWhereUniqueInput
+}
+
+input UserUpdateOneRequiredWithoutRenoPassInput {
+  create: UserCreateWithoutRenoPassInput
+  update: UserUpdateWithoutRenoPassDataInput
+  upsert: UserUpsertWithoutRenoPassInput
   connect: UserWhereUniqueInput
 }
 
@@ -7881,11 +8244,37 @@ input UserUpdateWithoutOrdersesDataInput {
   typeAccess: String
   password: String
   installLocation: String
-  isPremiumUser: String
   currentLocation: String
   profileImage: String
   bookingOtp: String
   otpExpires: DateTime
+  isPremiumUser: String
+  premiumStartDate: DateTime
+  premiumExpireDate: DateTime
+  renoPass: RenoPassUpdateOneWithoutUserInput
+}
+
+input UserUpdateWithoutRenoPassDataInput {
+  email: String
+  firstname: String
+  facebookID: String
+  lastname: String
+  mobile: String
+  totalOrders: Int
+  orderses: OrdersUpdateManyWithoutUserInput
+  contactSync: Boolean
+  userReviewses: UserReviewsUpdateManyWithoutUserInput
+  isBlocked: Boolean
+  promoCode: String
+  userPromoCount: Int
+  typeAccess: String
+  password: String
+  installLocation: String
+  currentLocation: String
+  profileImage: String
+  bookingOtp: String
+  otpExpires: DateTime
+  isPremiumUser: String
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
 }
@@ -7905,18 +8294,24 @@ input UserUpdateWithoutUserReviewsesDataInput {
   typeAccess: String
   password: String
   installLocation: String
-  isPremiumUser: String
   currentLocation: String
   profileImage: String
   bookingOtp: String
   otpExpires: DateTime
+  isPremiumUser: String
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
+  renoPass: RenoPassUpdateOneWithoutUserInput
 }
 
 input UserUpsertWithoutOrdersesInput {
   update: UserUpdateWithoutOrdersesDataInput!
   create: UserCreateWithoutOrdersesInput!
+}
+
+input UserUpsertWithoutRenoPassInput {
+  update: UserUpdateWithoutRenoPassDataInput!
+  create: UserCreateWithoutRenoPassInput!
 }
 
 input UserUpsertWithoutUserReviewsesInput {
@@ -8107,20 +8502,6 @@ input UserWhereInput {
   installLocation_not_starts_with: String
   installLocation_ends_with: String
   installLocation_not_ends_with: String
-  isPremiumUser: String
-  isPremiumUser_not: String
-  isPremiumUser_in: [String!]
-  isPremiumUser_not_in: [String!]
-  isPremiumUser_lt: String
-  isPremiumUser_lte: String
-  isPremiumUser_gt: String
-  isPremiumUser_gte: String
-  isPremiumUser_contains: String
-  isPremiumUser_not_contains: String
-  isPremiumUser_starts_with: String
-  isPremiumUser_not_starts_with: String
-  isPremiumUser_ends_with: String
-  isPremiumUser_not_ends_with: String
   currentLocation: String
   currentLocation_not: String
   currentLocation_in: [String!]
@@ -8171,6 +8552,20 @@ input UserWhereInput {
   otpExpires_lte: DateTime
   otpExpires_gt: DateTime
   otpExpires_gte: DateTime
+  isPremiumUser: String
+  isPremiumUser_not: String
+  isPremiumUser_in: [String!]
+  isPremiumUser_not_in: [String!]
+  isPremiumUser_lt: String
+  isPremiumUser_lte: String
+  isPremiumUser_gt: String
+  isPremiumUser_gte: String
+  isPremiumUser_contains: String
+  isPremiumUser_not_contains: String
+  isPremiumUser_starts_with: String
+  isPremiumUser_not_starts_with: String
+  isPremiumUser_ends_with: String
+  isPremiumUser_not_ends_with: String
   premiumStartDate: DateTime
   premiumStartDate_not: DateTime
   premiumStartDate_in: [DateTime!]
@@ -8187,6 +8582,7 @@ input UserWhereInput {
   premiumExpireDate_lte: DateTime
   premiumExpireDate_gt: DateTime
   premiumExpireDate_gte: DateTime
+  renoPass: RenoPassWhereInput
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]

@@ -250,7 +250,13 @@ const orderses = gql`
         timeDiscount {
           id
           time
-          discount
+          sunDiscount
+          monDiscount
+          tueDiscount
+          wedDiscount
+          thuDiscount
+          friDiscount
+          satDiscount
         }
         restaurants {
           id
