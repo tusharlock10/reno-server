@@ -102,7 +102,7 @@ const bookingOtps = gql`
 
 const checkOtp = gql`
   query getUser($id: ID!) {
-    users(where: { id: $id}) {
+    users(where: { id: $id }) {
       id
       otpExpires
       bookingOtp
@@ -113,7 +113,7 @@ const checkOtp = gql`
 const updateUserOtpField = gql`
   mutation updateUser($id: ID!) {
     updateUser(
-      data: { otpExpires: null, bookingOtp: null }
+      data: { otpExpires: null, bookingOtp: null, hasActiveOrder: true }
       where: { id: $id }
     ) {
       id
@@ -185,6 +185,50 @@ const updateOrderPaymentConfirmed = gql`
   }
 `;
 
+const updateUserActiveOrders = gql`
+  mutation changeHasActiveOrder($id: ID!) {
+    updateUser(where: { id: $id }, data: { hasActiveOrder: false }) {
+      id
+    }
+  }
+`;
+
+const getAllOrders = gql`
+  query getAllOrders {
+    orderses {
+      id
+      user {
+        id
+        hasPaymentDispute
+      }
+      confirmed
+      unlockActive
+      hasPaymentDispute
+      date
+      cancelled
+      timeDiscount {
+        time
+      }
+    }
+  }
+`;
+
+const updateDisputeOrder = gql`
+  mutation updateDisputeOrder($id: ID!) {
+    updateOrders(where: { id: $id }, data: { hasPaymentDispute: true }) {
+      id
+    }
+  }
+`;
+
+const updateDisputeOrderUser = gql`
+  mutation updateDisputeOrderUser($id: ID!) {
+    updateUser(where: { id: $id }, data: { hasPaymentDispute: true }) {
+      id
+    }
+  }
+`;
+
 module.exports = {
   createOrder,
   cancelOrder,
@@ -193,4 +237,8 @@ module.exports = {
   updateUserOtpField,
   updateOrderUnlocked,
   updateOrderPaymentConfirmed,
+  updateUserActiveOrders,
+  getAllOrders,
+  updateDisputeOrder,
+  updateDisputeOrderUser,
 };

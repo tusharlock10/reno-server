@@ -12,6 +12,7 @@ const {
   updateUserOtpField,
   updateOrderUnlocked,
   updateOrderPaymentConfirmed,
+  updateUserActiveOrders,
 } = require("../queries/order");
 const { razorpayKeyId, razorpayKeySecret } = process.env;
 
@@ -182,6 +183,14 @@ module.exports = {
       paymentDescription,
       paymentId,
     } = req.body;
+
+    // change the hasActiveOrders of the user to false
+    await db.mutate({
+      mutation: updateUserActiveOrders,
+      variables: {
+        id: req.user.id,
+      },
+    });
 
     // save the payment in db and mark order as confirmed
     const response = await db.mutate({

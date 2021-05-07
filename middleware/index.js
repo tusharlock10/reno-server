@@ -7,7 +7,7 @@ const { validationResult } = require("express-validator");
 const morgan = require('morgan')
 
 const middleware = {
-  logRequest:morgan('common'),
+  logRequest:morgan('dev'),
 
   asyncErrorHandler(fn) {
     return (req, res, next) => {

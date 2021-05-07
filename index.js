@@ -1,12 +1,13 @@
 require("dotenv").config();
-const setTZ = require('set-tz')
+const setTZ = require("set-tz");
 const express = require("express");
 const app = express();
 const engines = require("consolidate");
 const { logRequest } = require("./middleware");
+const jobs = require("./jobs");
 // set public assets directory
 
-setTZ("India Standard Time")
+setTZ("India Standard Time");
 
 app.engine("ejs", engines.ejs);
 app.set("views", "./views");
@@ -21,6 +22,12 @@ app.use(express.urlencoded({ extended: true })); //bodyparser now body parser is
 
 app.get("/", (req, res) => {
   res.send("reno server is running 1.4");
+});
+
+// run cron jobs
+Object.keys(jobs).map((jobName) => {
+  console.log(`STARTED JOB : ${jobName} ${jobs[jobName].nextDate()}`);
+  jobs[jobName].start();
 });
 
 /* 
@@ -45,7 +52,7 @@ app.use("/api/v1/restaurant/:restaurant_id/review", require("./routes/review"));
 
 app.use("/api/v1", require("./routes/copyData")); // Disable in production
 
-app.use(function (err, req, res, next) {
+app.use(function(err, req, res, next) {
   //error handler
   console.log(err);
   if (err.kind === "ObjectId") {

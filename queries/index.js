@@ -247,6 +247,7 @@ const orderses = gql`
         unlockActive
         confirmed
         cancelled
+        hasPaymentDispute
         timeDiscount {
           id
           time

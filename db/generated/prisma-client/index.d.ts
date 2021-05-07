@@ -1046,7 +1046,9 @@ export type OrdersOrderByInput =
   | "paymentOrderId_ASC"
   | "paymentOrderId_DESC"
   | "paymentDescription_ASC"
-  | "paymentDescription_DESC";
+  | "paymentDescription_DESC"
+  | "hasPaymentDispute_ASC"
+  | "hasPaymentDispute_DESC";
 
 export type TimeDiscountOrderByInput =
   | "discount_ASC"
@@ -1296,7 +1298,11 @@ export type UserOrderByInput =
   | "premiumStartDate_ASC"
   | "premiumStartDate_DESC"
   | "premiumExpireDate_ASC"
-  | "premiumExpireDate_DESC";
+  | "premiumExpireDate_DESC"
+  | "hasActiveOrder_ASC"
+  | "hasActiveOrder_DESC"
+  | "hasPaymentDispute_ASC"
+  | "hasPaymentDispute_DESC";
 
 export type WednesdayOrderByInput =
   | "exhausted_ASC"
@@ -1929,6 +1935,8 @@ export interface OrdersWhereInput {
   paymentDescription_not_starts_with?: Maybe<String>;
   paymentDescription_ends_with?: Maybe<String>;
   paymentDescription_not_ends_with?: Maybe<String>;
+  hasPaymentDispute?: Maybe<Boolean>;
+  hasPaymentDispute_not?: Maybe<Boolean>;
   AND?: Maybe<OrdersWhereInput[] | OrdersWhereInput>;
   OR?: Maybe<OrdersWhereInput[] | OrdersWhereInput>;
   NOT?: Maybe<OrdersWhereInput[] | OrdersWhereInput>;
@@ -2593,6 +2601,10 @@ export interface UserWhereInput {
   premiumExpireDate_gt?: Maybe<DateTimeInput>;
   premiumExpireDate_gte?: Maybe<DateTimeInput>;
   renoPass?: Maybe<RenoPassWhereInput>;
+  hasActiveOrder?: Maybe<Boolean>;
+  hasActiveOrder_not?: Maybe<Boolean>;
+  hasPaymentDispute?: Maybe<Boolean>;
+  hasPaymentDispute_not?: Maybe<Boolean>;
   AND?: Maybe<UserWhereInput[] | UserWhereInput>;
   OR?: Maybe<UserWhereInput[] | UserWhereInput>;
   NOT?: Maybe<UserWhereInput[] | UserWhereInput>;
@@ -3506,6 +3518,7 @@ export interface OrdersCreateWithoutRestaurantsInput {
   paymentId?: Maybe<String>;
   paymentOrderId?: Maybe<String>;
   paymentDescription?: Maybe<String>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface TimeDiscountCreateOneWithoutOrdersesInput {
@@ -3652,6 +3665,8 @@ export interface UserCreateWithoutUserReviewsesInput {
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
   renoPass?: Maybe<RenoPassCreateOneWithoutUserInput>;
+  hasActiveOrder?: Maybe<Boolean>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface OrdersCreateManyWithoutUserInput {
@@ -3679,6 +3694,7 @@ export interface OrdersCreateWithoutUserInput {
   paymentId?: Maybe<String>;
   paymentOrderId?: Maybe<String>;
   paymentDescription?: Maybe<String>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface RestaurantsCreateOneWithoutOrdersesInput {
@@ -3793,6 +3809,7 @@ export interface OrdersCreateWithoutTimeDiscountInput {
   paymentId?: Maybe<String>;
   paymentOrderId?: Maybe<String>;
   paymentDescription?: Maybe<String>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface UserCreateOneWithoutOrdersesInput {
@@ -3824,6 +3841,8 @@ export interface UserCreateWithoutOrdersesInput {
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
   renoPass?: Maybe<RenoPassCreateOneWithoutUserInput>;
+  hasActiveOrder?: Maybe<Boolean>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface UserReviewsCreateManyWithoutUserInput {
@@ -4683,7 +4702,7 @@ export interface RenoPassCreateOneWithoutUserInput {
 
 export interface RenoPassCreateWithoutUserInput {
   id?: Maybe<ID_Input>;
-  city?: Maybe<cityCreateOneInput>;
+  city: cityCreateOneInput;
   premiumStartDate: DateTimeInput;
   premiumExpireDate: DateTimeInput;
   days: String;
@@ -4832,6 +4851,7 @@ export interface OrdersUpdateWithoutRestaurantsDataInput {
   paymentId?: Maybe<String>;
   paymentOrderId?: Maybe<String>;
   paymentDescription?: Maybe<String>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface TimeDiscountUpdateOneWithoutOrdersesInput {
@@ -5158,6 +5178,8 @@ export interface UserUpdateWithoutUserReviewsesDataInput {
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
   renoPass?: Maybe<RenoPassUpdateOneWithoutUserInput>;
+  hasActiveOrder?: Maybe<Boolean>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface OrdersUpdateManyWithoutUserInput {
@@ -5205,6 +5227,7 @@ export interface OrdersUpdateWithoutUserDataInput {
   paymentId?: Maybe<String>;
   paymentOrderId?: Maybe<String>;
   paymentDescription?: Maybe<String>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface RestaurantsUpdateOneWithoutOrdersesInput {
@@ -5366,6 +5389,7 @@ export interface OrdersUpdateWithoutTimeDiscountDataInput {
   paymentId?: Maybe<String>;
   paymentOrderId?: Maybe<String>;
   paymentDescription?: Maybe<String>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface UserUpdateOneRequiredWithoutOrdersesInput {
@@ -5398,6 +5422,8 @@ export interface UserUpdateWithoutOrdersesDataInput {
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
   renoPass?: Maybe<RenoPassUpdateOneWithoutUserInput>;
+  hasActiveOrder?: Maybe<Boolean>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface UserReviewsUpdateManyWithoutUserInput {
@@ -7011,7 +7037,7 @@ export interface RenoPassUpdateOneWithoutUserInput {
 }
 
 export interface RenoPassUpdateWithoutUserDataInput {
-  city?: Maybe<cityUpdateOneInput>;
+  city?: Maybe<cityUpdateOneRequiredInput>;
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
   days?: Maybe<String>;
@@ -7022,12 +7048,10 @@ export interface RenoPassUpdateWithoutUserDataInput {
   paymentDescription?: Maybe<String>;
 }
 
-export interface cityUpdateOneInput {
+export interface cityUpdateOneRequiredInput {
   create?: Maybe<cityCreateInput>;
   update?: Maybe<cityUpdateDataInput>;
   upsert?: Maybe<cityUpsertNestedInput>;
-  delete?: Maybe<Boolean>;
-  disconnect?: Maybe<Boolean>;
   connect?: Maybe<cityWhereUniqueInput>;
 }
 
@@ -7256,6 +7280,8 @@ export interface OrdersScalarWhereInput {
   paymentDescription_not_starts_with?: Maybe<String>;
   paymentDescription_ends_with?: Maybe<String>;
   paymentDescription_not_ends_with?: Maybe<String>;
+  hasPaymentDispute?: Maybe<Boolean>;
+  hasPaymentDispute_not?: Maybe<Boolean>;
   AND?: Maybe<OrdersScalarWhereInput[] | OrdersScalarWhereInput>;
   OR?: Maybe<OrdersScalarWhereInput[] | OrdersScalarWhereInput>;
   NOT?: Maybe<OrdersScalarWhereInput[] | OrdersScalarWhereInput>;
@@ -7283,6 +7309,7 @@ export interface OrdersUpdateManyDataInput {
   paymentId?: Maybe<String>;
   paymentOrderId?: Maybe<String>;
   paymentDescription?: Maybe<String>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface TimeDiscountUpsertWithWhereUniqueWithoutRestaurantsInput {
@@ -7840,6 +7867,7 @@ export interface OrdersCreateInput {
   paymentId?: Maybe<String>;
   paymentOrderId?: Maybe<String>;
   paymentDescription?: Maybe<String>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface OrdersUpdateInput {
@@ -7862,6 +7890,7 @@ export interface OrdersUpdateInput {
   paymentId?: Maybe<String>;
   paymentOrderId?: Maybe<String>;
   paymentDescription?: Maybe<String>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface OrdersUpdateManyMutationInput {
@@ -7881,12 +7910,13 @@ export interface OrdersUpdateManyMutationInput {
   paymentId?: Maybe<String>;
   paymentOrderId?: Maybe<String>;
   paymentDescription?: Maybe<String>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface RenoPassCreateInput {
   id?: Maybe<ID_Input>;
-  user: UserCreateOneWithoutRenoPassInput;
-  city?: Maybe<cityCreateOneInput>;
+  user?: Maybe<UserCreateOneWithoutRenoPassInput>;
+  city: cityCreateOneInput;
   premiumStartDate: DateTimeInput;
   premiumExpireDate: DateTimeInput;
   days: String;
@@ -7926,11 +7956,13 @@ export interface UserCreateWithoutRenoPassInput {
   isPremiumUser?: Maybe<String>;
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
+  hasActiveOrder?: Maybe<Boolean>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface RenoPassUpdateInput {
-  user?: Maybe<UserUpdateOneRequiredWithoutRenoPassInput>;
-  city?: Maybe<cityUpdateOneInput>;
+  user?: Maybe<UserUpdateOneWithoutRenoPassInput>;
+  city?: Maybe<cityUpdateOneRequiredInput>;
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
   days?: Maybe<String>;
@@ -7941,10 +7973,12 @@ export interface RenoPassUpdateInput {
   paymentDescription?: Maybe<String>;
 }
 
-export interface UserUpdateOneRequiredWithoutRenoPassInput {
+export interface UserUpdateOneWithoutRenoPassInput {
   create?: Maybe<UserCreateWithoutRenoPassInput>;
   update?: Maybe<UserUpdateWithoutRenoPassDataInput>;
   upsert?: Maybe<UserUpsertWithoutRenoPassInput>;
+  delete?: Maybe<Boolean>;
+  disconnect?: Maybe<Boolean>;
   connect?: Maybe<UserWhereUniqueInput>;
 }
 
@@ -7971,6 +8005,8 @@ export interface UserUpdateWithoutRenoPassDataInput {
   isPremiumUser?: Maybe<String>;
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
+  hasActiveOrder?: Maybe<Boolean>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface UserUpsertWithoutRenoPassInput {
@@ -8432,6 +8468,8 @@ export interface UserCreateInput {
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
   renoPass?: Maybe<RenoPassCreateOneWithoutUserInput>;
+  hasActiveOrder?: Maybe<Boolean>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface UserUpdateInput {
@@ -8458,6 +8496,8 @@ export interface UserUpdateInput {
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
   renoPass?: Maybe<RenoPassUpdateOneWithoutUserInput>;
+  hasActiveOrder?: Maybe<Boolean>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface UserUpdateManyMutationInput {
@@ -8481,6 +8521,8 @@ export interface UserUpdateManyMutationInput {
   isPremiumUser?: Maybe<String>;
   premiumStartDate?: Maybe<DateTimeInput>;
   premiumExpireDate?: Maybe<DateTimeInput>;
+  hasActiveOrder?: Maybe<Boolean>;
+  hasPaymentDispute?: Maybe<Boolean>;
 }
 
 export interface UserReviewsCreateInput {
@@ -9399,6 +9441,7 @@ export interface Orders {
   paymentId?: String;
   paymentOrderId?: String;
   paymentDescription?: String;
+  hasPaymentDispute?: Boolean;
 }
 
 export interface OrdersPromise extends Promise<Orders>, Fragmentable {
@@ -9424,6 +9467,7 @@ export interface OrdersPromise extends Promise<Orders>, Fragmentable {
   paymentId: () => Promise<String>;
   paymentOrderId: () => Promise<String>;
   paymentDescription: () => Promise<String>;
+  hasPaymentDispute: () => Promise<Boolean>;
 }
 
 export interface OrdersSubscription
@@ -9451,6 +9495,7 @@ export interface OrdersSubscription
   paymentId: () => Promise<AsyncIterator<String>>;
   paymentOrderId: () => Promise<AsyncIterator<String>>;
   paymentDescription: () => Promise<AsyncIterator<String>>;
+  hasPaymentDispute: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface OrdersNullablePromise
@@ -9478,6 +9523,7 @@ export interface OrdersNullablePromise
   paymentId: () => Promise<String>;
   paymentOrderId: () => Promise<String>;
   paymentDescription: () => Promise<String>;
+  hasPaymentDispute: () => Promise<Boolean>;
 }
 
 export interface TimeDiscount {
@@ -10067,6 +10113,8 @@ export interface User {
   isPremiumUser?: String;
   premiumStartDate?: DateTimeOutput;
   premiumExpireDate?: DateTimeOutput;
+  hasActiveOrder?: Boolean;
+  hasPaymentDispute?: Boolean;
 }
 
 export interface UserPromise extends Promise<User>, Fragmentable {
@@ -10112,6 +10160,8 @@ export interface UserPromise extends Promise<User>, Fragmentable {
   premiumStartDate: () => Promise<DateTimeOutput>;
   premiumExpireDate: () => Promise<DateTimeOutput>;
   renoPass: <T = RenoPassPromise>() => T;
+  hasActiveOrder: () => Promise<Boolean>;
+  hasPaymentDispute: () => Promise<Boolean>;
 }
 
 export interface UserSubscription
@@ -10159,6 +10209,8 @@ export interface UserSubscription
   premiumStartDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   premiumExpireDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   renoPass: <T = RenoPassSubscription>() => T;
+  hasActiveOrder: () => Promise<AsyncIterator<Boolean>>;
+  hasPaymentDispute: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface UserNullablePromise
@@ -10206,6 +10258,8 @@ export interface UserNullablePromise
   premiumStartDate: () => Promise<DateTimeOutput>;
   premiumExpireDate: () => Promise<DateTimeOutput>;
   renoPass: <T = RenoPassPromise>() => T;
+  hasActiveOrder: () => Promise<Boolean>;
+  hasPaymentDispute: () => Promise<Boolean>;
 }
 
 export interface UserReviews {
@@ -12227,6 +12281,7 @@ export interface OrdersPreviousValues {
   paymentId?: String;
   paymentOrderId?: String;
   paymentDescription?: String;
+  hasPaymentDispute?: Boolean;
 }
 
 export interface OrdersPreviousValuesPromise
@@ -12251,6 +12306,7 @@ export interface OrdersPreviousValuesPromise
   paymentId: () => Promise<String>;
   paymentOrderId: () => Promise<String>;
   paymentDescription: () => Promise<String>;
+  hasPaymentDispute: () => Promise<Boolean>;
 }
 
 export interface OrdersPreviousValuesSubscription
@@ -12275,6 +12331,7 @@ export interface OrdersPreviousValuesSubscription
   paymentId: () => Promise<AsyncIterator<String>>;
   paymentOrderId: () => Promise<AsyncIterator<String>>;
   paymentDescription: () => Promise<AsyncIterator<String>>;
+  hasPaymentDispute: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface RenoPassSubscriptionPayload {
@@ -12846,6 +12903,8 @@ export interface UserPreviousValues {
   isPremiumUser?: String;
   premiumStartDate?: DateTimeOutput;
   premiumExpireDate?: DateTimeOutput;
+  hasActiveOrder?: Boolean;
+  hasPaymentDispute?: Boolean;
 }
 
 export interface UserPreviousValuesPromise
@@ -12874,6 +12933,8 @@ export interface UserPreviousValuesPromise
   isPremiumUser: () => Promise<String>;
   premiumStartDate: () => Promise<DateTimeOutput>;
   premiumExpireDate: () => Promise<DateTimeOutput>;
+  hasActiveOrder: () => Promise<Boolean>;
+  hasPaymentDispute: () => Promise<Boolean>;
 }
 
 export interface UserPreviousValuesSubscription
@@ -12902,6 +12963,8 @@ export interface UserPreviousValuesSubscription
   isPremiumUser: () => Promise<AsyncIterator<String>>;
   premiumStartDate: () => Promise<AsyncIterator<DateTimeOutput>>;
   premiumExpireDate: () => Promise<AsyncIterator<DateTimeOutput>>;
+  hasActiveOrder: () => Promise<AsyncIterator<Boolean>>;
+  hasPaymentDispute: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface UserReviewsSubscriptionPayload {

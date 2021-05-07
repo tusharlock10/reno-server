@@ -43,6 +43,8 @@ const getUser = gql`
       userPromoCount
       installLocation
       currentLocation
+      hasActiveOrder
+      hasPaymentDispute
       renoPass {
         id
         premiumExpireDate

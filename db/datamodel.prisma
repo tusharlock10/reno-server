@@ -96,6 +96,7 @@ type Orders @model {
   paymentId: String,
   paymentOrderId: String,
   paymentDescription: String,
+  hasPaymentDispute:Boolean @default(value: false)
 }
 
 type RestaurantType @model {
@@ -241,6 +242,8 @@ type User @model {
 	premiumStartDate:DateTime	
 	premiumExpireDate:DateTime
   renoPass:RenoPass
+  hasActiveOrder:Boolean @default(value: false)
+  hasPaymentDispute:Boolean @default(value: false)
 }
 
 type UserReviews @model {

@@ -741,12 +741,10 @@ input cityUpdateManyMutationInput {
   imageUrl: String
 }
 
-input cityUpdateOneInput {
+input cityUpdateOneRequiredInput {
   create: cityCreateInput
   update: cityUpdateDataInput
   upsert: cityUpsertNestedInput
-  delete: Boolean
-  disconnect: Boolean
   connect: cityWhereUniqueInput
 }
 
@@ -2056,6 +2054,7 @@ type Orders {
   paymentId: String
   paymentOrderId: String
   paymentDescription: String
+  hasPaymentDispute: Boolean
 }
 
 type OrdersConnection {
@@ -2085,6 +2084,7 @@ input OrdersCreateInput {
   paymentId: String
   paymentOrderId: String
   paymentDescription: String
+  hasPaymentDispute: Boolean
 }
 
 input OrdersCreateManyWithoutRestaurantsInput {
@@ -2122,6 +2122,7 @@ input OrdersCreateWithoutRestaurantsInput {
   paymentId: String
   paymentOrderId: String
   paymentDescription: String
+  hasPaymentDispute: Boolean
 }
 
 input OrdersCreateWithoutTimeDiscountInput {
@@ -2144,6 +2145,7 @@ input OrdersCreateWithoutTimeDiscountInput {
   paymentId: String
   paymentOrderId: String
   paymentDescription: String
+  hasPaymentDispute: Boolean
 }
 
 input OrdersCreateWithoutUserInput {
@@ -2166,6 +2168,7 @@ input OrdersCreateWithoutUserInput {
   paymentId: String
   paymentOrderId: String
   paymentDescription: String
+  hasPaymentDispute: Boolean
 }
 
 type OrdersEdge {
@@ -2212,6 +2215,8 @@ enum OrdersOrderByInput {
   paymentOrderId_DESC
   paymentDescription_ASC
   paymentDescription_DESC
+  hasPaymentDispute_ASC
+  hasPaymentDispute_DESC
 }
 
 type OrdersPreviousValues {
@@ -2234,6 +2239,7 @@ type OrdersPreviousValues {
   paymentId: String
   paymentOrderId: String
   paymentDescription: String
+  hasPaymentDispute: Boolean
 }
 
 input OrdersScalarWhereInput {
@@ -2431,6 +2437,8 @@ input OrdersScalarWhereInput {
   paymentDescription_not_starts_with: String
   paymentDescription_ends_with: String
   paymentDescription_not_ends_with: String
+  hasPaymentDispute: Boolean
+  hasPaymentDispute_not: Boolean
   AND: [OrdersScalarWhereInput!]
   OR: [OrdersScalarWhereInput!]
   NOT: [OrdersScalarWhereInput!]
@@ -2474,6 +2482,7 @@ input OrdersUpdateInput {
   paymentId: String
   paymentOrderId: String
   paymentDescription: String
+  hasPaymentDispute: Boolean
 }
 
 input OrdersUpdateManyDataInput {
@@ -2493,6 +2502,7 @@ input OrdersUpdateManyDataInput {
   paymentId: String
   paymentOrderId: String
   paymentDescription: String
+  hasPaymentDispute: Boolean
 }
 
 input OrdersUpdateManyMutationInput {
@@ -2512,6 +2522,7 @@ input OrdersUpdateManyMutationInput {
   paymentId: String
   paymentOrderId: String
   paymentDescription: String
+  hasPaymentDispute: Boolean
 }
 
 input OrdersUpdateManyWithoutRestaurantsInput {
@@ -2574,6 +2585,7 @@ input OrdersUpdateWithoutRestaurantsDataInput {
   paymentId: String
   paymentOrderId: String
   paymentDescription: String
+  hasPaymentDispute: Boolean
 }
 
 input OrdersUpdateWithoutTimeDiscountDataInput {
@@ -2595,6 +2607,7 @@ input OrdersUpdateWithoutTimeDiscountDataInput {
   paymentId: String
   paymentOrderId: String
   paymentDescription: String
+  hasPaymentDispute: Boolean
 }
 
 input OrdersUpdateWithoutUserDataInput {
@@ -2616,6 +2629,7 @@ input OrdersUpdateWithoutUserDataInput {
   paymentId: String
   paymentOrderId: String
   paymentDescription: String
+  hasPaymentDispute: Boolean
 }
 
 input OrdersUpdateWithWhereUniqueWithoutRestaurantsInput {
@@ -2849,6 +2863,8 @@ input OrdersWhereInput {
   paymentDescription_not_starts_with: String
   paymentDescription_ends_with: String
   paymentDescription_not_ends_with: String
+  hasPaymentDispute: Boolean
+  hasPaymentDispute_not: Boolean
   AND: [OrdersWhereInput!]
   OR: [OrdersWhereInput!]
   NOT: [OrdersWhereInput!]
@@ -2937,8 +2953,8 @@ type Query {
 
 type RenoPass {
   id: ID!
-  user: User!
-  city: city
+  user: User
+  city: city!
   premiumStartDate: DateTime!
   premiumExpireDate: DateTime!
   days: String!
@@ -2957,8 +2973,8 @@ type RenoPassConnection {
 
 input RenoPassCreateInput {
   id: ID
-  user: UserCreateOneWithoutRenoPassInput!
-  city: cityCreateOneInput
+  user: UserCreateOneWithoutRenoPassInput
+  city: cityCreateOneInput!
   premiumStartDate: DateTime!
   premiumExpireDate: DateTime!
   days: String!
@@ -2976,7 +2992,7 @@ input RenoPassCreateOneWithoutUserInput {
 
 input RenoPassCreateWithoutUserInput {
   id: ID
-  city: cityCreateOneInput
+  city: cityCreateOneInput!
   premiumStartDate: DateTime!
   premiumExpireDate: DateTime!
   days: String!
@@ -3044,8 +3060,8 @@ input RenoPassSubscriptionWhereInput {
 }
 
 input RenoPassUpdateInput {
-  user: UserUpdateOneRequiredWithoutRenoPassInput
-  city: cityUpdateOneInput
+  user: UserUpdateOneWithoutRenoPassInput
+  city: cityUpdateOneRequiredInput
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
   days: String
@@ -3077,7 +3093,7 @@ input RenoPassUpdateOneWithoutUserInput {
 }
 
 input RenoPassUpdateWithoutUserDataInput {
-  city: cityUpdateOneInput
+  city: cityUpdateOneRequiredInput
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
   days: String
@@ -7637,6 +7653,8 @@ type User {
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
   renoPass: RenoPass
+  hasActiveOrder: Boolean
+  hasPaymentDispute: Boolean
 }
 
 type UserConnection {
@@ -7670,6 +7688,8 @@ input UserCreateInput {
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
   renoPass: RenoPassCreateOneWithoutUserInput
+  hasActiveOrder: Boolean
+  hasPaymentDispute: Boolean
 }
 
 input UserCreateOneWithoutOrdersesInput {
@@ -7711,6 +7731,8 @@ input UserCreateWithoutOrdersesInput {
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
   renoPass: RenoPassCreateOneWithoutUserInput
+  hasActiveOrder: Boolean
+  hasPaymentDispute: Boolean
 }
 
 input UserCreateWithoutRenoPassInput {
@@ -7737,6 +7759,8 @@ input UserCreateWithoutRenoPassInput {
   isPremiumUser: String
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
+  hasActiveOrder: Boolean
+  hasPaymentDispute: Boolean
 }
 
 input UserCreateWithoutUserReviewsesInput {
@@ -7763,6 +7787,8 @@ input UserCreateWithoutUserReviewsesInput {
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
   renoPass: RenoPassCreateOneWithoutUserInput
+  hasActiveOrder: Boolean
+  hasPaymentDispute: Boolean
 }
 
 type UserEdge {
@@ -7817,6 +7843,10 @@ enum UserOrderByInput {
   premiumStartDate_DESC
   premiumExpireDate_ASC
   premiumExpireDate_DESC
+  hasActiveOrder_ASC
+  hasActiveOrder_DESC
+  hasPaymentDispute_ASC
+  hasPaymentDispute_DESC
 }
 
 type UserPreviousValues {
@@ -7843,6 +7873,8 @@ type UserPreviousValues {
   isPremiumUser: String
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
+  hasActiveOrder: Boolean
+  hasPaymentDispute: Boolean
 }
 
 type UserReviews {
@@ -8181,6 +8213,8 @@ input UserUpdateInput {
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
   renoPass: RenoPassUpdateOneWithoutUserInput
+  hasActiveOrder: Boolean
+  hasPaymentDispute: Boolean
 }
 
 input UserUpdateManyMutationInput {
@@ -8204,6 +8238,8 @@ input UserUpdateManyMutationInput {
   isPremiumUser: String
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
+  hasActiveOrder: Boolean
+  hasPaymentDispute: Boolean
 }
 
 input UserUpdateOneRequiredWithoutOrdersesInput {
@@ -8213,10 +8249,12 @@ input UserUpdateOneRequiredWithoutOrdersesInput {
   connect: UserWhereUniqueInput
 }
 
-input UserUpdateOneRequiredWithoutRenoPassInput {
+input UserUpdateOneWithoutRenoPassInput {
   create: UserCreateWithoutRenoPassInput
   update: UserUpdateWithoutRenoPassDataInput
   upsert: UserUpsertWithoutRenoPassInput
+  delete: Boolean
+  disconnect: Boolean
   connect: UserWhereUniqueInput
 }
 
@@ -8252,6 +8290,8 @@ input UserUpdateWithoutOrdersesDataInput {
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
   renoPass: RenoPassUpdateOneWithoutUserInput
+  hasActiveOrder: Boolean
+  hasPaymentDispute: Boolean
 }
 
 input UserUpdateWithoutRenoPassDataInput {
@@ -8277,6 +8317,8 @@ input UserUpdateWithoutRenoPassDataInput {
   isPremiumUser: String
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
+  hasActiveOrder: Boolean
+  hasPaymentDispute: Boolean
 }
 
 input UserUpdateWithoutUserReviewsesDataInput {
@@ -8302,6 +8344,8 @@ input UserUpdateWithoutUserReviewsesDataInput {
   premiumStartDate: DateTime
   premiumExpireDate: DateTime
   renoPass: RenoPassUpdateOneWithoutUserInput
+  hasActiveOrder: Boolean
+  hasPaymentDispute: Boolean
 }
 
 input UserUpsertWithoutOrdersesInput {
@@ -8583,6 +8627,10 @@ input UserWhereInput {
   premiumExpireDate_gt: DateTime
   premiumExpireDate_gte: DateTime
   renoPass: RenoPassWhereInput
+  hasActiveOrder: Boolean
+  hasActiveOrder_not: Boolean
+  hasPaymentDispute: Boolean
+  hasPaymentDispute_not: Boolean
   AND: [UserWhereInput!]
   OR: [UserWhereInput!]
   NOT: [UserWhereInput!]
