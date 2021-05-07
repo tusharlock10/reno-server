@@ -186,8 +186,8 @@ const updateOrderPaymentConfirmed = gql`
 `;
 
 const updateUserActiveOrders = gql`
-  mutation changeHasActiveOrder($id: ID!) {
-    updateUser(where: { id: $id }, data: { hasActiveOrder: false }) {
+  mutation changeHasActiveOrder($id: ID!, $value: Boolean) {
+    updateUser(where: { id: $id }, data: { hasActiveOrder: $value }) {
       id
     }
   }

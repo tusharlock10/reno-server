@@ -7,13 +7,11 @@ const {
 } = require("../queries/order");
 const moment = require("moment");
 
-let badOrders = 0;
+const _disputeOrder = async (order, index) => {
+  // if order is confirmed or not unlocked or cancelled, then skip
+  if (order.confirmed || order.cancelled || !order.unlockActive) return false;
 
-const _disputeOrder = async (order) => {
-  // if order is confirmed or already in dispute or cancelled, then skip
-  if (order.confirmed || order.hasPaymentDispute || order.cancelled) return;
-
-  // if the deal is not unlocked withing the expiry time, then dispute the order
+  // if the deal is not unlocked within the expiry time, then dispute the order
   if (
     !order?.timeDiscount ||
     !order?.id ||
@@ -21,8 +19,7 @@ const _disputeOrder = async (order) => {
     !order?.date ||
     !order.hasOwnProperty("unlockActive")
   ) {
-    badOrders++;
-    return;
+    return false;
   }
 
   const [hour, minute] = order.timeDiscount.time.split("-")[1].split(":");
@@ -33,12 +30,9 @@ const _disputeOrder = async (order) => {
 
   let isDisputed = false;
 
-  if (moment() > expiryTime && !order.unlockActive) {
-    // means the order has expired and the deal is not unlocked
-    // set the order to disputed
-    isDisputed = true;
-  } else if (moment() > disputeExpiry && order.unlockActive) {
+  if (moment() > disputeExpiry && order.unlockActive) {
     // means if the user has unlocked the deal and has not paid within 6 hours
+    // the the order has dispute
     isDisputed = true;
   }
 
@@ -53,10 +47,10 @@ const _disputeOrder = async (order) => {
         mutation: updateDisputeOrderUser,
         variables: { id: order.user.id },
       });
+      return true;
     } catch (e) {
       console.log(e);
-      console.log("BAD ID ORDER : ", order);
-      badOrders++;
+      return false;
     }
   }
 };
@@ -68,15 +62,17 @@ const checkPaymentDisputeOrders = async () => {
   // fetch all orders
   const orders = (await db.query({ query: getAllOrders })).data.orderses;
 
-  badOrders = 0;
-
   // check if the order is expired
-  for (let i = 0; i < orders.length; i++) {
-    await _disputeOrder(orders[i]);
-  }
+  const promises = orders.map(_disputeOrder);
+
+  const results = await Promise.all(promises);
+  const ordersModified = results.filter((result) => result).length;
+  console.log("ORDERS MODIFIED : ", ordersModified);
 
   console.log("Completed checkPaymentDisputeOrders");
 };
+
+checkPaymentDisputeOrders();
 
 module.exports = {
   // every 30th minute

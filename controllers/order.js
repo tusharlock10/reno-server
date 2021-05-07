@@ -84,6 +84,16 @@ module.exports = {
         id: req.params.order_id,
       },
     });
+
+    // change has active orders to false
+    await db.mutate({
+      mutation: updateUserActiveOrders,
+      variables: {
+        id: req.user.id,
+        value: false,
+      },
+    });
+
     const cancelledOrder = response.data.updateOrders;
     await cancelBooking(cancelledOrder);
     res.json(cancelledOrder);
@@ -189,6 +199,7 @@ module.exports = {
       mutation: updateUserActiveOrders,
       variables: {
         id: req.user.id,
+        value: false,
       },
     });
 
