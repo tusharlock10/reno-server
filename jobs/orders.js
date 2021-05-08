@@ -4,10 +4,12 @@ const {
   getAllOrders,
   updateDisputeOrder,
   updateDisputeOrderUser,
+  getAllUserOrders,
+  updateActiveOrder,
 } = require("../queries/order");
 const moment = require("moment");
 
-const _disputeOrder = async (order, index) => {
+const _disputeOrder = async (order) => {
   // if order is confirmed or not unlocked or cancelled, then skip
   if (order.confirmed || order.cancelled || !order.unlockActive) return false;
 
@@ -72,10 +74,83 @@ const checkPaymentDisputeOrders = async () => {
   console.log("Completed checkPaymentDisputeOrders");
 };
 
+const _userHasActiveOrders = (orders) => {
+  // return true/false based on if the user has upcoming orders
+  let upcomingOrders = 0;
+
+  orders.forEach((order) => {
+    if (!order?.timeDiscount || !order?.date) {
+      return;
+    }
+
+    const orderTime = order.timeDiscount.time.split("-")[1];
+    const hours = orderTime.split(":")[0];
+    const minutes = orderTime.split(":")[1];
+    const orderExpiry = moment(order.date)
+      .set("hours", hours)
+      .set("minutes", minutes);
+
+    const disputeExpiry = orderExpiry.add(6, "hour");
+
+    if (order.confirmed) {
+    } else if (order.cancelled) {
+    } else {
+      // check if order is unlocked, is yes then add it in upcoming orders
+      if (order.unlockActive) {
+        // if order is unlocked and not paid within 6 hours, send to completedOrders
+        if (disputeExpiry < moment()) {
+        } else {
+          upcomingOrders++;
+        }
+      } else if (orderExpiry < moment()) {
+        // means the order date has passed and the user have not unlocked/ cancelled the order
+      } else {
+        upcomingOrders++;
+      }
+    }
+  });
+
+  return !!upcomingOrders;
+};
+
+const checkUserActiveOrders = async () => {
+  // checks and updates if a user has active orders or not
+  const t = Date.now()
+
+  const { users } = (await db.query({ query: getAllUserOrders })).data;
+
+  const promises = users.map(async (user) => {
+    // check if the user has active order
+    const hasActiveOrder = _userHasActiveOrders(user.orderses);
+    if (user.hasActiveOrder !== hasActiveOrder) {
+      // update the user's has active order
+      await db.mutate({
+        mutation: updateActiveOrder,
+        variables: { id: user.id, hasActiveOrder },
+      });
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  const results = await Promise.all(promises);
+  const usersModified = results.filter((result) => result).length;
+  console.log("USERS MODIFIED : ", usersModified);
+  console.log('TOOK : ', (Date.now() - t)/1000, " sec")
+
+  console.log("Completed checkPaymentDisputeOrders");
+};
+
+checkUserActiveOrders();
+
 module.exports = {
   // every 30th minute
   checkPaymentDisputeOrders: new CronJob(
     "*/30 * * * *",
     checkPaymentDisputeOrders
   ),
+
+  // every 30th minute
+  checkUserActiveOrders: new CronJob("*/30 * * * *", checkUserActiveOrders),
 };

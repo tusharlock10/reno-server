@@ -229,6 +229,34 @@ const updateDisputeOrderUser = gql`
   }
 `;
 
+const getAllUserOrders = gql`
+  query getAllUserOrders {
+    users {
+      id
+      hasActiveOrder
+      orderses {
+        id
+        cancelled
+        confirmed
+        unlockActive
+        hasPaymentDispute
+        date
+        timeDiscount {
+          time
+        }
+      }
+    }
+  }
+`;
+
+const updateActiveOrder = gql`
+  mutation updateActiveOrder($id: ID!, $hasActiveOrder: Boolean!) {
+    updateUser(where: { id: $id }, data: { hasActiveOrder: $hasActiveOrder }) {
+      id
+    }
+  }
+`;
+
 module.exports = {
   createOrder,
   cancelOrder,
@@ -241,4 +269,6 @@ module.exports = {
   getAllOrders,
   updateDisputeOrder,
   updateDisputeOrderUser,
+  getAllUserOrders,
+  updateActiveOrder,
 };
