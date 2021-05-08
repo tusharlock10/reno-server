@@ -28,7 +28,7 @@ const _disputeOrder = async (order) => {
   const expiryTime = moment(order.date)
     .set("hour", hour)
     .set("minute", minute);
-  const disputeExpiry = expiryTime.add(6, "hour");
+  const disputeExpiry = moment(expiryTime).add(6, "hour");
 
   let isDisputed = false;
 
@@ -90,7 +90,7 @@ const _userHasActiveOrders = (orders) => {
       .set("hours", hours)
       .set("minutes", minutes);
 
-    const disputeExpiry = orderExpiry.add(6, "hour");
+    const disputeExpiry = moment(orderExpiry).add(6, "hour");
 
     if (order.confirmed) {
     } else if (order.cancelled) {
@@ -101,6 +101,7 @@ const _userHasActiveOrders = (orders) => {
         if (disputeExpiry < moment()) {
         } else {
           upcomingOrders++;
+          console.log("1", order);
         }
       } else if (orderExpiry < moment()) {
         // means the order date has passed and the user have not unlocked/ cancelled the order
@@ -115,7 +116,6 @@ const _userHasActiveOrders = (orders) => {
 
 const checkUserActiveOrders = async () => {
   // checks and updates if a user has active orders or not
-  const t = Date.now()
 
   const { users } = (await db.query({ query: getAllUserOrders })).data;
 
@@ -137,7 +137,6 @@ const checkUserActiveOrders = async () => {
   const results = await Promise.all(promises);
   const usersModified = results.filter((result) => result).length;
   console.log("USERS MODIFIED : ", usersModified);
-  console.log('TOOK : ', (Date.now() - t)/1000, " sec")
 
   console.log("Completed checkPaymentDisputeOrders");
 };
