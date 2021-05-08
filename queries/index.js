@@ -240,6 +240,8 @@ const orderses = gql`
     users(where: { facebookID: $facebookID }, orderBy: updatedAt_DESC) {
       orderses {
         id
+        createdAt
+        updatedAt
         name
         mobile
         people
@@ -310,7 +312,7 @@ module.exports = {
   thursdayTypeRestaurants,
   fridayTypeRestaurants,
   saturdayTypeRestaurants,
-  
+
   orderses,
   cities,
   getMisc,

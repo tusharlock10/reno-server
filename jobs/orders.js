@@ -72,8 +72,6 @@ const checkPaymentDisputeOrders = async () => {
   console.log("Completed checkPaymentDisputeOrders");
 };
 
-checkPaymentDisputeOrders();
-
 module.exports = {
   // every 30th minute
   checkPaymentDisputeOrders: new CronJob(

@@ -21,7 +21,7 @@ app.use(express.json({ extended: false })); //bodyparser
 app.use(express.urlencoded({ extended: true })); //bodyparser now body parser is in express
 
 app.get("/", (req, res) => {
-  res.send("reno server is running 1.5");
+  res.send("reno server is running 1.6");
 });
 
 // run cron jobs
