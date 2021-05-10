@@ -30,6 +30,8 @@ module.exports = {
   },
 
   async showRestaurant(req, res, next) {
+    const { timeStamp } = req.query;
+
     const id = req.params.restaurant_id;
 
     let halfHour = Date.now() + 60000;
@@ -37,7 +39,7 @@ module.exports = {
     let minute = new Date(halfHour).getMinutes();
     let time = `${`0${hour}`.slice(-2)}:${`0${minute}`.slice(-2)}`;
 
-    let date = req.header("date");
+    let date = timeStamp
     let currentDate = new Date(Number(date)).getDate();
     if (!date || date == "undefined" || currentDate == new Date().getDate()) {
       date = new Date();
