@@ -296,6 +296,7 @@ const sunday = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       acceptsRenoPay
       sunday {
         id
@@ -322,6 +323,7 @@ const monday = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       acceptsRenoPay
       monday {
         id
@@ -348,6 +350,7 @@ const tuesday = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       acceptsRenoPay
       tuesday {
         id
@@ -374,6 +377,7 @@ const wednesday = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       acceptsRenoPay
       wednesday {
         id
@@ -400,6 +404,7 @@ const thursday = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       acceptsRenoPay
       thursday {
         id
@@ -426,6 +431,7 @@ const friday = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       acceptsRenoPay
       friday {
         id
@@ -452,6 +458,7 @@ const saturday = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       acceptsRenoPay
       saturday {
         id
@@ -478,6 +485,7 @@ const allRestaurants = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       address
       latitude
       longitude
@@ -505,6 +513,7 @@ const sundayNearbyRestaurants = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       address
       latitude
       longitude
@@ -533,6 +542,7 @@ const mondayNearbyRestaurants = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       address
       latitude
       longitude
@@ -561,6 +571,7 @@ const tuesdayNearbyRestaurants = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       address
       latitude
       longitude
@@ -589,6 +600,7 @@ const wednesdayNearbyRestaurants = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       address
       latitude
       longitude
@@ -617,6 +629,7 @@ const thursdayNearbyRestaurants = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       address
       latitude
       longitude
@@ -645,6 +658,7 @@ const fridayNearbyRestaurants = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       address
       latitude
       longitude
@@ -673,6 +687,7 @@ const saturdayNearbyRestaurants = gql`
       imageurl
       googlemapsurl
       conditions
+      hasPickup
       address
       latitude
       longitude

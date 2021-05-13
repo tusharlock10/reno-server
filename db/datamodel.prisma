@@ -147,6 +147,7 @@ type Restaurants @model {
   menu: [Json!] @defaultValue(value: "[]") @scalarList(strategy: RELATION)
   brandTile: BrandTile @relation(link: INLINE)
   restaurantImages: [String]! @scalarList(strategy: RELATION)
+  hasPickup:Boolean @default(value: false)
 }
 
 type Saturday @model {

@@ -1006,7 +1006,9 @@ export type RestaurantsOrderByInput =
   | "acceptsRenoPay_ASC"
   | "acceptsRenoPay_DESC"
   | "renoCommision_ASC"
-  | "renoCommision_DESC";
+  | "renoCommision_DESC"
+  | "hasPickup_ASC"
+  | "hasPickup_DESC";
 
 export type OrdersOrderByInput =
   | "createdAt_ASC"
@@ -1732,6 +1734,8 @@ export interface RestaurantsWhereInput {
   renoCommision_gt?: Maybe<Int>;
   renoCommision_gte?: Maybe<Int>;
   brandTile?: Maybe<BrandTileWhereInput>;
+  hasPickup?: Maybe<Boolean>;
+  hasPickup_not?: Maybe<Boolean>;
   AND?: Maybe<RestaurantsWhereInput[] | RestaurantsWhereInput>;
   OR?: Maybe<RestaurantsWhereInput[] | RestaurantsWhereInput>;
   NOT?: Maybe<RestaurantsWhereInput[] | RestaurantsWhereInput>;
@@ -3489,6 +3493,7 @@ export interface RestaurantsCreateWithoutBrandTileInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsCreatemenuInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface OrdersCreateManyWithoutRestaurantsInput {
@@ -3598,6 +3603,7 @@ export interface RestaurantsCreateWithoutTimeDiscountsInput {
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface RestaurantTypeCreateManyWithoutRestaurantsesInput {
@@ -3736,6 +3742,7 @@ export interface RestaurantsCreateWithoutOrdersesInput {
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface TimeDiscountCreateManyWithoutRestaurantsInput {
@@ -3898,6 +3905,7 @@ export interface RestaurantsCreateWithoutUserReviewsesInput {
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface HotDealsCreateManyWithoutRestaurantsesInput {
@@ -4024,6 +4032,7 @@ export interface RestaurantsCreateWithoutMondayInput {
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface SaturdayCreateOneWithoutRestaurantsInput {
@@ -4132,6 +4141,7 @@ export interface RestaurantsCreateWithoutFridayInput {
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface MondayCreateOneWithoutRestaurantsInput {
@@ -4240,6 +4250,7 @@ export interface RestaurantsCreateWithoutSaturdayInput {
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface SundayCreateOneWithoutRestaurantsInput {
@@ -4348,6 +4359,7 @@ export interface RestaurantsCreateWithoutThursdayInput {
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface TuesdayCreateOneWithoutRestaurantsInput {
@@ -4456,6 +4468,7 @@ export interface RestaurantsCreateWithoutSundayInput {
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface ThursdayCreateOneWithoutRestaurantsInput {
@@ -4564,6 +4577,7 @@ export interface RestaurantsCreateWithoutTuesdayInput {
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface WednesdayCreateOneWithoutRestaurantsInput {
@@ -4693,6 +4707,7 @@ export interface RestaurantsCreateWithoutWednesdayInput {
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface RenoPassCreateOneWithoutUserInput {
@@ -4802,6 +4817,7 @@ export interface RestaurantsUpdateWithoutBrandTileDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface OrdersUpdateManyWithoutRestaurantsInput {
@@ -4937,6 +4953,7 @@ export interface RestaurantsUpdateWithoutTimeDiscountsDataInput {
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface RestaurantTypeUpdateManyWithoutRestaurantsesInput {
@@ -5272,6 +5289,7 @@ export interface RestaurantsUpdateWithoutOrdersesDataInput {
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface TimeDiscountUpdateManyWithoutRestaurantsInput {
@@ -5506,6 +5524,7 @@ export interface RestaurantsUpdateWithoutUserReviewsesDataInput {
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface HotDealsUpdateManyWithoutRestaurantsesInput {
@@ -5749,6 +5768,7 @@ export interface RestaurantsUpdateWithoutMondayDataInput {
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface SaturdayUpdateOneWithoutRestaurantsInput {
@@ -5890,6 +5910,7 @@ export interface RestaurantsUpdateWithoutFridayDataInput {
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface MondayUpdateOneWithoutRestaurantsInput {
@@ -6031,6 +6052,7 @@ export interface RestaurantsUpdateWithoutSaturdayDataInput {
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface SundayUpdateOneWithoutRestaurantsInput {
@@ -6172,6 +6194,7 @@ export interface RestaurantsUpdateWithoutThursdayDataInput {
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface TuesdayUpdateOneWithoutRestaurantsInput {
@@ -6313,6 +6336,7 @@ export interface RestaurantsUpdateWithoutSundayDataInput {
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface ThursdayUpdateOneWithoutRestaurantsInput {
@@ -6454,6 +6478,7 @@ export interface RestaurantsUpdateWithoutTuesdayDataInput {
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface WednesdayUpdateOneWithoutRestaurantsInput {
@@ -6820,6 +6845,7 @@ export interface RestaurantsUpdateWithoutWednesdayDataInput {
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface RestaurantsUpsertWithoutWednesdayInput {
@@ -7567,6 +7593,8 @@ export interface RestaurantsScalarWhereInput {
   renoCommision_lte?: Maybe<Int>;
   renoCommision_gt?: Maybe<Int>;
   renoCommision_gte?: Maybe<Int>;
+  hasPickup?: Maybe<Boolean>;
+  hasPickup_not?: Maybe<Boolean>;
   AND?: Maybe<RestaurantsScalarWhereInput[] | RestaurantsScalarWhereInput>;
   OR?: Maybe<RestaurantsScalarWhereInput[] | RestaurantsScalarWhereInput>;
   NOT?: Maybe<RestaurantsScalarWhereInput[] | RestaurantsScalarWhereInput>;
@@ -7598,6 +7626,7 @@ export interface RestaurantsUpdateManyDataInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface BrandTileUpdateManyMutationInput {
@@ -7723,6 +7752,7 @@ export interface RestaurantsCreateWithoutHotDealsesInput {
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface HotDealsUpdateInput {
@@ -7797,6 +7827,7 @@ export interface RestaurantsUpdateWithoutHotDealsesDataInput {
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface RestaurantsUpsertWithWhereUniqueWithoutHotDealsesInput {
@@ -8079,6 +8110,7 @@ export interface RestaurantsCreateWithoutRestaurantTypesInput {
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface RestaurantTypeUpdateInput {
@@ -8158,6 +8190,7 @@ export interface RestaurantsUpdateWithoutRestaurantTypesDataInput {
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface RestaurantsUpsertWithWhereUniqueWithoutRestaurantTypesInput {
@@ -8211,6 +8244,7 @@ export interface RestaurantsCreateInput {
   menu?: Maybe<RestaurantsCreatemenuInput>;
   brandTile?: Maybe<BrandTileCreateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsCreaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface RestaurantsUpdateInput {
@@ -8247,6 +8281,7 @@ export interface RestaurantsUpdateInput {
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   brandTile?: Maybe<BrandTileUpdateOneWithoutRestaurantsesInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface RestaurantsUpdateManyMutationInput {
@@ -8270,6 +8305,7 @@ export interface RestaurantsUpdateManyMutationInput {
   renoCommision?: Maybe<Int>;
   menu?: Maybe<RestaurantsUpdatemenuInput>;
   restaurantImages?: Maybe<RestaurantsUpdaterestaurantImagesInput>;
+  hasPickup?: Maybe<Boolean>;
 }
 
 export interface SaturdayCreateInput {
@@ -9182,6 +9218,7 @@ export interface Restaurants {
   renoCommision: Int;
   menu: Json[];
   restaurantImages: String[];
+  hasPickup?: Boolean;
 }
 
 export interface RestaurantsPromise extends Promise<Restaurants>, Fragmentable {
@@ -9259,6 +9296,7 @@ export interface RestaurantsPromise extends Promise<Restaurants>, Fragmentable {
   menu: () => Promise<Json[]>;
   brandTile: <T = BrandTilePromise>() => T;
   restaurantImages: () => Promise<String[]>;
+  hasPickup: () => Promise<Boolean>;
 }
 
 export interface RestaurantsSubscription
@@ -9340,6 +9378,7 @@ export interface RestaurantsSubscription
   menu: () => Promise<AsyncIterator<Json[]>>;
   brandTile: <T = BrandTileSubscription>() => T;
   restaurantImages: () => Promise<AsyncIterator<String[]>>;
+  hasPickup: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface RestaurantsNullablePromise
@@ -9419,6 +9458,7 @@ export interface RestaurantsNullablePromise
   menu: () => Promise<Json[]>;
   brandTile: <T = BrandTilePromise>() => T;
   restaurantImages: () => Promise<String[]>;
+  hasPickup: () => Promise<Boolean>;
 }
 
 export interface Orders {
@@ -12508,6 +12548,7 @@ export interface RestaurantsPreviousValues {
   renoCommision: Int;
   menu: Json[];
   restaurantImages: String[];
+  hasPickup?: Boolean;
 }
 
 export interface RestaurantsPreviousValuesPromise
@@ -12534,6 +12575,7 @@ export interface RestaurantsPreviousValuesPromise
   renoCommision: () => Promise<Int>;
   menu: () => Promise<Json[]>;
   restaurantImages: () => Promise<String[]>;
+  hasPickup: () => Promise<Boolean>;
 }
 
 export interface RestaurantsPreviousValuesSubscription
@@ -12560,6 +12602,7 @@ export interface RestaurantsPreviousValuesSubscription
   renoCommision: () => Promise<AsyncIterator<Int>>;
   menu: () => Promise<AsyncIterator<Json[]>>;
   restaurantImages: () => Promise<AsyncIterator<String[]>>;
+  hasPickup: () => Promise<AsyncIterator<Boolean>>;
 }
 
 export interface SaturdaySubscriptionPayload {

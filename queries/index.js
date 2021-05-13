@@ -269,6 +269,7 @@ const orderses = gql`
           imageurl
           city
           acceptsRenoPay
+          hasPickup
         }
       }
     }
