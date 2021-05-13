@@ -295,6 +295,7 @@ const sunday = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       acceptsRenoPay
       sunday {
         id
@@ -320,6 +321,7 @@ const monday = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       acceptsRenoPay
       monday {
         id
@@ -345,6 +347,7 @@ const tuesday = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       acceptsRenoPay
       tuesday {
         id
@@ -370,6 +373,7 @@ const wednesday = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       acceptsRenoPay
       wednesday {
         id
@@ -395,6 +399,7 @@ const thursday = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       acceptsRenoPay
       thursday {
         id
@@ -420,6 +425,7 @@ const friday = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       acceptsRenoPay
       friday {
         id
@@ -445,6 +451,7 @@ const saturday = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       acceptsRenoPay
       saturday {
         id
@@ -470,6 +477,7 @@ const allRestaurants = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       address
       latitude
       longitude
@@ -496,6 +504,7 @@ const sundayNearbyRestaurants = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       address
       latitude
       longitude
@@ -523,6 +532,7 @@ const mondayNearbyRestaurants = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       address
       latitude
       longitude
@@ -550,6 +560,7 @@ const tuesdayNearbyRestaurants = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       address
       latitude
       longitude
@@ -577,6 +588,7 @@ const wednesdayNearbyRestaurants = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       address
       latitude
       longitude
@@ -604,6 +616,7 @@ const thursdayNearbyRestaurants = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       address
       latitude
       longitude
@@ -631,6 +644,7 @@ const fridayNearbyRestaurants = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       address
       latitude
       longitude
@@ -658,6 +672,7 @@ const saturdayNearbyRestaurants = gql`
       state
       imageurl
       googlemapsurl
+      conditions
       address
       latitude
       longitude
