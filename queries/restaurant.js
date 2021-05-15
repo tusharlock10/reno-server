@@ -26,7 +26,7 @@ const showSunday = gql`
       googlemapsurl
       about
       conditions
-      menu
+      restaurantMenu
       userReviewses {
         id
         review
@@ -39,6 +39,7 @@ const showSunday = gql`
       }
       sunday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           sunExhaust
@@ -65,7 +66,7 @@ const showMonday = gql`
       googlemapsurl
       about
       conditions
-      menu
+      restaurantMenu
       userReviewses {
         id
         review
@@ -78,6 +79,7 @@ const showMonday = gql`
       }
       monday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           monExhaust
@@ -104,7 +106,7 @@ const showTuesday = gql`
       googlemapsurl
       about
       conditions
-      menu
+      restaurantMenu
       userReviewses {
         id
         review
@@ -117,6 +119,7 @@ const showTuesday = gql`
       }
       tuesday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           tueExhaust
@@ -143,7 +146,7 @@ const showWednesday = gql`
       googlemapsurl
       about
       conditions
-      menu
+      restaurantMenu
       userReviewses {
         id
         review
@@ -156,6 +159,7 @@ const showWednesday = gql`
       }
       wednesday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           wedExhaust
@@ -182,7 +186,7 @@ const showThursday = gql`
       googlemapsurl
       about
       conditions
-      menu
+      restaurantMenu
       userReviewses {
         id
         review
@@ -195,6 +199,7 @@ const showThursday = gql`
       }
       thursday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           thuExhaust
@@ -221,7 +226,7 @@ const showFriday = gql`
       googlemapsurl
       about
       conditions
-      menu
+      restaurantMenu
       userReviewses {
         id
         review
@@ -234,6 +239,7 @@ const showFriday = gql`
       }
       friday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           friExhaust
@@ -260,7 +266,7 @@ const showSaturday = gql`
       googlemapsurl
       about
       conditions
-      menu
+      restaurantMenu
       userReviewses {
         id
         review
@@ -273,6 +279,7 @@ const showSaturday = gql`
       }
       saturday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           satExhaust
@@ -300,6 +307,7 @@ const sunday = gql`
       acceptsRenoPay
       sunday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           sunExhaust
@@ -327,6 +335,7 @@ const monday = gql`
       acceptsRenoPay
       monday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           monExhaust
@@ -354,6 +363,7 @@ const tuesday = gql`
       acceptsRenoPay
       tuesday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           tueExhaust
@@ -381,6 +391,7 @@ const wednesday = gql`
       acceptsRenoPay
       wednesday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           wedExhaust
@@ -408,6 +419,7 @@ const thursday = gql`
       acceptsRenoPay
       thursday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           thuExhaust
@@ -435,6 +447,7 @@ const friday = gql`
       acceptsRenoPay
       friday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           friExhaust
@@ -462,6 +475,7 @@ const saturday = gql`
       acceptsRenoPay
       saturday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           satExhaust
@@ -519,6 +533,7 @@ const sundayNearbyRestaurants = gql`
       longitude
       sunday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           sunExhaust
@@ -548,6 +563,7 @@ const mondayNearbyRestaurants = gql`
       longitude
       monday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           monExhaust
@@ -577,6 +593,7 @@ const tuesdayNearbyRestaurants = gql`
       longitude
       tuesday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           tueExhaust
@@ -606,6 +623,7 @@ const wednesdayNearbyRestaurants = gql`
       longitude
       wednesday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           wedExhaust
@@ -635,6 +653,7 @@ const thursdayNearbyRestaurants = gql`
       longitude
       thursday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           thuExhaust
@@ -664,6 +683,7 @@ const fridayNearbyRestaurants = gql`
       longitude
       friday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           friExhaust
@@ -693,6 +713,7 @@ const saturdayNearbyRestaurants = gql`
       longitude
       saturday {
         id
+        exhausted
         timeDiscounts(orderBy: time_ASC, where: { time_gt: $time }) {
           time
           satExhaust

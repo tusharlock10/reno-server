@@ -13,6 +13,7 @@ services:
     environment:
       PRISMA_CONFIG: |
         port: 4466
+        managementApiSecret: 8V9S5K7JUO4GA1TE
         databases:
           default:
             connector: postgres

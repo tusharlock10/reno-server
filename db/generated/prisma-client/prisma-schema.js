@@ -3265,6 +3265,7 @@ type Restaurants {
   brandTile: BrandTile
   restaurantImages: [String!]!
   hasPickup: Boolean
+  restaurantMenu: [String!]!
 }
 
 type RestaurantsConnection {
@@ -3309,6 +3310,7 @@ input RestaurantsCreateInput {
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 input RestaurantsCreateManyWithoutBrandTileInput {
@@ -3384,6 +3386,10 @@ input RestaurantsCreaterestaurantImagesInput {
   set: [String!]
 }
 
+input RestaurantsCreaterestaurantMenuInput {
+  set: [String!]
+}
+
 input RestaurantsCreaterphoneInput {
   set: [String!]
 }
@@ -3423,6 +3429,7 @@ input RestaurantsCreateWithoutBrandTileInput {
   menu: RestaurantsCreatemenuInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 input RestaurantsCreateWithoutFridayInput {
@@ -3460,6 +3467,7 @@ input RestaurantsCreateWithoutFridayInput {
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 input RestaurantsCreateWithoutHotDealsesInput {
@@ -3497,6 +3505,7 @@ input RestaurantsCreateWithoutHotDealsesInput {
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 input RestaurantsCreateWithoutMondayInput {
@@ -3534,6 +3543,7 @@ input RestaurantsCreateWithoutMondayInput {
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 input RestaurantsCreateWithoutOrdersesInput {
@@ -3571,6 +3581,7 @@ input RestaurantsCreateWithoutOrdersesInput {
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 input RestaurantsCreateWithoutRestaurantTypesInput {
@@ -3608,6 +3619,7 @@ input RestaurantsCreateWithoutRestaurantTypesInput {
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 input RestaurantsCreateWithoutSaturdayInput {
@@ -3645,6 +3657,7 @@ input RestaurantsCreateWithoutSaturdayInput {
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 input RestaurantsCreateWithoutSundayInput {
@@ -3682,6 +3695,7 @@ input RestaurantsCreateWithoutSundayInput {
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 input RestaurantsCreateWithoutThursdayInput {
@@ -3719,6 +3733,7 @@ input RestaurantsCreateWithoutThursdayInput {
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 input RestaurantsCreateWithoutTimeDiscountsInput {
@@ -3756,6 +3771,7 @@ input RestaurantsCreateWithoutTimeDiscountsInput {
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 input RestaurantsCreateWithoutTuesdayInput {
@@ -3793,6 +3809,7 @@ input RestaurantsCreateWithoutTuesdayInput {
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 input RestaurantsCreateWithoutUserReviewsesInput {
@@ -3830,6 +3847,7 @@ input RestaurantsCreateWithoutUserReviewsesInput {
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 input RestaurantsCreateWithoutWednesdayInput {
@@ -3867,6 +3885,7 @@ input RestaurantsCreateWithoutWednesdayInput {
   brandTile: BrandTileCreateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsCreaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsCreaterestaurantMenuInput
 }
 
 type RestaurantsEdge {
@@ -3938,6 +3957,7 @@ type RestaurantsPreviousValues {
   menu: [Json!]!
   restaurantImages: [String!]!
   hasPickup: Boolean
+  restaurantMenu: [String!]!
 }
 
 input RestaurantsScalarWhereInput {
@@ -4205,6 +4225,7 @@ input RestaurantsUpdateInput {
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateManyDataInput {
@@ -4229,6 +4250,7 @@ input RestaurantsUpdateManyDataInput {
   menu: RestaurantsUpdatemenuInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateManyMutationInput {
@@ -4253,6 +4275,7 @@ input RestaurantsUpdateManyMutationInput {
   menu: RestaurantsUpdatemenuInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateManyWithoutBrandTileInput {
@@ -4394,6 +4417,10 @@ input RestaurantsUpdaterestaurantImagesInput {
   set: [String!]
 }
 
+input RestaurantsUpdaterestaurantMenuInput {
+  set: [String!]
+}
+
 input RestaurantsUpdaterphoneInput {
   set: [String!]
 }
@@ -4432,6 +4459,7 @@ input RestaurantsUpdateWithoutBrandTileDataInput {
   menu: RestaurantsUpdatemenuInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateWithoutFridayDataInput {
@@ -4468,6 +4496,7 @@ input RestaurantsUpdateWithoutFridayDataInput {
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateWithoutHotDealsesDataInput {
@@ -4504,6 +4533,7 @@ input RestaurantsUpdateWithoutHotDealsesDataInput {
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateWithoutMondayDataInput {
@@ -4540,6 +4570,7 @@ input RestaurantsUpdateWithoutMondayDataInput {
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateWithoutOrdersesDataInput {
@@ -4576,6 +4607,7 @@ input RestaurantsUpdateWithoutOrdersesDataInput {
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateWithoutRestaurantTypesDataInput {
@@ -4612,6 +4644,7 @@ input RestaurantsUpdateWithoutRestaurantTypesDataInput {
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateWithoutSaturdayDataInput {
@@ -4648,6 +4681,7 @@ input RestaurantsUpdateWithoutSaturdayDataInput {
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateWithoutSundayDataInput {
@@ -4684,6 +4718,7 @@ input RestaurantsUpdateWithoutSundayDataInput {
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateWithoutThursdayDataInput {
@@ -4720,6 +4755,7 @@ input RestaurantsUpdateWithoutThursdayDataInput {
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateWithoutTimeDiscountsDataInput {
@@ -4756,6 +4792,7 @@ input RestaurantsUpdateWithoutTimeDiscountsDataInput {
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateWithoutTuesdayDataInput {
@@ -4792,6 +4829,7 @@ input RestaurantsUpdateWithoutTuesdayDataInput {
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateWithoutUserReviewsesDataInput {
@@ -4828,6 +4866,7 @@ input RestaurantsUpdateWithoutUserReviewsesDataInput {
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateWithoutWednesdayDataInput {
@@ -4864,6 +4903,7 @@ input RestaurantsUpdateWithoutWednesdayDataInput {
   brandTile: BrandTileUpdateOneWithoutRestaurantsesInput
   restaurantImages: RestaurantsUpdaterestaurantImagesInput
   hasPickup: Boolean
+  restaurantMenu: RestaurantsUpdaterestaurantMenuInput
 }
 
 input RestaurantsUpdateWithWhereUniqueWithoutBrandTileInput {
